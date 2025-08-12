@@ -1,0 +1,45 @@
+arch store|Arch store
+search for software|Search for software
+search|Search
+update system|Update system
+settings|Settings
+i'm looking for|I'm looking for
+so you're looking for nothing|Well done, keep looking for nothing in life, you'll never accomplish anything!
+start actions|Start actions
+an install instance is alredy in progress|An installation is already in progress
+no pacman install actions|No pacman installation actions!
+no pacman remove actions|No pacman removal actions!
+no install aur actions|No AUR installation actions!
+no remove aur actions|No AUR removal actions!
+no install flatpak actions|No Flatpak installation actions!
+no remove flatpak actions|No Flatpak removal actions!
+installation|Installing...
+enable|Enable
+disable|Disable
+install|Install
+remove|Uninstall
+do not install|Do not install
+do not remove|Do not remove
+enable disable repo|Enable/Disable Repo
+reset settings|Reset settings
+arch store settings|Arch Store settings
+no installation method|No installation method enabled, please enable at least one in settings!
+pacman install|Pacman installations
+pacman remove|Pacman removals
+aur install|AUR installation
+aur remove|AUR removals
+flatpak install|Flatpak installations
+flatpak remove|Flatpak removals
+nothing enable|Nothing enabled
+update|Update
+start update|Start update
+finished|Finished!
+language|Language
+confirm change language|Apply language
+no program found|Sorry, no program found :-(
+programs|Programs
+description|Description
+repository|Repository
+actions|Actions
+made whit heart by Samuobe|Made with heart by Samuobe
+github project|GitHub project
