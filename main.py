@@ -3,6 +3,7 @@ import tkinter as tk
 import subprocess
 from tkinter import messagebox
 from tkinter import ttk
+from tkinter import font
 from tkinter.scrolledtext import ScrolledText
 import threading
 import library.lpak as lpak
@@ -26,6 +27,7 @@ last_search = ""
 
 #Auto-set variables
 working_dir = os.path.dirname(os.path.realpath(__file__))
+os.chdir(working_dir)
 
 #Config data
 def load_config_data():    
@@ -132,10 +134,12 @@ def open_setting():
         load_config_data()
         settings_page.destroy()
         open_setting()
-    settings_page = tk.Tk()
+    settings_page = tk.Toplevel(root)
     settings_page.title(lpak.get("arch store settings", language))
     settings_page.geometry("750x600")
     settings_page.minsize(600, 600)
+    icon = tk.PhotoImage(file="icon.png")
+    settings_page.iconphoto(False, icon)
 
     settings_label_title = tk.Label(settings_page, text=lpak.get("settings", language))
     settings_label_repo = tk.Label(settings_page, text=lpak.get("enable disable repo", language))
@@ -191,6 +195,110 @@ def open_setting():
 
 #END SETTINGS##
 ###############
+
+###########
+###OTHER###
+def open_other():
+    def open_appimages_settings():
+        def remove_appimage(name):
+            print("you want remove: "+name)
+        def add_appimage_window():
+            print("You want to add an AppImage")
+        appimages_window = tk.Toplevel(other_option_window)
+        appimages_window.title(lpak.get("manage appimages", language))
+        icon = tk.PhotoImage(file="icon.png")
+        appimages_window.iconphoto(False, icon)
+        appimages_window.geometry("600x500")        
+
+        # Scrollable
+        container = tk.Frame(appimages_window)
+        container.grid(row=0, column=0, sticky="nsew")
+        appimages_window.grid_rowconfigure(0, weight=1)
+        appimages_window.grid_columnconfigure(0, weight=1)
+
+        canvas = tk.Canvas(container)
+        scrollbar = tk.Scrollbar(container, orient="vertical", command=canvas.yview)
+        scrollable_frame = tk.Frame(canvas)
+        scrollable_frame.bind(
+            "<Configure>",
+            lambda e: canvas.configure(scrollregion=canvas.bbox("all"))
+        )
+        canvas.create_window((0, 0), window=scrollable_frame, anchor="nw")
+        canvas.configure(yscrollcommand=scrollbar.set)
+        canvas.grid(row=0, column=0, sticky="nsew")
+        scrollbar.grid(row=0, column=1, sticky="ns")
+        container.grid_rowconfigure(0, weight=1)
+        container.grid_columnconfigure(0, weight=1)
+        #end scrollable
+
+        if not os.path.isfile("appimages.data"):
+            with open("appimages.data", "w") as f:
+                pass
+      
+        with open("appimages.data", "r") as f:
+            appimages_data = f.readlines()
+        row = 0
+        header_font = font.Font(weight="bold")
+
+        if appimages_data == []:
+            no_appimage_apps_label = tk.Label(scrollable_frame, text=lpak.get("no appimages app", language))
+            no_appimage_apps_label.grid(row=row, column=0, sticky="w", padx=5, pady=5)
+        else:
+            # intestazioni in grassetto
+            actions_label = tk.Label(scrollable_frame, text=lpak.get("actions", language), font=header_font)
+            name_label = tk.Label(scrollable_frame, text=lpak.get("name", language), font=header_font)
+            path_label = tk.Label(scrollable_frame, text=lpak.get("path", language), font=header_font)
+            ico_label = tk.Label(scrollable_frame, text=lpak.get("icon", language), font=header_font)
+
+            actions_label.grid(row=row, column=0)
+            name_label.grid(row=row, column=2)
+            path_label.grid(row=row, column=4)
+            ico_label.grid(row=row, column=6)
+
+            # linea dopo intestazione
+            ttk.Separator(scrollable_frame, orient="horizontal").grid(row=row+1, column=0, columnspan=7, sticky='ew', pady=5)
+            row += 2
+
+            for app in appimages_data:
+                name, path, ico = app.strip().split("|")
+                remove_appimage_button = tk.Button(scrollable_frame, text=lpak.get("remove", language),
+                                                command=lambda name=name: remove_appimage(name))
+                appimage_name_label = tk.Label(scrollable_frame, text=name)
+                appimage_path = tk.Label(scrollable_frame, text=path)
+                appimage_ico = tk.Label(scrollable_frame, text=ico)
+
+                remove_appimage_button.grid(row=row, column=0)
+                appimage_name_label.grid(row=row, column=2)
+                appimage_path.grid(row=row, column=4)
+                appimage_ico.grid(row=row, column=6)
+
+                # linea separatrice dopo ogni riga di dati
+                ttk.Separator(scrollable_frame, orient="horizontal").grid(row=row+1, column=0, columnspan=7, sticky='ew', pady=5)
+                row += 2
+
+        # linee verticali
+        ttk.Separator(scrollable_frame, orient="vertical").grid(column=1, row=1, rowspan=row-1, sticky='ns')
+        ttk.Separator(scrollable_frame, orient="vertical").grid(column=3, row=1, rowspan=row-1, sticky='ns')
+        ttk.Separator(scrollable_frame, orient="vertical").grid(column=5, row=1, rowspan=row-1, sticky='ns')
+            
+        add_appimage_button=tk.Button(appimages_window, text=lpak.get("add appimage", language), command=add_appimage_window)
+        add_appimage_button.grid(row=1, columnspan=4)
+        appimages_window.mainloop()
+
+    other_option_window = tk.Toplevel(root)
+    other_option_window.title(lpak.get("other options", language))
+    icon = tk.PhotoImage(file="icon.png")
+    other_option_window.iconphoto(False, icon)
+    other_option_window.geometry("400x400")
+
+    appimage_button = tk.Button(other_option_window, text=lpak.get("manage appimages", language), command=open_appimages_settings)
+    appimage_button.grid(row=0, column=0, padx=10, pady=10)
+
+    other_option_window.mainloop()
+
+#END OTHER#
+###########
+
 def update_all_apps():
     global install_status
     #Controlli vari
@@ -790,6 +898,7 @@ while True:
     search_button = tk.Button(text=lpak.get("search", language), command=lambda name=" ": search_program(name))
     update_button = tk.Button(text=lpak.get("update system", language), command=update_all_apps)
     setting_button = tk.Button(text=lpak.get("settings", language), command=open_setting)
+    other_button = tk.Button(text=lpak.get("other", language), command=open_other)
     # focus sulla barra di ricerca all'avvio
     search_bar.focus_set()
     # binding tasto Invio per ricerca
@@ -802,6 +911,7 @@ while True:
     search_button.grid(column=0, row=2, sticky="w")
     update_button.grid(column=2, row=1, sticky="e")
     setting_button.grid(column=2, row=2, sticky="e")
+    other_button.grid(column=2, row=3, sticky="e")
     #
     root.mainloop()        
     if language == actual_language:
