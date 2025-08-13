@@ -51,3 +51,5 @@ name|Nome
 icon|Icona
 path|Percorso
 add appimage|Aggiungi un AppImage
+select an appimage|Seleziona un AppImage
+select an icon|Scegli un icona

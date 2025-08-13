@@ -51,3 +51,5 @@ name|Name
 icon|Icon
 path|Path
 add appimage|Add AppImage
+select an appimage|Select an AppImage
+select an icon|Select an icon

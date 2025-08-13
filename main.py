@@ -5,6 +5,7 @@ from tkinter import messagebox
 from tkinter import ttk
 from tkinter import font
 from tkinter.scrolledtext import ScrolledText
+from tkinter import filedialog
 import threading
 import library.lpak as lpak
 import webbrowser
@@ -38,6 +39,7 @@ def load_config_data():
             f.write("flatpak=enable\n")
             f.write("aur_method=yay\n")
             f.write("language=English\n")
+            f.write("AppImmageDir=./AppImages")
     def read_config_data():
         global setting_repo_pacman, setting_repo_aur, setting_repo_flatpak, setting_aur_method, language
         with open("settings.conf", "r") as f:
@@ -47,6 +49,7 @@ def load_config_data():
         setting_repo_flatpak=file_configuration_data[2].split("=")[1]
         setting_aur_method=file_configuration_data[3].split("=")[1]
         language=file_configuration_data[4].split("=")[1]
+        AppImagesDir=file_configuration_data[5].split("=")[1]
     if not os.path.isfile("settings.conf"):
         write_new_config_file()    
     try:        
@@ -127,7 +130,7 @@ def open_setting():
                     f.write("language="+language+"\n")
         load_config_data()
         root.destroy()        
-        settings_page.destroy()
+        #settings_page.destroy()
     #Other
     def settings_reset_settings():
         os.remove("settings.conf")
@@ -202,8 +205,39 @@ def open_other():
     def open_appimages_settings():
         def remove_appimage(name):
             print("you want remove: "+name)
-        def add_appimage_window():
-            print("You want to add an AppImage")
+        def start_add_appimage():
+            def select_file_appimage(button):
+                appimage_path= filedialog.askopenfilename(title=lpak.get("select an appimage", language), filetypes=[("AppImage", "*.AppImage")])
+                button.config(text=appimage_path)
+            def select_file_icon(button):
+                appimage_path= filedialog.askopenfilename(title=lpak.get("select an icon", language), filetypes=[(lpak.get("icon", language), "*.ico")])
+                button.config(text=appimage_path)
+            def confirm_appimage_install(name, path, icon):
+                print("WOOOW you have just confirmed the appimage installation!")
+
+            add_appimage_window = tk.Toplevel(appimages_window)
+            add_appimage_window.geometry("400x400")
+            add_appimage_window.title(lpak.get("add appimage", language))
+            appimage_name_label = tk.Label(add_appimage_window, text=lpak.get("name", language))
+            appimage_name_textbox = tk.Entry(add_appimage_window, width=20, )
+            appimage_path_label = tk.Label(add_appimage_window, text=lpak.get("path", language))
+            appimage_path_button = tk.Button(add_appimage_window, text=lpak.get("select an appimage", language))
+            appimage_path_button.config(command=lambda path_button=appimage_path_button: select_file_appimage(path_button))
+            appimage_ico_label = tk.Label(add_appimage_window, text=lpak.get("icon", language))
+            appimage_ico_button = tk.Button(add_appimage_window, text=lpak.get("select an icon", language))
+            appimage_ico_button.config(command=lambda ico_button = appimage_ico_button: select_file_icon(appimage_button))
+            appimage_confirm_button = tk.Button(add_appimage_window, text=("install appimage"), command=lambda name=appimage_name_textbox.get(), path=appimage_path_button, icon=appimage_ico_button: confirm_appimage_install(name, path, icon))
+            #
+
+            appimage_name_label.grid(row=0, column=0, sticky="w")
+            appimage_name_textbox.grid(row=0, column=1, pady=1, sticky="e")
+            appimage_path_label.grid(row=1, column=0, sticky="w")
+            appimage_path_button.grid(row=1, column=1, sticky="e")
+            appimage_ico_label.grid(row=2, column=0, sticky="w")
+            appimage_ico_button.grid(row=2, column=1, sticky="e")
+            appimage_confirm_button.grid(row=3, columnspan=2, sticky="w")
+            add_appimage_window.mainloop()
+
         appimages_window = tk.Toplevel(other_option_window)
         appimages_window.title(lpak.get("manage appimages", language))
         icon = tk.PhotoImage(file="icon.png")
@@ -281,7 +315,7 @@ def open_other():
         ttk.Separator(scrollable_frame, orient="vertical").grid(column=3, row=1, rowspan=row-1, sticky='ns')
         ttk.Separator(scrollable_frame, orient="vertical").grid(column=5, row=1, rowspan=row-1, sticky='ns')
             
-        add_appimage_button=tk.Button(appimages_window, text=lpak.get("add appimage", language), command=add_appimage_window)
+        add_appimage_button=tk.Button(appimages_window, text=lpak.get("add appimage", language), command=start_add_appimage)
         add_appimage_button.grid(row=1, columnspan=4)
         appimages_window.mainloop()
 
