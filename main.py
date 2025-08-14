@@ -9,6 +9,7 @@ from tkinter import filedialog
 import threading
 import library.lpak as lpak
 import webbrowser
+import getpass
 
 #fast access variables
 avaible_languages = ["Italiano", "English"]
@@ -29,6 +30,7 @@ last_search = ""
 #Auto-set variables
 working_dir = os.path.dirname(os.path.realpath(__file__))
 os.chdir(working_dir)
+user_name = getpass.getuser()
 
 #Config data
 def load_config_data():    
@@ -41,7 +43,7 @@ def load_config_data():
             f.write("language=English\n")
             f.write("AppImmageDir=./AppImages")
     def read_config_data():
-        global setting_repo_pacman, setting_repo_aur, setting_repo_flatpak, setting_aur_method, language
+        global setting_repo_pacman, setting_repo_aur, setting_repo_flatpak, setting_aur_method, language, AppImagesDir
         with open("settings.conf", "r") as f:
             file_configuration_data = [line.rstrip('\n') for line in f.readlines()]
         setting_repo_pacman=file_configuration_data[0].split("=")[1]
@@ -63,6 +65,8 @@ def load_config_data():
 
 load_config_data()
 no_repo_error_text_default=lpak.get("no installation method", language)
+os.makedirs(AppImagesDir, exist_ok=True)
+
 
 
 ###############
@@ -172,7 +176,14 @@ def open_setting():
     menu_select_language = ttk.Combobox(settings_page, values=avaible_languages)
     menu_select_language.set(language)
     label_language=tk.Label(settings_page, text=lpak.get("language", language))
-    button_language_confirm=tk.Button(settings_page, text=lpak.get("confirm change language", language), command=lambda settings_page=settings_page: settings_change_language(settings_page))
+    button_language_confirm=tk.Button(settings_page, text=lpak.get("confirm change language", language), command=lambda settings_page=settings_page: settings_change_language(settings_page))    
+    #crediti
+    def github_button():
+        webbrowser.open("https://github.com/IlNonoP/Arch-Store")
+    author_label = tk.Label(settings_page, text=lpak.get("made whit heart by Samuobe", language))
+    project_link = tk.Button(settings_page, text=lpak.get("github project", language), command=github_button) 
+    line_separazione = ttk.Separator(settings_page, orient="horizontal")
+    #
     settings_label_title.grid(row=0, columnspan=2)
     button_reset_settings.grid(row=0, column = 3)
     settings_label_repo.grid(row=1, column=0)
@@ -185,12 +196,6 @@ def open_setting():
     label_language.grid(row=5, column=0)
     menu_select_language.grid(row=5, column=1)
     button_language_confirm.grid(row=6, columnspan=1)
-    #crediti
-    def github_button():
-        webbrowser.open("https://github.com/IlNonoP/Arch-Store")
-    author_label = tk.Label(settings_page, text=lpak.get("made whit heart by Samuobe", language))
-    project_link = tk.Button(settings_page, text=lpak.get("github project", language), command=github_button) 
-    line_separazione = ttk.Separator(settings_page, orient="horizontal")
     line_separazione.grid(column=0, row=7, columnspan=3, sticky='ew', pady=10)
     author_label.grid(column=0, row=8)
     project_link.grid(column=1, row=8)
@@ -206,27 +211,88 @@ def open_other():
         def remove_appimage(name):
             print("you want remove: "+name)
         def start_add_appimage():
-            def select_file_appimage(button):
-                appimage_path= filedialog.askopenfilename(title=lpak.get("select an appimage", language), filetypes=[("AppImage", "*.AppImage")])
+            def select_file_appimage(button, parent_window):
+                appimage_path = filedialog.askopenfilename(
+                    parent=parent_window,  # <-- rende il dialog figlio del Toplevel
+                    title=lpak.get("select an appimage", language),
+                    filetypes=[("AppImage", "*.AppImage")]
+                )
+                if appimage_path:  # solo se l'utente ha selezionato qualcosa
+                    button.config(text=appimage_path)
+            def select_file_icon(button, parent_window):
+                appimage_path = filedialog.askopenfilename(
+                    parent=parent_window,  # finestra Toplevel di riferimento
+                    title=lpak.get("select an icon", language),
+                    filetypes=[(lpak.get("PNG", language), "*.png")]
+                )
                 button.config(text=appimage_path)
-            def select_file_icon(button):
-                appimage_path= filedialog.askopenfilename(title=lpak.get("select an icon", language), filetypes=[(lpak.get("icon", language), "*.ico")])
-                button.config(text=appimage_path)
-            def confirm_appimage_install(name, path, icon):
-                print("WOOOW you have just confirmed the appimage installation!")
+
+            def confirm_appimage_install(name_text, path_but, icon_but, category_selection, add_appimage_window):
+                name = name_text.get()
+                path = path_but.cget("text")
+                icon = icon_but.cget("text")
+                category = category_selection.get()
+                if "|" in name or name == None or name == "":
+                    messagebox.showwarning(lpak.get("illegal caracter", language), lpak.get("you can't use the following caracther", language)+": |")
+                    return
+                if not os.path.isfile(path):
+                    messagebox.showwarning(lpak.get("invalid appimage location", language), lpak.get("the appimage you selected was not found", language)+": |")
+                    return
+                if not os.path.isfile(icon):
+                    messagebox.showwarning(lpak.get("invalid icon location", language), lpak.get("the icon you selected was not found", language)+": |")
+                    return     
+                response = messagebox.askyesno(
+                    lpak.get("confirm installation", language),
+                    lpak.get("do you want to install it for all users", language),
+                    parent=add_appimage_window
+                )
+                if response:
+                    program_user = "-"
+                else:
+                    program_user = user_name
+                os.system(f"mv {icon} {AppImagesDir}/{name}-{program_user}.png")
+                os.system(f"mv {path} {AppImagesDir}/{name}-{program_user}.AppImage")
+                desktop_entry_data = f"[Desktop Entry]\nType=Application\nName={name}\nExec={AppImagesDir}/{name}-{program_user}.AppImage\nIcon={AppImagesDir}/{name}-{program_user}.png\nCategories={category};"
+                if program_user == "-":
+                    with open(f"/usr/share/applications/{name}.desktop", "w") as f:
+                        f.write(desktop_entry_data)                    
+                else:
+                    desktop_path = os.path.expanduser(f"~/.local/share/applications/{name}-archstore.desktop")
+                    with open(desktop_path, "w") as f:
+                        f.write(desktop_entry_data)
+                with open("appimages.data", "r") as f:
+                    appimage_file_data = f.readlines()
+                with open ("appimages.data", "w") as f:
+                    for line in appimage_file_data:
+                        f.write(line)                        
+                    f.write(f"\n{name}|{user_name}")
+                messagebox.showinfo(
+                    lpak.get("installation comopleted", language),
+                    lpak.get("installation completed", language),
+                    parent=add_appimage_window  
+                )
 
             add_appimage_window = tk.Toplevel(appimages_window)
-            add_appimage_window.geometry("400x400")
+            add_appimage_window.geometry("900x500")
             add_appimage_window.title(lpak.get("add appimage", language))
             appimage_name_label = tk.Label(add_appimage_window, text=lpak.get("name", language))
             appimage_name_textbox = tk.Entry(add_appimage_window, width=20, )
             appimage_path_label = tk.Label(add_appimage_window, text=lpak.get("path", language))
             appimage_path_button = tk.Button(add_appimage_window, text=lpak.get("select an appimage", language))
-            appimage_path_button.config(command=lambda path_button=appimage_path_button: select_file_appimage(path_button))
+            appimage_path_button.config(command=lambda path_button=appimage_path_button, back_top=add_appimage_window: select_file_appimage(path_button, back_top))
             appimage_ico_label = tk.Label(add_appimage_window, text=lpak.get("icon", language))
             appimage_ico_button = tk.Button(add_appimage_window, text=lpak.get("select an icon", language))
-            appimage_ico_button.config(command=lambda ico_button = appimage_ico_button: select_file_icon(appimage_button))
-            appimage_confirm_button = tk.Button(add_appimage_window, text=("install appimage"), command=lambda name=appimage_name_textbox.get(), path=appimage_path_button, icon=appimage_ico_button: confirm_appimage_install(name, path, icon))
+            appimage_ico_button.config(command=lambda ico_button = appimage_ico_button, back_top=add_appimage_window: select_file_icon(ico_button, back_top))
+           
+           
+            avaible_appimage_types = ["Utility", "Game", "Graphics", "Network", "AudioVideo", "Development", "Office", "Presentation"]
+            menu_select_type = ttk.Combobox(add_appimage_window, values=avaible_appimage_types)
+            label_language=tk.Label(add_appimage_window, text=lpak.get("app type", language))
+            
+            
+
+
+            appimage_confirm_button = tk.Button(add_appimage_window, text=("install appimage"), command=lambda name=appimage_name_textbox, path=appimage_path_button, icon=appimage_ico_button, tipe=menu_select_type, window=add_appimage_window: confirm_appimage_install(name, path, icon, tipe, window))
             #
 
             appimage_name_label.grid(row=0, column=0, sticky="w")
@@ -235,7 +301,11 @@ def open_other():
             appimage_path_button.grid(row=1, column=1, sticky="e")
             appimage_ico_label.grid(row=2, column=0, sticky="w")
             appimage_ico_button.grid(row=2, column=1, sticky="e")
-            appimage_confirm_button.grid(row=3, columnspan=2, sticky="w")
+
+            label_language.grid(row=3, column=0, sticky="w")
+            menu_select_type.grid(row=3, column=1, sticky="e")
+
+            appimage_confirm_button.grid(row=4, columnspan=2, sticky="w")
             add_appimage_window.mainloop()
 
         appimages_window = tk.Toplevel(other_option_window)
@@ -281,34 +351,36 @@ def open_other():
             # intestazioni in grassetto
             actions_label = tk.Label(scrollable_frame, text=lpak.get("actions", language), font=header_font)
             name_label = tk.Label(scrollable_frame, text=lpak.get("name", language), font=header_font)
-            path_label = tk.Label(scrollable_frame, text=lpak.get("path", language), font=header_font)
-            ico_label = tk.Label(scrollable_frame, text=lpak.get("icon", language), font=header_font)
+            user_label = tk.Label(scrollable_frame, text=lpak.get("user", language), font=header_font)
+
 
             actions_label.grid(row=row, column=0)
             name_label.grid(row=row, column=2)
-            path_label.grid(row=row, column=4)
-            ico_label.grid(row=row, column=6)
+            user_label.grid(row=row, column=4)
 
             # linea dopo intestazione
             ttk.Separator(scrollable_frame, orient="horizontal").grid(row=row+1, column=0, columnspan=7, sticky='ew', pady=5)
             row += 2
 
             for app in appimages_data:
-                name, path, ico = app.strip().split("|")
-                remove_appimage_button = tk.Button(scrollable_frame, text=lpak.get("remove", language),
-                                                command=lambda name=name: remove_appimage(name))
-                appimage_name_label = tk.Label(scrollable_frame, text=name)
-                appimage_path = tk.Label(scrollable_frame, text=path)
-                appimage_ico = tk.Label(scrollable_frame, text=ico)
+                try:
+                    name, user= app.strip().split("|")
+                except:
+                    pass
+                if user == "-" or user == user_name:
+                    remove_appimage_button = tk.Button(scrollable_frame, text=lpak.get("remove", language),
+                                                    command=lambda name=name: remove_appimage(name))
+                    appimage_name_label = tk.Label(scrollable_frame, text=name)
+                    appimage_user = tk.Label(scrollable_frame, text=user)
 
-                remove_appimage_button.grid(row=row, column=0)
-                appimage_name_label.grid(row=row, column=2)
-                appimage_path.grid(row=row, column=4)
-                appimage_ico.grid(row=row, column=6)
+                    remove_appimage_button.grid(row=row, column=0)
+                    appimage_name_label.grid(row=row, column=2)
+                    appimage_user.grid(row=row, column=4)
+                    
 
-                # linea separatrice dopo ogni riga di dati
-                ttk.Separator(scrollable_frame, orient="horizontal").grid(row=row+1, column=0, columnspan=7, sticky='ew', pady=5)
-                row += 2
+                    # linea separatrice dopo ogni riga di dati
+                    ttk.Separator(scrollable_frame, orient="horizontal").grid(row=row+1, column=0, columnspan=4, sticky='ew', pady=5)
+                    row += 2
 
         # linee verticali
         ttk.Separator(scrollable_frame, orient="vertical").grid(column=1, row=1, rowspan=row-1, sticky='ns')

@@ -53,3 +53,13 @@ path|Percorso
 add appimage|Aggiungi un AppImage
 select an appimage|Seleziona un AppImage
 select an icon|Scegli un icona
+illegal caracter|Carattere non valido
+you can't use the following caracther|Non puoi usare i seguenti caratteri
+invalid appimage location|Posizione non valida
+the appimage you selected was not found|Il file AppImage che hai selezionato non esiste!
+invalid icon location|Icona non valida
+the icon you selected was not found|L'icona che hai selezionato non sembra esistere
+app type|Categoria
+confirm installation|Conferma installazione
+do you want to install it for all users|Vuoi installarlo per tutti gli utenti?
+installation completed|Installazione completata
