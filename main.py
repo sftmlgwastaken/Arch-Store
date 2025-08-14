@@ -72,7 +72,7 @@ os.makedirs(AppImagesDir, exist_ok=True)
 ###############
 #SETTINGS DATA#
 
-def open_setting():
+def open_setting(window):
     #Edit repo
     def settings_change_pacman_status():
         with open("settings.conf", "r") as f:
@@ -141,7 +141,7 @@ def open_setting():
         load_config_data()
         settings_page.destroy()
         open_setting()
-    settings_page = tk.Toplevel(root)
+    settings_page = tk.Toplevel(window)
     settings_page.title(lpak.get("arch store settings", language))
     settings_page.geometry("750x600")
     settings_page.minsize(600, 600)
@@ -222,11 +222,28 @@ def open_other():
                 lpak.get("update completed", language),
                 lpak.get("update completed", language),
                 parent=window  
-            )
-            
+            )            
 
-        def remove_appimage(name, program_user, window):
-            print("you want remove: "+name)
+        def remove_appimage(name, program_user_base, window):            
+            os.remove(AppImagesDir+f"/{name}-{program_user_base}.AppImage")
+            os.remove(AppImagesDir+f"/{name}-{program_user_base}.png")
+            if program_user_base == "-":
+                cmd = f"rm '/usr/share/applications/{name}-archstore.desktop'"
+                subprocess.run(["pkexec", "bash", "-c", cmd])                
+            else:
+                desktop_path = os.path.expanduser(f"~/.local/share/applications/{name}-archstore.desktop")
+                os.remove(desktop_path)
+            with open("appimages.data", "r") as f:
+                appimage_data = f.readlines()
+            with open("appimages.data", "w") as f:
+                for line in appimage_data:
+                    if line != f"{name}|{program_user_base}":
+                        f.write(line)
+            messagebox.showinfo(
+                lpak.get("remotion completed", language),
+                lpak.get("remotion completed", language),
+                parent=window  
+            )
 
         def start_add_appimage():
             def select_file_appimage(button, parent_window):
@@ -251,13 +268,13 @@ def open_other():
                 icon = icon_but.cget("text")
                 category = category_selection.get()
                 if "|" in name or name == None or name == "":
-                    messagebox.showwarning(lpak.get("illegal caracter", language), lpak.get("you can't use the following caracther", language)+": |")
+                    messagebox.showwarning(lpak.get("illegal caracter", language), lpak.get("you can't use the following caracther", language)+": |", parent=add_appimage_window)
                     return
                 if not os.path.isfile(path):
-                    messagebox.showwarning(lpak.get("invalid appimage location", language), lpak.get("the appimage you selected was not found", language)+": |")
+                    messagebox.showwarning(lpak.get("invalid appimage location", language), lpak.get("the appimage you selected was not found", language)+": |", parent=add_appimage_window)
                     return
                 if not os.path.isfile(icon):
-                    messagebox.showwarning(lpak.get("invalid icon location", language), lpak.get("the icon you selected was not found", language)+": |")
+                    messagebox.showwarning(lpak.get("invalid icon location", language), lpak.get("the icon you selected was not found", language)+": |", parent=add_appimage_window  )
                     return     
                 response = messagebox.askyesno(
                     lpak.get("confirm installation", language),
@@ -270,10 +287,14 @@ def open_other():
                     program_user = user_name
                 os.system(f"mv '{icon}' '{AppImagesDir}/{name}-{program_user}.png'")
                 os.system(f"mv '{path}' '{AppImagesDir}/{name}-{program_user}.AppImage'")
-                desktop_entry_data = f"[Desktop Entry]\nType=Application\nName={name}\nExec={AppImagesDir}/{name}-{program_user}.AppImage\nIcon={AppImagesDir}/{name}-{program_user}.png\nCategories={category};"
+                desktop_entry_data = f"[Desktop Entry]\nType=Application\nName={name}\nExec='{AppImagesDir}/{name}-{program_user}.AppImage'\nIcon={AppImagesDir}/{name}-{program_user}.png\nCategories={category};"
                 if program_user == "-":
-                    with open(f"/usr/share/applications/{name}-archstore.desktop", "w") as f:
-                        f.write(desktop_entry_data)                    
+                    with open("desktop_temp", "w") as f:
+                        f.write(desktop_entry_data)
+                    subprocess.run([
+                            "pkexec", "cp", f"{working_dir}/desktop_temp", f"/usr/share/applications/{name}-archstore.desktop"
+                        ])
+                    os.remove("desktop_temp")
                 else:
                     desktop_path = os.path.expanduser(f"~/.local/share/applications/{name}-archstore.desktop")
                     with open(desktop_path, "w") as f:
@@ -283,7 +304,7 @@ def open_other():
                 with open ("appimages.data", "w") as f:
                     for line in appimage_file_data:
                         f.write(line)                        
-                    f.write(f"\n{name}|{user_name}")
+                    f.write(f"\n{name}|{program_user}")
                 messagebox.showinfo(
                     lpak.get("installation completed", language),
                     lpak.get("installation completed", language),
@@ -357,45 +378,43 @@ def open_other():
             no_appimage_apps_label = tk.Label(scrollable_frame, text=lpak.get("no appimages app", language))
             no_appimage_apps_label.grid(row=row, column=0, sticky="w", padx=5, pady=5)
         else:
-            # intestazioni in grassetto
+            # 
             actions_label = tk.Label(scrollable_frame, text=lpak.get("actions", language), font=header_font)
             name_label = tk.Label(scrollable_frame, text=lpak.get("name", language), font=header_font)
             user_label = tk.Label(scrollable_frame, text=lpak.get("user", language), font=header_font)
-
-
             actions_label.grid(row=row, column=0)
-            name_label.grid(row=row, column=2)
-            user_label.grid(row=row, column=4)
-
-            # linea dopo intestazione
-            ttk.Separator(scrollable_frame, orient="horizontal").grid(row=row+1, column=0, columnspan=7, sticky='ew', pady=5)
+            name_label.grid(row=row, column=3)
+            user_label.grid(row=row, column=5)
+            # 
+            ttk.Separator(scrollable_frame, orient="horizontal").grid(row=row+1, column=0, columnspan=6, sticky='ew', pady=6)
             row += 2
 
             for app in appimages_data:
                 try:
-                    name, user= app.strip().split("|")
+                    name, user= app.strip().split("|")                
+                    if user == "-" or user == user_name:
+                        remove_appimage_button = tk.Button(scrollable_frame, text=lpak.get("remove", language), command=lambda name=name, user=user, window=appimages_window: remove_appimage(name, user, window))
+                        update_appimage_button = tk.Button(scrollable_frame, text=lpak.get("update", language), command=lambda name=name, user=user, window=appimages_window: update_appimage_window(name, user, window))
+                        appimage_name_label = tk.Label(scrollable_frame, text=name)
+                        appimage_user = tk.Label(scrollable_frame, text=user)
+
+                        remove_appimage_button.grid(row=row, column=0)
+                        update_appimage_button.grid(row=row, column=1)
+                        appimage_name_label.grid(row=row, column=3)
+                        appimage_user.grid(row=row, column=5)
+                        
+
+                        # linea separatrice dopo ogni riga di dati
+                        ttk.Separator(scrollable_frame, orient="horizontal").grid(row=row+1, column=0, columnspan=6, sticky='ew', pady=5)
+                        row += 2
+
                 except:
                     pass
-                if user == "-" or user == user_name:
-                    remove_appimage_button = tk.Button(scrollable_frame, text=lpak.get("remove", language), command=lambda name=name, user=user, window=appimages_window: remove_appimage(name, user, window))
-                    update_appimage_button = tk.Button(scrollable_frame, text=lpak.get("update", language), command=lambda name=name, user=user, window=appimages_window: update_appimage_window(name, user, window))
-                    appimage_name_label = tk.Label(scrollable_frame, text=name)
-                    appimage_user = tk.Label(scrollable_frame, text=user)
 
-                    remove_appimage_button.grid(row=row, column=0)
-                    update_appimage_button.grid(row=row, column=1)
-                    appimage_name_label.grid(row=row, column=3)
-                    appimage_user.grid(row=row, column=5)
-                    
-
-                    # linea separatrice dopo ogni riga di dati
-                    ttk.Separator(scrollable_frame, orient="horizontal").grid(row=row+1, column=0, columnspan=4, sticky='ew', pady=5)
-                    row += 2
-
-        # linee verticali
-        ttk.Separator(scrollable_frame, orient="vertical").grid(column=2, row=1, rowspan=row-1, sticky='ns')
-        ttk.Separator(scrollable_frame, orient="vertical").grid(column=4, row=1, rowspan=row-1, sticky='ns')
-        ttk.Separator(scrollable_frame, orient="vertical").grid(column=6, row=1, rowspan=row-1, sticky='ns')
+            # linee verticali
+            ttk.Separator(scrollable_frame, orient="vertical").grid(column=2, row=1, rowspan=row-1, sticky='ns')
+            ttk.Separator(scrollable_frame, orient="vertical").grid(column=4, row=1, rowspan=row-1, sticky='ns')
+            ttk.Separator(scrollable_frame, orient="vertical").grid(column=6, row=1, rowspan=row-1, sticky='ns')
             
         add_appimage_button=tk.Button(appimages_window, text=lpak.get("add appimage", language), command=start_add_appimage)
         add_appimage_button.grid(row=1, columnspan=4)
@@ -406,9 +425,12 @@ def open_other():
     icon = tk.PhotoImage(file="icon.png")
     other_option_window.iconphoto(False, icon)
     other_option_window.geometry("400x400")
-
+    other_option_window.grid_rowconfigure(0, weight=1)
+    other_option_window.grid_columnconfigure(0, weight=1)
+    setting_button = tk.Button(other_option_window, text=lpak.get("settings", language), command=lambda window=other_option_window: open_setting(window))
     appimage_button = tk.Button(other_option_window, text=lpak.get("manage appimages", language), command=open_appimages_settings)
-    appimage_button.grid(row=0, column=0, padx=10, pady=10)
+    appimage_button.grid(row=0, columnspan=2, sticky="n")
+    setting_button.grid(columnspan=2, row=1, sticky="n")
 
     other_option_window.mainloop()
 
@@ -1013,7 +1035,7 @@ while True:
     search_bar = tk.Text(height=1)
     search_button = tk.Button(text=lpak.get("search", language), command=lambda name=" ": search_program(name))
     update_button = tk.Button(text=lpak.get("update system", language), command=update_all_apps)
-    setting_button = tk.Button(text=lpak.get("settings", language), command=open_setting)
+    ####setting_button = tk.Button(text=lpak.get("settings", language), command=open_setting)
     other_button = tk.Button(text=lpak.get("other", language), command=open_other)
     # focus sulla barra di ricerca all'avvio
     search_bar.focus_set()
@@ -1026,8 +1048,8 @@ while True:
     search_bar.grid(column=1, row=1, sticky="w")
     search_button.grid(column=0, row=2, sticky="w")
     update_button.grid(column=2, row=1, sticky="e")
-    setting_button.grid(column=2, row=2, sticky="e")
-    other_button.grid(column=2, row=3, sticky="e")
+    ####setting_button.grid(column=2, row=2, sticky="e")
+    other_button.grid(column=2, row=2, sticky="e")
     #
     root.mainloop()        
     if language == actual_language:
