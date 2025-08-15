@@ -1,4 +1,5 @@
 #!/bin/bash
+cls
 
 PYTHON_PATH=$(which python3) # Path assoluto di python3
 
