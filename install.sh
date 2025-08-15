@@ -15,7 +15,7 @@ if [[ "$action" == "1" ]]; then
     sudo pacman -S tk git python3 python-pip --noconfirm
 
     # Librerie Python globali (se necessarie)
-    sudo pip install --break-system-packages webbrowser
+    #sudo pip install --break-system-packages webbrowser
 
     read -p "Install it for all users? (y/n): " choice
 

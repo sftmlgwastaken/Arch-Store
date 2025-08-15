@@ -541,39 +541,39 @@ def start_selectionated_operations(program_name):
     #install_status = True
     #pacman
     if install_pacman_packages != []:
-        install_pacman_command = "sudo pacman -S "
+        install_pacman_command = "sudo pacman -S --noconfirm "
         for package in install_pacman_packages:
             install_pacman_command=install_pacman_command+package+" "
     else:
         install_pacman_command = "echo "+lpak.get("no pacman install actions", language)
     if remove_pacman_packages != []:
-        remove_pacman_command = "sudo pacman -Rn "
+        remove_pacman_command = "sudo pacman -Rn --noconfirm "
         for package in remove_pacman_packages:
             remove_pacman_command = remove_pacman_command+package+" "
     else:
         remove_pacman_command = "echo "+lpak.get("no pacman remove actions", language)
     #aur
     if install_aur_packages != []:
-        install_aur_command = "yay -S "
+        install_aur_command = "yay -S --noconfirm "
         for package in install_aur_packages:
             install_aur_command = install_aur_command+package+" "
     else:
         install_aur_command = "echo "+lpak.get("no install aur actions", language)
     if remove_aur_packages != []:
-        remove_aur_command = "yay -Rn "
+        remove_aur_command = "yay -Rn --noconfirm "
         for package in remove_aur_packages:
             remove_aur_command = remove_aur_command + package+" "
     else:
         remove_aur_command = "echo "+lpak.get("no remove aur actions", language)
     #flatpak
     if install_flatpak_packages != []:
-        install_flatpak_command = "flatpak install "
+        install_flatpak_command = "flatpak install --assumeyes "
         for package in install_flatpak_packages:
             install_flatpak_command = install_flatpak_command+package
     else:
         install_flatpak_command = "echo "+lpak.get("no install flatpak actions", language)
     if remove_flatpak_packages != []:
-        remove_flatpak_command = "flatpak remove "
+        remove_flatpak_command = "flatpak remove --assumeyes "
         for package in remove_flatpak_packages:
             remove_flatpak_command = remove_flatpak_command + package
     else:
