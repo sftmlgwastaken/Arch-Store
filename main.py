@@ -41,7 +41,7 @@ def load_config_data():
             f.write("flatpak=enable\n")
             f.write("aur_method=yay\n")
             f.write("language=English\n")
-            f.write("AppImmageDir=./AppImages")
+            f.write(f"AppImmageDir={working_dir}/AppImages")
     def read_config_data():
         global setting_repo_pacman, setting_repo_aur, setting_repo_flatpak, setting_aur_method, language, AppImagesDir
         with open("settings.conf", "r") as f:
@@ -134,16 +134,37 @@ def open_setting(window):
                     f.write("language="+language+"\n")
         load_config_data()
         root.destroy()        
-        #settings_page.destroy()
+        
+    def setting_change_appimagedir(button):
+        new_dir = filedialog.askdirectory(parent=settings_page, title=lpak.get("select a folder", language))
+        response = messagebox.askyesno(
+            lpak.get("confirm change", language),
+            lpak.get("attenction this action will clear existing appimages dataset", language),
+            parent=settings_page
+        )
+        if response:    
+            with open("appimages.data", "w") as f:
+                f.write("")
+            with open("settings.conf", "r") as f:
+                file_configuration_data = [line.rstrip('\n') for line in f.readlines()]
+            with open("settings.conf", "w") as f:
+                for line in file_configuration_data:
+                    if not "AppImmageDir=" in line:
+                        f.write(line+"\n")
+                    else:
+                        f.write("AppImmageDir="+new_dir+"\n")
+            button.config(text=lpak.get("changed", language))
+            load_config_data()
+        else:
+            return
     #Other
-    def settings_reset_settings():
+    def settings_reset_settings(window):
         os.remove("settings.conf")
         load_config_data()
-        settings_page.destroy()
-        open_setting()
+        root.destroy()
     settings_page = tk.Toplevel(window)
     settings_page.title(lpak.get("arch store settings", language))
-    settings_page.geometry("750x600")
+    settings_page.geometry("900x600")
     settings_page.minsize(600, 600)
     icon = tk.PhotoImage(file="icon.png")
     settings_page.iconphoto(False, icon)
@@ -171,12 +192,16 @@ def open_setting(window):
     else:
         text_setting_repo_flatpak = lpak.get("enable", language)
     button_repo_flatpak = tk.Button(settings_page, text=text_setting_repo_flatpak, command=settings_change_flatpak_status)
-    button_reset_settings= tk.Button(settings_page, text=lpak.get("reset settings", language), command=settings_reset_settings)
+    button_reset_settings= tk.Button(settings_page, text=lpak.get("reset settings", language), command=lambda window=window: settings_reset_settings(window))
     #language      
     menu_select_language = ttk.Combobox(settings_page, values=avaible_languages)
     menu_select_language.set(language)
     label_language=tk.Label(settings_page, text=lpak.get("language", language))
     button_language_confirm=tk.Button(settings_page, text=lpak.get("confirm change language", language), command=lambda settings_page=settings_page: settings_change_language(settings_page))    
+    #appimagedir
+    appimagesdir_label = tk.Label(settings_page, text=lpak.get("appimages installation path", language))
+    appimagesdir_button = tk.Button(settings_page, text=lpak.get("change appimage path", language))
+    appimagesdir_button.config(command=lambda button =appimagesdir_button: setting_change_appimagedir(button))
     #crediti
     def github_button():
         webbrowser.open("https://github.com/IlNonoP/Arch-Store")
@@ -196,9 +221,12 @@ def open_setting(window):
     label_language.grid(row=5, column=0)
     menu_select_language.grid(row=5, column=1)
     button_language_confirm.grid(row=6, columnspan=1)
-    line_separazione.grid(column=0, row=7, columnspan=3, sticky='ew', pady=10)
-    author_label.grid(column=0, row=8)
-    project_link.grid(column=1, row=8)
+    appimagesdir_label.grid(row=7, column=0)
+    appimagesdir_button.grid(row=7, column=1)
+    #
+    line_separazione.grid(column=0, row=9, columnspan=3, sticky='ew', pady=10)
+    author_label.grid(column=0, row=10)
+    project_link.grid(column=1, row=10)
     settings_page.mainloop()
 
 #END SETTINGS##
@@ -206,8 +234,7 @@ def open_setting(window):
 
 ###########
 ###OTHER###
-def open_other():
-    def open_appimages_settings():
+def open_appimages_settings(window):
         def update_appimage_window(name, program_user_base, window):
             appimage_path = filedialog.askopenfilename(
                 parent=window, 
@@ -338,7 +365,7 @@ def open_other():
             appimage_confirm_button.grid(row=4, columnspan=2, sticky="w")
             add_appimage_window.mainloop()
 
-        appimages_window = tk.Toplevel(other_option_window)
+        appimages_window = tk.Toplevel(window)
         appimages_window.title(lpak.get("manage appimages", language))
         icon = tk.PhotoImage(file="icon.png")
         appimages_window.iconphoto(False, icon)
@@ -420,6 +447,10 @@ def open_other():
         add_appimage_button.grid(row=1, columnspan=4)
         appimages_window.mainloop()
 
+
+def open_other():
+    
+
     other_option_window = tk.Toplevel(root)
     other_option_window.title(lpak.get("other options", language))
     icon = tk.PhotoImage(file="icon.png")
@@ -428,11 +459,12 @@ def open_other():
     other_option_window.grid_rowconfigure(0, weight=1)
     other_option_window.grid_columnconfigure(0, weight=1)
     setting_button = tk.Button(other_option_window, text=lpak.get("settings", language), command=lambda window=other_option_window: open_setting(window))
-    appimage_button = tk.Button(other_option_window, text=lpak.get("manage appimages", language), command=open_appimages_settings)
+    appimage_button = tk.Button(other_option_window, text=lpak.get("manage appimages", language), command=lambda window=other_option_window: open_appimages_settings(window))
     appimage_button.grid(row=0, columnspan=2, sticky="n")
     setting_button.grid(columnspan=2, row=1, sticky="n")
 
     other_option_window.mainloop()
+
 
 #END OTHER#
 ###########
