@@ -352,7 +352,7 @@ def open_appimages_settings(window):
             avaible_appimage_types = ["Utility", "Game", "Graphics", "Network", "AudioVideo", "Development", "Office", "Presentation"]
             menu_select_type = ttk.Combobox(add_appimage_window, values=avaible_appimage_types)
             label_language=tk.Label(add_appimage_window, text=lpak.get("app type", language))
-            appimage_confirm_button = tk.Button(add_appimage_window, text=("install appimage"), command=lambda name=appimage_name_textbox, path=appimage_path_button, icon=appimage_ico_button, tipe=menu_select_type, window=add_appimage_window: confirm_appimage_install(name, path, icon, tipe, window))
+            appimage_confirm_button = tk.Button(add_appimage_window, text=lpak.get("install appimage",language), command=lambda name=appimage_name_textbox, path=appimage_path_button, icon=appimage_ico_button, tipe=menu_select_type, window=add_appimage_window: confirm_appimage_install(name, path, icon, tipe, window))
             #
             appimage_name_label.grid(row=0, column=0, sticky="w")
             appimage_name_textbox.grid(row=0, column=1, pady=1, sticky="e")

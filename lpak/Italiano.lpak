@@ -72,3 +72,4 @@ select a folder|Seleziona una cartella
 confirm change|Conferma la modifica
 attenction this action will clear existing appimages dataset|Attenzione!!!!! Questa azione cancellerà il dataset degli AppImage, ciò significa che non potrai più disinstallarli o aggiornarli da arch store, consiglio di prima disinstallarli tutti e reinstallarli una volta cambiata la directory. Procedere?
 changed|Cambiato!
+install appimage|Installa AppImage
