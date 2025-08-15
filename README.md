@@ -48,7 +48,7 @@ To change the language, start the program, go to settings and select the languag
 ## How to use
 It is easy to use, with three main screens.
 ### Search page
-<img width="1993" height="1000" alt="serach" src="https://github.com/user-attachments/assets/9c7412ce-3f2b-4dea-85d4-f8902940d07b" />
+<img width="1995" height="1044" alt="Ricerca" src="https://github.com/user-attachments/assets/c24337e9-a39d-4a3b-92c9-82e58130e187" />
 
 On this page there is a search bar. Just type in what you want and press enter, and the results will appear. If you like, you can even try searching for nothing! On this screen, you will see the install or remove buttons, depending on what you want to do. Every action you select is reversible. In other words, if you first select to install Reaper but then decide you don't need it, you can remove it from the list by searching for it and clicking on “Don't install.” Once you have made your selection, you can click on “Start actions,” which will open the second installation screen (explanation below). On the search screen, there is also an “update” button, which is used to update everything and also opens the same installation screen. There is also a settings button that will open a settings screen (thank goodness).
 ### Install page
@@ -59,10 +59,13 @@ The installation or update page has a button and a screen. When you press the st
 NB: Sudo permissions will be required for updates and installations.
 
 ### Settings page
-<img width="1995" height="1041" alt="settings" src="https://github.com/user-attachments/assets/271aac81-9cf8-46cb-ba06-c29a89a9174f" />
+<img width="907" height="642" alt="impostazioni" src="https://github.com/user-attachments/assets/7dab0103-1b9c-486f-a923-7eb0caff7d79" />
+
 The settings page is fairly intuitive. It allows you to enable or disable various sources, such as flatpak, aur, or pacman. It should be noted that at least one must be enabled, otherwise the program will not work. There is also a language option with a drop-down menu and a confirmation button that will reload the interface.
 
 ### AppImage support
+<img width="1996" height="1075" alt="appimages" src="https://github.com/user-attachments/assets/06d9bf2c-f48b-43e0-a2f8-31199ffa6da1" />
+
 One feature requested by a Reddit user was support for AppImages, and here it is! It should be fairly straightforward: go to Other > Manage AppImages and you will find a list of those installed. You can update them by selecting a more recent AppImage, which will replace the old one, or remove the program. When you install one, you will need to enter the name, an icon, the AppImage file, and choose the category. After that, you can choose whether to install it only for yourself or for everyone on the system. Other users will not see what you have installed only for yourself, but everyone will see those installed at the system level, which will require the root password to be installed or removed. You can choose where to store the appimages and icons, but I recommend leaving the default setting, which is the subfolder "./ AppImages" subfolder in the program directory because when the folder is changed in the settings, the configuration file is reset, but the AppImages and desktop files are not automatically updated. Therefore, first uninstall everything and then reinstall it if you really need to change it.
 ## How does it work?
 This section attempts to explain how it works. If you just want to use it, feel free to skip it, but if you want to tinker with it, modify it, or just understand it out of curiosity, read on! I'll try to explain it clearly.
