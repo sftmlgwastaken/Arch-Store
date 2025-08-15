@@ -535,10 +535,10 @@ def update_all_apps():
     
 def start_selectionated_operations(program_name):
     global start_operation_button, operation_list_label, install_pacman_packages, remove_pacman_packages, install_aur_packages, remove_aur_packages, install_flatpak_packages, remove_flatpak_packages, install_status
-    if install_status == True:
-        tk.messagebox.Message(text=lpak.get("an install instance is alredy in progress", language))
-        return
-    install_status = True
+    #if install_status == True:
+      # tk.messagebox.Message(text=lpak.get("an install instance is alredy in progress", language))
+     #  return
+    #install_status = True
     #pacman
     if install_pacman_packages != []:
         install_pacman_command = "sudo pacman -S "
@@ -625,10 +625,10 @@ def start_selectionated_operations(program_name):
     def start_thread_operations(operations_window, start_button):
         global install_status
         if install_status == True:
-            messagebox.showinfo(lpak.get("an install instance is alredy in progress", language), lpak.get("an install instance is alredy in progress", language)) 
+            messagebox.showinfo(lpak.get("an install instance is alredy in progress", language), lpak.get("an install instance is alredy in progress", language), parent=operations_window) 
             return
         threading.Thread(target=run_operations, args=(operations_window, start_button), daemon=True).start()
-        install_status == True
+        install_status = True
 
     operations_window = tk.Toplevel(root)
     operations_window.title(lpak.get("star actions", language))
