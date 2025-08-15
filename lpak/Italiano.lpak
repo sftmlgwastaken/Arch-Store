@@ -43,3 +43,32 @@ repository|Repository
 actions|Azioni
 made whit heart by Samuobe|Fatto col cuore da Samuobe
 github project|Progetto GitHub
+other|Altro
+other options|Altre opsioni
+manage appimages|Gestisci gli AppImage
+no appimages app|Nessun AppImage installato con Arch Store
+name|Nome
+icon|Icona
+path|Percorso
+add appimage|Aggiungi un AppImage
+select an appimage|Seleziona un AppImage
+select an icon|Scegli un icona
+illegal caracter|Carattere non valido
+you can't use the following caracther|Non puoi usare i seguenti caratteri
+invalid appimage location|Posizione non valida
+the appimage you selected was not found|Il file AppImage che hai selezionato non esiste!
+invalid icon location|Icona non valida
+the icon you selected was not found|L'icona che hai selezionato non sembra esistere
+app type|Categoria
+confirm installation|Conferma installazione
+do you want to install it for all users|Vuoi installarlo per tutti gli utenti?
+installation completed|Installazione completata
+update completed|Aggiornamento completo
+remotion completed|Rimozione completata
+user|Utente
+appimages installation path|Percorso installazione AppImages
+change appimage path|Cambia il percorso degli AppImage
+select a folder|Seleziona una cartella
+confirm change|Conferma la modifica
+attenction this action will clear existing appimages dataset|Attenzione!!!!! Questa azione cancellerà il dataset degli AppImage, ciò significa che non potrai più disinstallarli o aggiornarli da arch store, consiglio di prima disinstallarli tutti e reinstallarli una volta cambiata la directory. Procedere?
+changed|Cambiato!
