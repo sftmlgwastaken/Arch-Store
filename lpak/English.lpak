@@ -44,7 +44,7 @@ actions|Actions
 made whit heart by Samuobe|Made with heart by Samuobe
 github project|GitHub project
 other|Other
-other options|Other opsions
+other options|Other options
 manage appimages|Manage AppImages
 no appimages app|There are no appimages installed with Arch Store
 name|Name
@@ -73,3 +73,5 @@ confirm change|Confirm change
 attenction this action will clear existing appimages dataset|WARNING!!!! Please note that this action will delete the AppImage dataset, which means that you will no longer be able to uninstall or update them from the arch store. I recommend uninstalling them all first and then reinstalling them once you have changed the directory. Proceed?
 changed|Changed!
 install appimage|Install AppImage
+aur method|AUR method
+change|Change
