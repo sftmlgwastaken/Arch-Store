@@ -43,13 +43,13 @@ def load_config_data():
             f.write("language=English\n")
             f.write(f"AppImmageDir={working_dir}/AppImages")
     def read_config_data():
-        global setting_repo_pacman, setting_repo_aur, setting_repo_flatpak, setting_aur_method, language, AppImagesDir
+        global setting_repo_pacman, setting_repo_aur, setting_repo_flatpak, aur_method, language, AppImagesDir
         with open("settings.conf", "r") as f:
             file_configuration_data = [line.rstrip('\n') for line in f.readlines()]
         setting_repo_pacman=file_configuration_data[0].split("=")[1]
         setting_repo_aur=file_configuration_data[1].split("=")[1]
         setting_repo_flatpak=file_configuration_data[2].split("=")[1]
-        setting_aur_method=file_configuration_data[3].split("=")[1]
+        aur_method=file_configuration_data[3].split("=")[1]
         language=file_configuration_data[4].split("=")[1]
         AppImagesDir=file_configuration_data[5].split("=")[1]
     if not os.path.isfile("settings.conf"):
@@ -134,6 +134,24 @@ def open_setting(window):
                     f.write("language="+language+"\n")
         load_config_data()
         root.destroy()        
+
+    def change_aur_method(button, label):
+        if aur_method == "paru":
+            new_method = "yay"
+        else:
+            new_method = "paru"
+        with open("settings.conf", "r") as f:
+            file_configuration_data = [line.rstrip('\n') for line in f.readlines()]        
+        with open("settings.conf", "w") as f:
+            for line in file_configuration_data:
+                if not "aur_method=" in line:
+                    f.write(line+"\n")
+                else:
+                    f.write("aur_method="+new_method+"\n")
+        load_config_data()
+        label.config(text=lpak.get("aur method", language)+": "+aur_method)
+        button.config(text=lpak.get("changed", language))
+        
         
     def setting_change_appimagedir(button):
         new_dir = filedialog.askdirectory(parent=settings_page, title=lpak.get("select a folder", language))
@@ -169,8 +187,8 @@ def open_setting(window):
     icon = tk.PhotoImage(file="icon.png")
     settings_page.iconphoto(False, icon)
 
-    settings_label_title = tk.Label(settings_page, text=lpak.get("settings", language))
-    settings_label_repo = tk.Label(settings_page, text=lpak.get("enable disable repo", language))
+    settings_label_title = tk.Label(settings_page, text=lpak.get("settings", language), font=("Helvetica", 18, "bold italic"))
+    settings_label_repo = tk.Label(settings_page, text=lpak.get("enable disable repo", language), font=("Helvetica", 12, "bold"))
     #pacman repo
     label_repo_pacman=tk.Label(settings_page, text="Pacman")
     if setting_repo_pacman == "enable":
@@ -193,6 +211,12 @@ def open_setting(window):
         text_setting_repo_flatpak = lpak.get("enable", language)
     button_repo_flatpak = tk.Button(settings_page, text=text_setting_repo_flatpak, command=settings_change_flatpak_status)
     button_reset_settings= tk.Button(settings_page, text=lpak.get("reset settings", language), command=lambda window=window: settings_reset_settings(window))
+    #change AUR method
+    label_aur_method = tk.Label(settings_page, text=lpak.get("aur method", language)+": "+aur_method)
+    button_change_aur_method = tk.Button(settings_page, text=lpak.get("change", language))
+    button_change_aur_method.config(command=lambda button=button_change_aur_method, label=label_aur_method: change_aur_method(button, label))
+    #other label
+    label_other_settings = tk.Label(settings_page, text=lpak.get("other", language), font=("Helvetica", 12, "bold"))
     #language      
     menu_select_language = ttk.Combobox(settings_page, values=avaible_languages)
     menu_select_language.set(language)
@@ -209,24 +233,38 @@ def open_setting(window):
     project_link = tk.Button(settings_page, text=lpak.get("github project", language), command=github_button) 
     line_separazione = ttk.Separator(settings_page, orient="horizontal")
     #
+    empty_label = tk.Label(settings_page, text=" ")
+    #
     settings_label_title.grid(row=0, columnspan=2)
-    button_reset_settings.grid(row=0, column = 3)
+    button_reset_settings.grid(row=0, column = 3)    
     settings_label_repo.grid(row=1, column=0)
+
     label_repo_pacman.grid(row=2, column=0)
     button_repo_pacman.grid(row=2, column=1)
-    label_repo_aur.grid(row=3, column=0)
-    button_repo_aur.grid(row=3, column=1)
-    label_repo_flatpak.grid(row=4, column=0)
-    button_repo_flatpak.grid(row=4, column=1)
-    label_language.grid(row=5, column=0)
-    menu_select_language.grid(row=5, column=1)
-    button_language_confirm.grid(row=6, columnspan=1)
-    appimagesdir_label.grid(row=7, column=0)
-    appimagesdir_button.grid(row=7, column=1)
+
+    label_repo_flatpak.grid(row=3, column=0)
+    button_repo_flatpak.grid(row=3, column=1)
+
+    label_repo_aur.grid(row=4, column=0)
+    button_repo_aur.grid(row=4, column=1)
+
+    label_aur_method.grid(row=5, column=0)
+    button_change_aur_method.grid(row=5, column=1)
+    
+    
+
+    empty_label.grid(row=6)
+    label_other_settings.grid(row=7, column=0)
+
+    label_language.grid(row=8, column=0)
+    menu_select_language.grid(row=8, column=1)
+    button_language_confirm.grid(row=9, columnspan=1)
+    appimagesdir_label.grid(row=10, column=0)
+    appimagesdir_button.grid(row=10, column=1)
     #
-    line_separazione.grid(column=0, row=9, columnspan=3, sticky='ew', pady=10)
-    author_label.grid(column=0, row=10)
-    project_link.grid(column=1, row=10)
+    line_separazione.grid(column=0, row=12, columnspan=3, sticky='ew', pady=10)
+    author_label.grid(column=0, row=13)
+    project_link.grid(column=1, row=13)
     settings_page.mainloop()
 
 #END SETTINGS##
@@ -484,7 +522,7 @@ def update_all_apps():
         if setting_repo_pacman == "enable":
             f.write("\nsudo pacman -Syu --noconfirm")
         if setting_repo_aur == "enable":
-            f.write("\nyay -Syu --noconfirm")
+            f.write(f"\n{aur_method} -Syu --noconfirm")
         if setting_repo_flatpak == "enable":
             f.write("\nflatpak upgrade --assumeyes")
 
@@ -554,13 +592,13 @@ def start_selectionated_operations(program_name):
         remove_pacman_command = "echo "+lpak.get("no pacman remove actions", language)
     #aur
     if install_aur_packages != []:
-        install_aur_command = "yay -S --noconfirm "
+        install_aur_command = f"{aur_method} -S --noconfirm "
         for package in install_aur_packages:
             install_aur_command = install_aur_command+package+" "
     else:
         install_aur_command = "echo "+lpak.get("no install aur actions", language)
     if remove_aur_packages != []:
-        remove_aur_command = "yay -Rn --noconfirm "
+        remove_aur_command = f"{aur_method} -Rn --noconfirm "
         for package in remove_aur_packages:
             remove_aur_command = remove_aur_command + package+" "
     else:
@@ -763,7 +801,11 @@ def search_program(name):
     try:
         no_program_found_label.destroy()
     except:
-        pass        
+        pass     
+    try:
+        error_label_textbox_empty.destroy()
+    except:
+        pass   
     if setting_repo_pacman == "disable" and setting_repo_aur == "disable" and setting_repo_flatpak == "disable":
         label_error_no_repo_enable = tk.Label(text=no_repo_error_text_default)
         label_error_no_repo_enable.grid(row=3, columnspan=4)
@@ -784,6 +826,7 @@ def search_program(name):
     if program_search == "":
         error_label_textbox_empty=tk.Label(scrollable_frame, text=lpak.get("so you're looking for nothing", language), font='Helvetica 18 bold')
         error_label_textbox_empty.grid(row=3, column=4)
+        program_search = None
         return
     program_search = program_search.replace("\n", "")
     search_label.config(text=lpak.get("i'm looking for", language)+" "+program_search+"...")
@@ -805,14 +848,14 @@ def search_program(name):
             x = x-2  
     else:
         pacman_programs = []
-    #yay
+    #AUR
     if setting_repo_aur == "enable":
         programs_commodo.clear()
         if name == " ":
             pass
         else:
             program_search = name
-        command = "yay -Ssa "+program_search
+        command = f"{aur_method} -Ssa "+program_search
         programs_yay = os.popen(command).read()    
         programs_commodo = programs_yay.split("\n")
         programs_commodo.remove("")
@@ -1064,7 +1107,7 @@ while True:
     scrollbar.pack(side="right", fill="y")
     #Obgect
     search_label=tk.Label(text=lpak.get("search for software", language))
-    search_bar = tk.Text(height=1)
+    search_bar = tk.Text(height=1, wrap="none")
     search_button = tk.Button(text=lpak.get("search", language), command=lambda name=" ": search_program(name))
     update_button = tk.Button(text=lpak.get("update system", language), command=update_all_apps)
     ####setting_button = tk.Button(text=lpak.get("settings", language), command=open_setting)
@@ -1074,10 +1117,12 @@ while True:
     # binding tasto Invio per ricerca
     def on_search_enter(event):
         search_program(" ")
+        return "break" 
     search_bar.bind("<Return>", on_search_enter)
+    search_bar.bind("<Shift-Return>", lambda e: "break")
     #position
     search_label.grid(column=0, row=1, sticky="w")
-    search_bar.grid(column=1, row=1, sticky="w")
+    search_bar.grid(column=1, row=1, sticky="we")
     search_button.grid(column=0, row=2, sticky="w")
     update_button.grid(column=2, row=1, sticky="e")
     ####setting_button.grid(column=2, row=2, sticky="e")
