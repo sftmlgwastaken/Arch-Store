@@ -303,9 +303,9 @@ def open_appimages_settings(window):
                     if line != f"{name}|{program_user_base}":
                         f.write(line)
             messagebox.showinfo(
-                lpak.get("remotion completed", language),
-                lpak.get("remotion completed", language),
-                parent=window  
+                lpak.get("remove completed", language),
+                lpak.get("remove completed", language),
+                parent=window
             )
 
         def start_add_appimage():
