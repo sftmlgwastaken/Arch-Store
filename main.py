@@ -26,6 +26,10 @@ search_status = False
 install_status = False
 last_search = ""
 
+#Other impportant varibiles
+pacman_programs = []
+flatpak_programs = ['No matches found']
+aur_programs = []
 
 #Auto-set variables
 working_dir = os.path.dirname(os.path.realpath(__file__))
@@ -105,6 +109,7 @@ def open_setting(window):
                 if not "aur=" in line and not "pacman=" in line:
                     f.write(line+"\n")   
         load_config_data()
+
     def settings_change_flatpak_status():
         with open("settings.conf", "r") as f:
             file_configuration_data = [line.rstrip('\n') for line in f.readlines()]
@@ -238,24 +243,17 @@ def open_setting(window):
     settings_label_title.grid(row=0, columnspan=2)
     button_reset_settings.grid(row=0, column = 3)    
     settings_label_repo.grid(row=1, column=0)
-
     label_repo_pacman.grid(row=2, column=0)
     button_repo_pacman.grid(row=2, column=1)
-
     label_repo_flatpak.grid(row=3, column=0)
     button_repo_flatpak.grid(row=3, column=1)
-
     label_repo_aur.grid(row=4, column=0)
     button_repo_aur.grid(row=4, column=1)
-
     label_aur_method.grid(row=5, column=0)
-    button_change_aur_method.grid(row=5, column=1)
-    
-    
-
+    button_change_aur_method.grid(row=5, column=1)  
     empty_label.grid(row=6)
     label_other_settings.grid(row=7, column=0)
-
+    #
     label_language.grid(row=8, column=0)
     menu_select_language.grid(row=8, column=1)
     button_language_confirm.grid(row=9, columnspan=1)
@@ -797,7 +795,7 @@ def download_program(program_name, repository, button, status):
         operation_list_label.destroy()
   
 def search_program(name):
-    global program_button_download, search_status, last_search, no_program_found_label
+    global program_button_download, search_status, last_search, no_program_found_label, pacman_programs, aur_programs, flatpak_programs
     try:
         no_program_found_label.destroy()
     except:
@@ -826,7 +824,7 @@ def search_program(name):
     if program_search == "":
         error_label_textbox_empty=tk.Label(scrollable_frame, text=lpak.get("so you're looking for nothing", language), font='Helvetica 18 bold')
         error_label_textbox_empty.grid(row=3, column=4)
-        program_search = None
+        search_status = False
         return
     program_search = program_search.replace("\n", "")
     search_label.config(text=lpak.get("i'm looking for", language)+" "+program_search+"...")
@@ -1075,7 +1073,9 @@ def search_program(name):
     vertical_line_repo=ttk.Separator(scrollable_frame, orient="vertical")
     vertical_line_repo.grid(column=5, row=3, rowspan=row-1, sticky='ns')
     #
-    if pacman_programs == [] and flatpak_programs == ['No matches found'] and aur_programs == []:
+    if flatpak_programs == ['No matches found']:
+        flatpak_programs = []
+    if pacman_programs == [] and flatpak_programs == [] and aur_programs == []:
         no_program_found_label = tk.Label(text=lpak.get("no program found", language))
         no_program_found_label.grid(columnspan=4, row=row)
     last_search = program_search
