@@ -1,0 +1,77 @@
+arch store|Arch store
+search for software|Buscar un programma
+search|Buscar
+update system|Actualizar el sistema
+settings|Ajustes
+i'm looking for|Estoy buscando por
+so you're looking for nothing|Bueno todavia no existe, todavia, ¿quizas sea hora de que lo hagas?
+start actions|Iniciar acciones
+an install instance is alredy in progress|Una instancia de instalación esta ya en progreso
+no pacman install actions|¡Ninguna acción para sincronizar paquetes de pacman!
+no pacman remove actions|¡Ningun acción para quitar paquetes de pacman!
+no install aur actions|¡Ninguna acción para sincronizar paquetes de AUR!
+no remove aur actions|¡Ninguna acción para quitar paquetes de AUR!
+no install flatpak actions|¡Ninguna acción para añadir Flatpak!
+no remove flatpak actions|¡Ninguna acción para eliminar Flatpak!
+installation|Instalando...
+enable|Habilitar
+disable|Deshabilitar
+install|Instalar
+remove|Desinstalar
+do not install|No instalar
+do not remove|No eliminar
+enable disable repo|Habilitar/Deshabilitar Repo
+reset settings|Reiniciar ajustes
+arch store settings|Ajustes de Arch Store
+no installation method|No hay ningún metodo de instalación habilitado, ¡habilita al menos uno en los ajustes!
+pacman install|Instalaciones de Pacman
+pacman remove|Paquetes eliminados en Pacman
+aur install|Instalaciones de AUR
+aur remove|Paquetes eliminados AUR
+flatpak install|Flatpak añadidos
+flatpak remove|Flatpak eliminados
+nothing enable|Nada Habilitado
+update|Actualizar
+start update|Iniciar Actualización
+finished|¡Finalizado!
+language|Lenguaje
+confirm change language|Aplicar lenguage
+no program found|No encontre ese programa :-(
+programs|Programas
+description|Descripcion
+repository|Repositorio
+actions|Acciones
+made whit heart by Samuobe|Hecho con amor by Samuobe
+github project|Proyectos en GitHub
+other|Otros
+other options|Otras opciones
+manage appimages|Administrar AppImages
+no appimages app|No hay AppImages instaladas con Arch Store
+name|Nombre
+icon|Icono
+path|Directorio
+add appimage|Añadir AppImage
+select an appimage|Seleccionar una AppImage
+select an icon|Selecciona un ícono
+illegal caracter|Caracter ilegal
+you can't use the following caracther|No puedes usar los siguientes caracteres
+invalid appimage location|La AppImage esta en un lugar invalido
+the appimage you selected was not found|La AppImage que seleccionaste no existe
+invalid icon location|El ícono esta en un lugar invalido
+the icon you selected was not found|El ícono seleccionado no existe
+app type|Tipo de aplciación
+confirm installation|Confirmar la instalación
+do you want to install it for all users|¿Quieres instalarla para todos los usuarios?
+installation completed|Instalación completada
+update completed|Actualización completada
+remove completed|Eliminación completada
+user|Usuario
+appimages installation path|Directorio de instalacion de AppImages
+change appimage path|Cambiar directorio de AppImages
+select a folder|Selecciona una carpeta
+confirm change|Confirmar cambio
+attenction this action will clear existing appimages dataset|¡¡¡¡PELIGRO!!!! Tenga en cuenta que esta acción eliminará la base de datos de AppImage, lo cual significa que no podras desinstalarlas o actualizarlas desde la ArchStore. Es recomendable desinstalarlas todas y reinstalarlas cuando hayas cambiado el directorio. ¿Proceder?
+changed|¡Cambiado!
+install appimage|Instalar AppImage
+aur method|Instalar AUR
+change|Cambiar
