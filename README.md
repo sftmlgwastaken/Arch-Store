@@ -34,7 +34,7 @@ Follow the two instructions and... Done! Easy, right?
 - subprocess (pre-installed)
 - threading (pre-installed)
 - lpak (included in the program download)
-- webborwser
+- webborwser (pre-installed)
 
 To begin, download the ZIP file for the latest release.
 Once downloaded, extract EVERYTHING INTO THE SAME FOLDER AS IS, launch main.py, and everything should start up!
