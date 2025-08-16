@@ -7,15 +7,13 @@ echo "Welcome to the Arch-Store installation program!"
 echo "What do you want to do?"
 echo "1) Install Arch-Store"
 echo "2) Uninstall Arch-Store"
-read -p "Select an option [1/2]: " action
+echo "3) Update Arch-Store"
+read -p "Select an option [1/2/3]: " action
 
 if [[ "$action" == "1" ]]; then
     echo "Downloading dependencies..."
     sudo pacman -Sy
     sudo pacman -S tk git python3 python-pip --noconfirm
-
-    # Librerie Python globali (se necessarie)
-    #sudo pip install --break-system-packages webbrowser
 
     read -p "Install it for all users? (y/n): " choice
 
@@ -23,19 +21,19 @@ if [[ "$action" == "1" ]]; then
         echo "Installing Arch-Store for all users..."
 
         sudo mkdir -p /opt/Arch-Store
-        sudo chmod 777 /opt/Arch-Store
+        sudo chmod 770 /opt/Arch-Store
         sudo chown "$USER":"$USER" /opt/Arch-Store
 
         if [[ -d "/opt/Arch-Store/.git" ]]; then
             echo "Arch-Store already exists, updating..."
             cd /opt/Arch-Store || exit
-            git reset --hard
-            git pull
+            git reset --hard HEAD
+            git pull origin main
         else
             git clone https://github.com/Samuobe/Arch-Store.git /opt/Arch-Store
         fi
 
-        sudo chmod -R 777 /opt/Arch-Store
+        sudo chmod -R 770 /opt/Arch-Store
 
         SCRIPT_PATH="/opt/Arch-Store/main.py"
         ICON_PATH="/opt/Arch-Store/icon.png"
@@ -63,12 +61,12 @@ EOF"
         if [[ -d "$HOME/.programs/Arch-Store/.git" ]]; then
             echo "Arch-Store already exists, updating..."
             cd "$HOME/.programs/Arch-Store" || exit
-            git reset --hard
-            git pull
+            git reset --hard HEAD
+            git pull origin main
         else
             git clone https://github.com/Samuobe/Arch-Store.git "$HOME/.programs/Arch-Store"
         fi
-        chmod -R 777 "$HOME/.programs/Arch-Store"
+        chmod -R 770 "$HOME/.programs/Arch-Store"
 
         SCRIPT_PATH="$HOME/.programs/Arch-Store/main.py"
         ICON_PATH="$HOME/.programs/Arch-Store/icon.png"
@@ -86,7 +84,7 @@ Categories=System;
 Terminal=false
 EOF
 
-        chmod 777 "$DESKTOP_FILE"
+        chmod 770 "$DESKTOP_FILE"
 
         echo "Arch-Store installed/updated for current user."
         echo "Desktop file created at: $DESKTOP_FILE"
@@ -107,6 +105,25 @@ elif [[ "$action" == "2" ]]; then
         echo "User Arch-Store removed."
     else
         echo "Arch-Store not found in common installation paths."
+    fi
+
+elif [[ "$action" == "3" ]]; then
+    echo "Updating Arch-Store..."
+
+    if [[ -d "/opt/Arch-Store/.git" ]]; then
+        echo "Updating system-wide installation..."
+        cd /opt/Arch-Store || exit
+        sudo git reset --hard HEAD
+        sudo git pull origin main
+        echo "System-wide Arch-Store updated."
+    elif [[ -d "$HOME/.programs/Arch-Store/.git" ]]; then
+        echo "Updating user installation..."
+        cd "$HOME/.programs/Arch-Store" || exit
+        git reset --hard HEAD
+        git pull origin main
+        echo "User Arch-Store updated."
+    else
+        echo "Arch-Store is not installed, please install it first."
     fi
 
 else
