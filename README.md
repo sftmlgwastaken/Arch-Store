@@ -17,9 +17,9 @@ Arch store is an intuitive store for Arch Linux software written in Python!
 
 
 
-## Installation
+## Installation/Update/Remove
 ### Automatic script
-There is an automatic script that allows you to install everything at once, and allows you to choose between installation for the current user only or for everyone on the system.
+There is an automatic script that allows you to install, remove and update everything at once, and allows you to choose between installation for the current user only or for everyone on the system.
 
 Just run: ```curl -LO https://raw.githubusercontent.com/Samuobe/Arch-Store/main/install.sh && bash install.sh```
 
