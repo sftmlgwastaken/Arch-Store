@@ -1,8 +1,6 @@
 #!/bin/bash
 cls
 
-PYTHON_PATH=$(which python3) # Path assoluto di python3
-
 echo "Welcome to the Arch-Store installation program!"
 echo "What do you want to do?"
 echo "1) Install Arch-Store"
@@ -13,7 +11,9 @@ read -p "Select an option [1/2/3]: " action
 if [[ "$action" == "1" ]]; then
     echo "Downloading dependencies..."
     sudo pacman -Sy
-    sudo pacman -S tk git python3 python-pip --noconfirm
+    sudo pacman -S tk git python3 python-pip --noconfirm --needed # because you dont want all packages you own reinstalled
+
+    PYTHON_PATH=$(which python3) # Path assoluto di python3 (after the installation of python, just in case )
 
     read -p "Install it for all users? (y/n): " choice
 
@@ -21,19 +21,18 @@ if [[ "$action" == "1" ]]; then
         echo "Installing Arch-Store for all users..."
 
         sudo mkdir -p /opt/Arch-Store
-        sudo chmod 770 /opt/Arch-Store
-        sudo chown "$USER":"$USER" /opt/Arch-Store
+        sudo chmod 755 /opt/Arch-Store
 
         if [[ -d "/opt/Arch-Store/.git" ]]; then
             echo "Arch-Store already exists, updating..."
             cd /opt/Arch-Store || exit
-            git reset --hard HEAD
-            git pull origin main
+            sudo git reset --hard HEAD
+            sudo git pull origin main
         else
-            git clone https://github.com/Samuobe/Arch-Store.git /opt/Arch-Store
+            sudo git clone https://github.com/Samuobe/Arch-Store.git /opt/Arch-Store
         fi
 
-        sudo chmod -R 770 /opt/Arch-Store
+        sudo chmod -R 755 /opt/Arch-Store # no need to make user first
 
         SCRIPT_PATH="/opt/Arch-Store/main.py"
         ICON_PATH="/opt/Arch-Store/icon.png"
@@ -49,7 +48,7 @@ Categories=System;
 Terminal=false
 EOF"
 
-        sudo chmod 777 "$DESKTOP_FILE"
+        sudo chmod 644 "$DESKTOP_FILE" #because .desktop files dont need to be executable here
 
         echo "Arch-Store installed/updated for all users."
         echo "Desktop file created at: $DESKTOP_FILE"
@@ -66,7 +65,7 @@ EOF"
         else
             git clone https://github.com/Samuobe/Arch-Store.git "$HOME/.programs/Arch-Store"
         fi
-        chmod -R 770 "$HOME/.programs/Arch-Store"
+        chmod -R 700 "$HOME/.programs/Arch-Store" # its for the user only no?, no one needs to read it
 
         SCRIPT_PATH="$HOME/.programs/Arch-Store/main.py"
         ICON_PATH="$HOME/.programs/Arch-Store/icon.png"
@@ -84,7 +83,7 @@ Categories=System;
 Terminal=false
 EOF
 
-        chmod 770 "$DESKTOP_FILE"
+        chmod 700 "$DESKTOP_FILE"
 
         echo "Arch-Store installed/updated for current user."
         echo "Desktop file created at: $DESKTOP_FILE"

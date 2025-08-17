@@ -12,7 +12,7 @@ import webbrowser
 import getpass
 
 #fast access variables
-avaible_languages = ["Italiano", "English"]
+avaible_languages = ["Italiano", "English", "Spanish"]
 
 #Base variables
 install_pacman_packages=[]
@@ -35,6 +35,13 @@ aur_programs = []
 working_dir = os.path.dirname(os.path.realpath(__file__))
 os.chdir(working_dir)
 user_name = getpass.getuser()
+#add anything global to global scope before using it global, also put defaults
+setting_repo_pacman="enable"
+setting_repo_aur="enable"
+setting_repo_flatpak="enable"
+aur_method="yay"
+language="English"
+AppImagesDir=f"{working_dir}/AppImages"
 
 #Config data
 def load_config_data():    
@@ -303,9 +310,9 @@ def open_appimages_settings(window):
                     if line != f"{name}|{program_user_base}":
                         f.write(line)
             messagebox.showinfo(
-                lpak.get("remotion completed", language),
-                lpak.get("remotion completed", language),
-                parent=window  
+                lpak.get("remove completed", language),
+                lpak.get("remove completed", language),
+                parent=window
             )
 
         def start_add_appimage():
@@ -534,12 +541,13 @@ def update_all_apps():
             stderr=subprocess.STDOUT,
             text=True,
             bufsize=1
-        )        
-        for line in process.stdout:   # Leggi l'output riga per riga
-            text_area.insert(tk.END, line)
-            text_area.see(tk.END)
-        process.stdout.close()
-        process.wait()
+        )
+        if process.stdout!=None: # check process output is not none (you should check if its and do some)
+            for line in process.stdout:   # Leggi l'output riga per riga
+                text_area.insert(tk.END, line)
+                text_area.see(tk.END)
+            process.stdout.close()
+            process.wait()
 
         def destroy_update_window():
             update_window.destroy()
@@ -631,15 +639,16 @@ def start_selectionated_operations(program_name):
             stderr=subprocess.STDOUT,
             text=True,
             bufsize=1
-        )        
-        for line in process.stdout:
-            text_area.insert(tk.END, line)
-            text_area.see(tk.END)
-        process.stdout.close()
-        process.wait()
-        start_button.destroy()
-        tk.Button(operations_window, text=lpak.get("finished", language), command=lambda: close_operations(operations_window)).pack(pady=5)
-    
+        )
+        if process.stdout!=None: # check process output is not none (you should check if its and do some)
+            for line in process.stdout:
+                text_area.insert(tk.END, line)
+                text_area.see(tk.END)
+            process.stdout.close()
+            process.wait()
+            start_button.destroy()
+            tk.Button(operations_window, text=lpak.get("finished", language), command=lambda: close_operations(operations_window)).pack(pady=5)
+
     def close_operations(win):
         win.destroy()
         after_operations()
@@ -702,9 +711,9 @@ def download_program(program_name, repository, button, status):
     elif repository == "flatpak":
         if status[0] == "Remove" or status[0] == "Do not install":
             if status[0] == "Remove":
-                button.config(text=lapk.get("do not remove", language))
-                status[0] = "Do not remove" 
-                remove_flatpak_packages.append(program_name)                
+                button.config(text=lpak.get("do not remove", language)) #lpak
+                status[0] = "Do not remove"
+                remove_flatpak_packages.append(program_name)
             else:
                 button.config(text=lpak.get("install", language))
                 status[0] = "Install" 
