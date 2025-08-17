@@ -13,6 +13,8 @@ import getpass
 
 #from PyQt6.QtWidgets import QApplication, QMainWindow, QLabel
 import PyQt6.QtWidgets as pq
+from PyQt6.QtCore import QObject, pyqtSignal, QThread
+
 import sys
 
 #fast access variables
@@ -513,22 +515,29 @@ def open_other():
     other_option_window.mainloop()
 
 
+def show_allert(title, message):
+    msg = pq.QMessageBox()
+    msg.setIcon(pq.QMessageBox.Icon.Information)
+    msg.setText(message)
+    msg.setWindowTitle(title)
+    msg.setStandardButtons(pq.QMessageBox.StandardButton.Ok | pq.QMessageBox.StandardButton.Cancel)
+    retval = msg.exec()
+    
 #END OTHER#
 ###########
 
+
 def update_all_apps():
-    print("UPDATE")
-    return
     global install_status
-    #Controlli vari
     if setting_repo_pacman == "disable" and setting_repo_aur == "disable" and setting_repo_flatpak == "disable":
-        messagebox.showinfo(lpak.get("nothing enable", language), no_repo_error_text_default)
+        show_allert(lpak.get("attenction", language), lpak.get("no installation method", language))
         return
-    if install_status == True:
-        messagebox.showinfo(lpak.get("an install instance is alredy in progress", language), lpak.get("an install instance is alredy in progress", language)) 
-        return    
-    #fine controlli
-    with open("actions.sh", "w") as f:  #File dei comando per update
+    if install_status:
+        show_allert(lpak.get("attenction", language), lpak.get("an install instance is alredy in progress", language))
+        return
+
+    # Scrive script
+    with open("actions.sh", "w") as f:
         f.write("#!/bin/bash")
         if setting_repo_pacman == "enable":
             f.write("\nsudo pacman -Syu --noconfirm")
@@ -537,51 +546,58 @@ def update_all_apps():
         if setting_repo_flatpak == "enable":
             f.write("\nflatpak upgrade --assumeyes")
 
-    def run_update(update_window, start_button):
-        global install_status
-        os.chdir(working_dir)        
-        command_update = ["pkexec", "bash", os.path.join(working_dir, "actions.sh")]
-        process = subprocess.Popen(
-            command_update,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.STDOUT,
-            text=True,
-            bufsize=1
-        )
-        if process.stdout!=None: # check process output is not none (you should check if its and do some)
-            for line in process.stdout:   # Leggi l'output riga per riga
-                text_area.insert(tk.END, line)
-                text_area.see(tk.END)
-            process.stdout.close()
-            process.wait()
 
-        def destroy_update_window():
-            update_window.destroy()
-        start_button.destroy()
-        exit_button = tk.Button(update_window, text=lpak.get("finished", language), command=destroy_update_window)
-        exit_button.pack(pady=5)
+    def close_settings():
+        update_window.close()
+
+    def start_update():
+        global install_status
+        os.chdir(working_dir)
+        install_status = True
+        update_button.setDisabled(True)
+        text_area.setText(lpak.get("update in progress", language))
+        progress_bar.setRange(0, 0) # modalità indeterminata
+
+        update_window.repaint()
+           
+        proc = subprocess.run(["pkexec", "bash", os.path.join(working_dir, "actions.sh")])
+        
+            
         install_status = False
+        progress_bar.setRange(0, 1)  # ferma barra
+        update_button.setText(lpak.get("finished", language))
+        #update_button.pressed.connect(close_settings)
+        try:
+            update_button.pressed.disconnect()
+        except TypeError:
+            pass
+      
+        update_button.setDisabled(False)
+        update_button.clicked.connect(close_settings)
+        update_window.update()
 
-    def start_thread(update_window, start_button):
-        global install_status
-        if install_status == True:
-            messagebox.showinfo(lpak.get("an install instance is alredy in progress", language), lpak.get("an install instance is alredy in progress", language)) 
-            return
-        threading.Thread(target=run_update, args=(update_window, start_button), daemon=True).start()  
-        install_status = True      
-    #GUI# 
-    update_window = tk.Toplevel(root)
-    update_window.title(lpak.get("update", language))
-    icon = tk.PhotoImage(file="icon.png")
-    update_window.iconphoto(False, icon)
-    text_area = ScrolledText(update_window, width=100, height=30)
-    text_area.pack(padx=10, pady=10)
-    start_button = tk.Button(update_window, text=lpak.get("start update", language))
-    start_button.config(command=lambda: start_thread(update_window, start_button))
-    start_button.pack(pady=5)
-    update_window.mainloop()    
-    os.remove("actions.sh")
-    install_status = False
+    update_window = pq.QWidget()
+    update_window.setGeometry(100, 100, 400, 200)
+    update_window.setWindowTitle(lpak.get("update", language))
+    layout = pq.QVBoxLayout(update_window)
+
+
+    text_area = pq.QLabel(lpak.get("click to start update", language))
+    layout.addWidget(text_area)
+
+    progress_bar = pq.QProgressBar()      
+    layout.addWidget(progress_bar)       
+
+    update_button = pq.QPushButton(lpak.get("start update", language))    
+    layout.addWidget(update_button)
+    update_button.pressed.connect(start_update)
+
+    update_window.show()   
+
+
+  
+    
+
     
 def start_selectionated_operations(program_name):
     global start_operation_button, operation_list_label, install_pacman_packages, remove_pacman_packages, install_aur_packages, remove_aur_packages, install_flatpak_packages, remove_flatpak_packages, install_status
