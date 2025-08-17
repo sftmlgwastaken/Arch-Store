@@ -11,6 +11,10 @@ import library.lpak as lpak
 import webbrowser
 import getpass
 
+#from PyQt6.QtWidgets import QApplication, QMainWindow, QLabel
+import PyQt6.QtWidgets as pq
+import sys
+
 #fast access variables
 avaible_languages = ["Italiano", "English", "Español"]
 
@@ -513,6 +517,8 @@ def open_other():
 ###########
 
 def update_all_apps():
+    print("UPDATE")
+    return
     global install_status
     #Controlli vari
     if setting_repo_pacman == "disable" and setting_repo_aur == "disable" and setting_repo_flatpak == "disable":
@@ -1089,54 +1095,39 @@ def search_program(name):
         no_program_found_label.grid(columnspan=4, row=row)
     last_search = program_search
 
+
+
+
+
+
 while True:
     actual_language = language
     #Config finestra
-    root = tk.Tk()
-    root.geometry("2000x1000")
-    root.minsize(1310, 700)
-    root.grid_rowconfigure(4, weight=1)   
-    root.grid_columnconfigure(0, weight=1)
-    root.title(lpak.get("arch store",language))
-    icon = tk.PhotoImage(file="icon.png")
-    root.iconphoto(False, icon)
-    #Scrollable
-    container = tk.Frame(root)
-    container.grid(row=4, column=0, columnspan=3, sticky="nsew")
-    canvas = tk.Canvas(container)
-    scrollbar = tk.Scrollbar(container, orient="vertical", command=canvas.yview)
-    scrollable_frame = tk.Frame(canvas)
-    scrollable_frame.bind(
-        "<Configure>",
-        lambda e: canvas.configure(scrollregion=canvas.bbox("all"))
-    )
-    canvas.create_window((0, 0), window=scrollable_frame, anchor="nw")
-    canvas.configure(yscrollcommand=scrollbar.set)
-    canvas.pack(side="left", fill="both", expand=True)
-    scrollbar.pack(side="right", fill="y")
-    #Obgect
-    search_label=tk.Label(text=lpak.get("search for software", language))
-    search_bar = tk.Text(height=1, wrap="none")
-    search_button = tk.Button(text=lpak.get("search", language), command=lambda name=" ": search_program(name))
-    update_button = tk.Button(text=lpak.get("update system", language), command=update_all_apps)
-    ####setting_button = tk.Button(text=lpak.get("settings", language), command=open_setting)
-    other_button = tk.Button(text=lpak.get("other", language), command=open_other)
-    # focus sulla barra di ricerca all'avvio
-    search_bar.focus_set()
-    # binding tasto Invio per ricerca
-    def on_search_enter(event):
-        search_program(" ")
-        return "break" 
-    search_bar.bind("<Return>", on_search_enter)
-    search_bar.bind("<Shift-Return>", lambda e: "break")
-    #position
-    search_label.grid(column=0, row=1, sticky="w")
-    search_bar.grid(column=1, row=1, sticky="we")
-    search_button.grid(column=0, row=2, sticky="w")
-    update_button.grid(column=2, row=1, sticky="e")
-    ####setting_button.grid(column=2, row=2, sticky="e")
-    other_button.grid(column=2, row=2, sticky="e")
-    #
-    root.mainloop()        
+    app = pq.QApplication(sys.argv)
+    root = pq.QMainWindow()
+    root.setWindowTitle(lpak.get("arch store", language))
+    root.setGeometry(5000, 5000, 1000, 800)
+
+    search_label = pq.QLabel(lpak.get("search", language), root)
+    search_textbox = pq.QLineEdit("", root)
+    update_button = pq.QPushButton(parent=root, text=lpak.get("update", language))
+    other_button = pq.QPushButton(parent=root, text=lpak.get("other", language))
+
+    update_button.pressed.connect(update_all_apps)
+    other_button.pressed.connect(open_other)
+
+
+
+    search_label.move(0, 0)
+    search_textbox.move(50, 0)
+    search_textbox.setFixedWidth(500) 
+    update_button.move(550, 0)
+    other_button.move(550, 30)
+
+
+    root.show()
+    sys.exit(app.exec())    
+
+       
     if language == actual_language:
         exit()
