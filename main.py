@@ -594,6 +594,8 @@ def update_all_apps():
 
     update_window.show()   
 
+    os.remove("actions.sh")
+
 
   
     
@@ -750,9 +752,10 @@ def download_program(program_name, repository, button, status):
                 status[0] = "Remove" 
                 remove_flatpak_packages.remove(program_name)
     else:
+        
         if status[0] == "Remove" or status[0] == "Do not install":
             if status[0] == "Remove":
-                button.config(text=lpak.get("do not remove", language))
+                button.setText(text=lpak.get("do not remove", language))
                 status[0] = "Do not remove"
                 remove_pacman_packages.append(program_name)
             else:
@@ -825,324 +828,205 @@ def download_program(program_name, repository, button, status):
         start_operation_button.destroy()
         operation_list_label.destroy()
   
+
+# Funzione principale di ricerca
 def search_program(name):
-    global program_button_download, search_status, last_search, no_program_found_label, pacman_programs, aur_programs, flatpak_programs
-    try:
-        no_program_found_label.destroy()
-    except:
-        pass     
-    try:
-        error_label_textbox_empty.destroy()
-    except:
-        pass   
-    if setting_repo_pacman == "disable" and setting_repo_aur == "disable" and setting_repo_flatpak == "disable":
-        label_error_no_repo_enable = tk.Label(text=no_repo_error_text_default)
-        label_error_no_repo_enable.grid(row=3, columnspan=4)
-        return
-    if search_status == True:
-        return
-    search_status = True
-    #Clean screen
-    for widget in scrollable_frame.winfo_children():
-        widget.destroy()
-    #Search Programs
-    programs_commodo=[]
-    if name == " ":
-        program_search = search_bar.get('1.0', 'end-1c')
-        search_bar.delete('1.0', 'end-1c')
-    else:
-        program_search = name
-    if program_search == "":
-        error_label_textbox_empty=tk.Label(scrollable_frame, text=lpak.get("so you're looking for nothing", language), font='Helvetica 18 bold')
-        error_label_textbox_empty.grid(row=3, column=4)
-        search_status = False
-        return
-    program_search = program_search.replace("\n", "")
-    search_label.config(text=lpak.get("i'm looking for", language)+" "+program_search+"...")
-    root.update()    
-    #pacman
-    if setting_repo_pacman == "enable":
-        programs_pacman = os.popen("pacman -Ss "+program_search).read()   
-        programs_commodo = programs_pacman.split("\n")
-        programs_commodo = programs_commodo[:300]
+    global program_button_download, search_status, last_search, no_program_found_label
+    global pacman_programs, aur_programs, flatpak_programs, scrollable_layout
+
+    # Pulizia etichette di errore
+    for label in ['no_program_found_label', 'error_label_textbox_empty']:
         try:
-            programs_commodo.remove("")    
+            eval(label).deleteLater()
         except:
             pass
-        x = len(programs_commodo)
-        pacman_programs=[]
-        x = x-1    
-        while x >= 0:        
-            pacman_programs.append(programs_commodo[x-1]+"|"+programs_commodo[x])
-            x = x-2  
-    else:
-        pacman_programs = []
-    #AUR
-    if setting_repo_aur == "enable":
-        programs_commodo.clear()
-        if name == " ":
-            pass
-        else:
-            program_search = name
-        command = f"{aur_method} -Ssa "+program_search
-        programs_yay = os.popen(command).read()    
-        programs_commodo = programs_yay.split("\n")
-        programs_commodo.remove("")
-        x = len(programs_commodo)
-        x = x-1    
-        aur_programs =[]
-        while x >= 0:        
-            aur_programs.append(programs_commodo[x-1]+"|"+programs_commodo[x])
-            x = x-2 
-    else:
-        aur_programs = []        
-    #flatpak
-    if setting_repo_flatpak == "enable":
-        if name == " ":
-            pass
-        else:
-            program_search = name
-        command = "flatpak search "+program_search
-        flatpak_programs = os.popen(command).read()
-        flatpak_programs = flatpak_programs.replace("\t", "    ")
-        flatpak_programs = flatpak_programs.split("\n")
-        last = flatpak_programs.pop()
-        if last != "":
-            flatpak_programs.append(last)
-        command = "flatpak list"
-        flatpak_installed_programs = os.popen(command).read()
-        flatpak_installed_programs = flatpak_installed_programs.split("\n")
-    else:
-        flatpak_programs = []
-    #Generate interface
-    program_search_label1=tk.Label(scrollable_frame, text=lpak.get("programs", language), font=("bold"))
-    program_search_label2=tk.Label(scrollable_frame, text=lpak.get("description", language), font=("bold"))
-    program_search_label3=tk.Label(scrollable_frame, text=lpak.get("repository", language), font=("bold"))
-    program_search_label4=tk.Label(scrollable_frame, text=lpak.get("actions", language), font=("bold"))
-    #
-    program_search_label1.grid(row=3, column=2, sticky="w")#programs
-    program_search_label2.grid(row=3, column=6, sticky="w")#Description
-    program_search_label3.grid(row=3, column=4, sticky="w")#Repository
-    program_search_label4.grid(row=3, column=0)#Actions
-    #Generate download data
-    row = 4
+
+    # Controllo se nessun repo è abilitato
+    if setting_repo_pacman == "disable" and setting_repo_aur == "disable" and setting_repo_flatpak == "disable":
+        show_allert(lpak.get("attenction", language), no_repo_error_text_default)
+        return
+
+    if search_status:
+        return
+    search_status = True
+
+    # Pulizia widget esistenti
+    for widget in scrollable_frame.findChildren(pq.QWidget):
+        widget.deleteLater()
+
+    # Imposta la stringa di ricerca
+    program_search = search_bar.text() if name == " " else name
+    search_bar.clear()
+    program_search = program_search.strip()
+
+    if not program_search:
+        error_label_textbox_empty = pq.QLabel(lpak.get("so you're looking for nothing", language))
+        error_label_textbox_empty.setStyleSheet("color: red; font: bold 14pt 'Arial'")
+        scrollable_layout.addWidget(error_label_textbox_empty, 0, 0, 1, 4)
+        search_status = False
+        return
+
+    search_label.setText(f"{lpak.get('i\'m looking for', language)} {program_search}...")
+    root.repaint()
+
+    def parse_pacman_output(output):
+        lines = [l for l in output.split("\n") if l]
+        programs = []
+        for i in range(len(lines)-1, 0, -2):
+            programs.append(lines[i-1] + "|" + lines[i])
+        return programs
+
+    def parse_aur_output(output):
+        lines = [l for l in output.split("\n") if l]
+        programs = []
+        for i in range(len(lines)-1, 0, -2):
+            programs.append(lines[i-1] + "|" + lines[i])
+        return programs
+
+    # Pacman
+    pacman_programs.clear()
     if setting_repo_pacman == "enable":
-        for program in pacman_programs:
+        pacman_programs = parse_pacman_output(os.popen(f"pacman -Ss {program_search}").read())
+
+    # AUR
+    aur_programs.clear()
+    if setting_repo_aur == "enable":
+        aur_output = os.popen(f"{aur_method} -Ssa {program_search}").read()
+        aur_programs = parse_aur_output(aur_output)
+
+    # Flatpak
+    flatpak_programs.clear()
+    if setting_repo_flatpak == "enable":
+        flatpak_raw = os.popen(f"flatpak search {program_search}").read().replace("\t", "    ").split("\n")
+        if flatpak_raw[-1] != "":
+            flatpak_programs = flatpak_raw
+        flatpak_installed_programs = os.popen("flatpak list").read().split("\n")
+
+    # Pulizia layout prima di generare interfaccia
+    for i in reversed(range(scrollable_layout.count())):
+        widget_to_remove = scrollable_layout.itemAt(i).widget()
+        if widget_to_remove:
+            widget_to_remove.deleteLater()
+
+    # Header tabella
+    headers = ["actions", "programs",  "repository", "description"]
+    for idx, key in enumerate(headers):
+        header_label = pq.QLabel(lpak.get(key, language))
+        header_label.setStyleSheet("font: bold 14pt 'Arial'; color: #004080")
+        scrollable_layout.addWidget(header_label, 0, idx*2)
+
+    row = 1
+
+    def create_button(text, name, repo, status):
+        btn = pq.QPushButton(text)
+        btn.setStyleSheet(
+            "background-color: #008000; color: white; font: bold 12pt 'Arial'; padding: 4px 8px; border-radius: 5px;"
+        )
+        btn.pressed.connect(lambda: download_program(name, repo, btn, status))
+        return btn
+
+    # Funzione generica per aggiungere programmi Pacman/AUR
+    def add_programs_list(program_list, repo_type):
+        nonlocal row
+        for program in program_list:
             program_repository = program.split("/")[0]
             program_commodo = program.split("/")[1]
-            program_name = program_commodo.split("|")[0]
-            program_description = program_commodo.split("|")[1]
-            program_name_label = tk.Label(scrollable_frame, text=program_name)
-            program_description_label = tk.Label(scrollable_frame, text=program_description)
-            program_repository_label = tk.Label(scrollable_frame, text=program_repository)
-            if program_name.split(" ")[0] in install_pacman_packages or program_name.split(" ")[0] in install_aur_packages:
-                button_download_text=lpak.get("do not install", language)
-                status = ["Do not install"]
-            elif program_name.split(" ")[0] in remove_aur_packages or program_name.split(" ")[0] in install_pacman_packages:
-                button_download_text=lpak.get("do not remove", language)
-                status = ["Do not remove"]
-            else:
-                if "[" in program_name:
-                    button_download_text = lpak.get("remove", language)
-                    status = ["Remove"]
-                else:
-                    button_download_text = lpak.get("install", language)
-                    status = ["Install"]
-            program_button_download = tk.Button(scrollable_frame, text=button_download_text)
-            program_button_download.config(command=lambda name=program_name, repository=program_repository, button=program_button_download, stat=status: download_program(name, repository, button, stat))
-            #
-            program_name_label.grid(row=row, column=2, sticky="w")
-            program_description_label.grid(row=row, column=6, sticky="w")
-            program_repository_label.grid(row=row, column=4, sticky="w")
-            program_button_download.grid(row=row, column=0)
-            #
-            line_separazione = ttk.Separator(scrollable_frame, orient="horizontal")
-            line_separazione.grid(column=0, row=row+1, columnspan=7, sticky='ew', pady=10)
-            #
-            row = row + 2   
+            program_name, program_description = program_commodo.split("|")
+
+            program_button_download = create_button(
+                lpak.get("install", language), program_name, program_repository, ["Install"]
+            )
+
+            scrollable_layout.addWidget(pq.QLabel(program_name), row, 2)
+            scrollable_layout.addWidget(pq.QLabel(program_description), row, 6)
+            scrollable_layout.addWidget(pq.QLabel(program_repository), row, 4)
+            scrollable_layout.addWidget(program_button_download, row, 0)
+
+            line = pq.QFrame()
+            line.setFrameShape(pq.QFrame.Shape.HLine)
+            line.setFrameShadow(pq.QFrame.Shadow.Sunken)
+            scrollable_layout.addWidget(line, row + 1, 0, 1, 7)
+
+            row += 2
+
+    if setting_repo_pacman == "enable":
+        add_programs_list(pacman_programs, "pacman")
+    if setting_repo_aur == "enable":
+        add_programs_list(aur_programs, "aur")
+
+    # Flatpak - aggiunta separata per complessità parsing
     if setting_repo_flatpak == "enable":
         for program in flatpak_programs:
-            #program name
-            program_name_pure = ""
-            last_char=""
-            for char in program:
-                if char == " " and last_char == " ":
-                    break
-                else:
-                    program_name_pure = program_name_pure+char
-                    last_char = char
-            program = program.replace(program_name_pure, "", 1)
-            program = program.lstrip(" ") #rimozione spazi fino al carattere
-            #program description
-            program_description = ""
-            last_char=""
-            for char in program:
-                if char == " " and last_char == " ":
-                    break
-                else:
-                    program_description = program_description+char
-                    last_char = char
-            program = program.replace(program_description, "")
-            program = program.lstrip(" ")# rimozione spazi fino al carattere
-            #program id
-            program_id = ""
-            last_char=""
-            for char in program:
-                if char == " " and last_char == " ":
-                    break
-                else:
-                    program_id = program_id+char
-                    last_char = char
-            program = program.replace(program_id, "")
-            program = program.lstrip(" ")# rimozione spazi fino al carattere
-            #program verion number
-            program_version = ""
-            last_char=""
-            for char in program:
-                if char == " " and last_char == " ":
-                    break
-                else:
-                    program_version = program_version+char
-                    last_char = char
-            program = program.replace(program_version, "")
-            program = program.lstrip(" ")# rimozione spazi fino al carattere
-            #progrema status version
-            program_version_status = ""
-            last_char=""
-            for char in program:
-                if char == " " and last_char == " ":
-                    break
-                else:
-                    program_version_status = program_version_status+char
-                    last_char = char
-            program = program.replace(program_version_status, "")
-            program = program.lstrip(" ")# rimozione spazi fino al carattere
-            #progrema status version
-            program_repository = program
-            if program_name_pure.endswith(" "):
-                program_name_pure = program_name_pure[:-1]
-            if program_description.endswith(" "):
-                program_description = program_description[:-1]
-            if program_id.endswith(" "):
-                program_id = program_id[:-1]
-            if program_version.endswith(" "):
-                program_version = program_version[:-1]
-            if program_version_status.endswith(" "):
-                program_version_status = program_version_status[:-1]
-            if program_repository.endswith(" "):
-                program_repository = program_repository[:-1]
-            program_name = program_name_pure + " ("+program_version+" "+program_version_status+") ("+program_id+")"
-            status = ["Do not install"]
-            if program_name_pure in install_flatpak_packages:
-                button_download_text=lpak.get("do not install", language)
-                status = ["Do not install"]
-            elif program_name_pure in remove_flatpak_packages:
-                button_download_text=lpak("do not remove", language)
-                status = ["Do not remove"]
-            else:
-                for program in flatpak_installed_programs:
-                    if program_name_pure.lower() in program.lower():
-                        button_download_text = lpak.get("remove", language)
-                        status = ["Remove"]
-                        break
-                    else:
-                        button_download_text = lpak.get("install", language)
-                        status = ["Install"]
-            if not "No matches found ( )" in program_name:
-                program_name_label=tk.Label(scrollable_frame, text=program_name)
-                program_repository_label=tk.Label(scrollable_frame, text=program_repository)
-                program_description_label=tk.Label(scrollable_frame, text=program_description)
-                program_button_download = tk.Button(scrollable_frame, text=button_download_text)
-                program_button_download.config(command=lambda name=program_id, repository="flatpak", button=program_button_download, stat=status: download_program(name, repository, button, stat))
-                #        
-                program_name_label.grid(row=row, column=2, sticky="w")
-                program_description_label.grid(row=row, column=6, sticky="w")
-                program_repository_label.grid(row=row, column=4, sticky="w")
-                program_button_download.grid(row=row, column=0)
-                #
-                line_separazione = ttk.Separator(scrollable_frame, orient="horizontal")
-                line_separazione.grid(column=0, row=row+1, columnspan=7, sticky='ew', pady=10)
-                #
-                row = row + 2 
-    if setting_repo_aur == "enable":
-        for program in aur_programs:
-            program_repository = program.split("/")[0]
-            program_commodo = program.split("/")[1]
-            program_name = program_commodo.split("|")[0]
-            program_description = program_commodo.split("|")[1]
-            program_name_label = tk.Label(scrollable_frame, text=program_name)
-            program_description_label = tk.Label(scrollable_frame, text=program_description)
-            program_repository_label = tk.Label(scrollable_frame, text=program_repository)
-            test = program_name.split("(")
-            try:
-                test = test[2]
-                button_download_text=lpak.get("remove", language)
-                status = ["Remove"]
-            except:
-                button_download_text=lpak.get("install", language)
-                status = ["Install"]
-            program_button_download = tk.Button(scrollable_frame, text=button_download_text)
-            program_button_download.config(command=lambda name=program_name, repository=program_repository, button=program_button_download, stat=status: download_program(name, repository, button, stat))
-            #            
-            program_name_label.grid(row=row, column=2, sticky="w")
-            program_description_label.grid(row=row, column=6, sticky="w")
-            program_repository_label.grid(row=row, column=4, sticky="w")
-            program_button_download.grid(row=row, column=0)
-            #
-            line_separazione = ttk.Separator(scrollable_frame, orient="horizontal")
-            line_separazione.grid(column=0, row=row+1, columnspan=7, sticky='ew', pady=10)
-            #
-            row = row + 2 
-    #END RESEARCH
-    search_label.config(text=lpak.get("search", language))
+            parts = [p for p in program.split("  ") if p.strip()]
+            if len(parts) < 4:
+                continue
+            program_name, program_description, program_id, program_version = parts[:4]
+            program_button_download = create_button(
+                lpak.get("install", language), program_id, "flatpak", ["Install"]
+            )
+            scrollable_layout.addWidget(pq.QLabel(f"{program_name} ({program_version})"), row, 2)
+            scrollable_layout.addWidget(pq.QLabel(program_description), row, 6)
+            scrollable_layout.addWidget(pq.QLabel("flatpak"), row, 4)
+            scrollable_layout.addWidget(program_button_download, row, 0)
+
+            line = pq.QFrame()
+            line.setFrameShape(pq.QFrame.Shape.HLine)
+            line.setFrameShadow(pq.QFrame.Shadow.Sunken)
+            scrollable_layout.addWidget(line, row + 1, 0, 1, 7)
+            row += 2
+
+    search_label.setText(lpak.get("search", language))
     search_status = False
-    #
-    vertical_line_action=ttk.Separator(scrollable_frame, orient="vertical")
-    vertical_line_action.grid(column=1, row=3, rowspan=row-1, sticky='ns')
-    vertical_line_programs=ttk.Separator(scrollable_frame, orient="vertical")
-    vertical_line_programs.grid(column=3, row=3, rowspan=row-1, sticky='ns')
-    vertical_line_repo=ttk.Separator(scrollable_frame, orient="vertical")
-    vertical_line_repo.grid(column=5, row=3, rowspan=row-1, sticky='ns')
-    #
-    if flatpak_programs == ['No matches found']:
-        flatpak_programs = []
-    if pacman_programs == [] and flatpak_programs == [] and aur_programs == []:
-        no_program_found_label = tk.Label(text=lpak.get("no program found", language))
-        no_program_found_label.grid(columnspan=4, row=row)
+
+    if not pacman_programs and not aur_programs and not flatpak_programs:
+        no_program_found_label = pq.QLabel(lpak.get("no program found", language))
+        no_program_found_label.setStyleSheet("color: red; font: bold 14pt 'Arial'")
+        scrollable_layout.addWidget(no_program_found_label, row, 0, 1, 6)
+    
+
     last_search = program_search
-
-
-
-
-
-
 while True:
-    actual_language = language
-    #Config finestra
+    # Inizializzazione GUI
     app = pq.QApplication(sys.argv)
     root = pq.QMainWindow()
     root.setWindowTitle(lpak.get("arch store", language))
-    root.setGeometry(5000, 5000, 1000, 800)
+    root.setGeometry(400, 100, 1000, 800)
 
-    search_label = pq.QLabel(lpak.get("search", language), root)
-    search_textbox = pq.QLineEdit("", root)
-    update_button = pq.QPushButton(parent=root, text=lpak.get("update", language))
-    other_button = pq.QPushButton(parent=root, text=lpak.get("other", language))
+    central_widget = pq.QWidget()
+    root.setCentralWidget(central_widget)
+    main_layout = pq.QVBoxLayout(central_widget)
 
+    # Barra superiore
+    top_layout = pq.QHBoxLayout()
+    search_label = pq.QLabel(lpak.get("search", language))
+    search_label.setStyleSheet("font: bold 14pt 'Arial'")
+    search_bar = pq.QLineEdit("")
+    search_bar.setFixedWidth(500)
+    search_button = pq.QPushButton(lpak.get("search", language))
+    update_button = pq.QPushButton(lpak.get("update", language))
+    other_button = pq.QPushButton(lpak.get("other", language))
+
+    search_button.pressed.connect(lambda: search_program(" "))
     update_button.pressed.connect(update_all_apps)
     other_button.pressed.connect(open_other)
 
+    for w in [search_label, search_bar, search_button, update_button, other_button]:
+        top_layout.addWidget(w)
+        top_layout.setSpacing(15)
 
+    main_layout.addLayout(top_layout)
 
-    search_label.move(0, 0)
-    search_textbox.move(50, 0)
-    search_textbox.setFixedWidth(500) 
-    update_button.move(550, 0)
-    other_button.move(550, 30)
-
+    # Scroll area per risultati
+    scroll_area = pq.QScrollArea()
+    scroll_area.setWidgetResizable(True)
+    scrollable_frame = pq.QWidget()
+    scrollable_layout = pq.QGridLayout(scrollable_frame)
+    scroll_area.setWidget(scrollable_frame)
+    main_layout.addWidget(scroll_area)
 
     root.show()
-    sys.exit(app.exec())    
+    sys.exit(app.exec())
+    
 
        
     if language == actual_language:
