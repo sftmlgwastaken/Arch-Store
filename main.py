@@ -12,7 +12,7 @@ import webbrowser
 import getpass
 
 #fast access variables
-avaible_languages = ["Italiano", "English", "Spanish"]
+avaible_languages = ["Italiano", "English", "Español"]
 
 #Base variables
 install_pacman_packages=[]
