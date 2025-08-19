@@ -20,7 +20,9 @@ Arch store is an intuitive store for Arch Linux software written in Python!
 ## Installation/Update/Remove
 ### AUR
 
-It's finally arrived on AUR! Simply download the arch-store-git package with your AUR manager (YAY or PAUR, for example).
+It's finally arrived on AUR! There are two packages:
+- arch-store        Monst stable (i hope), it download the latest relase
+- arch-store-git    It download the latest file from the main branch
 
 ### Automatic script
 <img width="676" height="270" alt="install script" src="https://github.com/user-attachments/assets/c35c3f94-80b2-4770-99da-6ee2201497f3" />
