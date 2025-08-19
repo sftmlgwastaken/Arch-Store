@@ -12,7 +12,7 @@ read -p "Select an option [1/2/3]: " action
 install_dependencies() {
     echo "📦 Downloading dependencies..."
     sudo pacman -Sy
-    sudo pacman -S tk git python3 python-pip --noconfirm --needed
+    sudo pacman -S git python3 python-pip --noconfirm --needed
     pip install PyQt6 --break-system-packages
 }
 
@@ -20,6 +20,7 @@ if [[ "$action" == "1" ]]; then
     install_dependencies
 
     PYTHON_PATH=$(which python3)
+    clear
     read -p "Install it for all users? (y/n): " choice
 
     if [[ "$choice" =~ ^[Yy]$ ]]; then
