@@ -1,6 +1,11 @@
 #!/bin/bash
 clear
 
+sudo pacman -Sy
+sudo pacman -S git python3 python-pip --noconfirm --needed
+PYTHON_PATH=$(which python3)
+pip install PyQt6 --break-system-packages
+clear
 echo "Welcome to the Arch-Store installation program!"
 echo "What do you want to do?"
 echo "1) Install Arch-Store"
@@ -9,12 +14,7 @@ echo "3) Update Arch-Store"
 read -p "Select an option [1/2/3]: " action
 
 if [[ "$action" == "1" ]]; then
-    echo "Downloading dependencies..."
-    sudo pacman -Sy
-    sudo pacman -S git python3 python-pip --noconfirm --needed
-
-    PYTHON_PATH=$(which python3)
-    pip install PyQt6 --break-system-packages
+    
     read -p "Install it for all users? (y/n): " choice
 
     if [[ "$choice" == "y" || "$choice" == "Y" ]]; then
