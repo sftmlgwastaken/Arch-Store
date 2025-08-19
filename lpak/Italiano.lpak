@@ -44,7 +44,7 @@ actions|Azioni
 made whit heart by Samuobe|Fatto col cuore da Samuobe
 github project|Progetto GitHub
 other|Altro
-other options|Altre opsioni
+other options|Altre opzioni
 manage appimages|Gestisci gli AppImage
 no appimages app|Nessun AppImage installato con Arch Store
 name|Nome
@@ -73,8 +73,12 @@ confirm change|Conferma la modifica
 attenction this action will clear existing appimages dataset|Attenzione!!!!! Questa azione cancellerà il dataset degli AppImage, ciò significa che non potrai più disinstallarli o aggiornarli da arch store, consiglio di prima disinstallarli tutti e reinstallarli una volta cambiata la directory. Procedere?
 changed|Cambiato!
 install appimage|Installa AppImage
-aur method|Installer AUR
+aur method|Gestore AUR
 change|Cambia
 attenction|Attenzione
 update in progress|Aggiornamento in corso, rilassati un momento!
 click to start update|Clicca per avviare l'aggiornamento
+click to start operations|Clicca per avviare le operazioni
+install in progress|Installazione in corso, riposati nel mentre!
+please restart to apply the changes|Per favore riavvia l'app per applicare le modifiche
+restart required|Riavvio richiesto

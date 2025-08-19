@@ -75,6 +75,10 @@ changed|¡Cambiado!
 install appimage|Instalar AppImage
 aur method|Instalar AUR
 change|Cambiar
-attection|
-update in progres|
-click to start update|
+attenction|Attencion                                                 
+update in progress|Update in progress, relax wait a moment!             
+click to start update|Click to start the update
+click to start operations|Click to start operations
+install in progress|Installation in progress!
+please restart to apply the changes|Please restart to apply changes
+restart required|Resstart requied
