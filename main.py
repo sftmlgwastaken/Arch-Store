@@ -30,6 +30,7 @@ pacman_programs = []
 flatpak_programs = ['No matches found']
 aur_programs = []
 
+
 #colours varibiles
 install_color = "#008000"
 remove_color = "red"
@@ -37,8 +38,9 @@ modified_color = "lightblue"
 base_action_button_style="color: white; font: bold 12pt 'Arial'; padding: 4px 8px; border-radius: 5px;"
 
 #Auto-set variables
-working_dir = os.path.dirname(os.path.realpath(__file__))
-os.chdir(working_dir)
+#working_dir = os.path.dirname(os.path.realpath(__file__))
+working_dir="/usr/local/share/arch-store/data"
+#os.chdir(working_dir)
 user_name = getpass.getuser()
 
 #add anything global to global scope before using it global, also put defaults
@@ -61,7 +63,7 @@ def load_config_data():
             f.write(f"AppImmageDir={working_dir}/AppImages")
     def read_config_data():
         global setting_repo_pacman, setting_repo_aur, setting_repo_flatpak, aur_method, language, AppImagesDir
-        with open("settings.conf", "r") as f:
+        with open(f"{working_dir}/settings.conf", "r") as f:
             file_configuration_data = [line.rstrip('\n') for line in f.readlines()]
         setting_repo_pacman=file_configuration_data[0].split("=")[1]
         setting_repo_aur=file_configuration_data[1].split("=")[1]
@@ -69,7 +71,7 @@ def load_config_data():
         aur_method=file_configuration_data[3].split("=")[1]
         language=file_configuration_data[4].split("=")[1]
         AppImagesDir=file_configuration_data[5].split("=")[1]
-    if not os.path.isfile("settings.conf"):
+    if not os.path.isfile(f"{working_dir}/settings.conf"):
         write_new_config_file()    
     try:        
         read_config_data()        
@@ -80,6 +82,7 @@ def load_config_data():
         write_new_config_file()
         read_config_data()
 
+os.system(f"mkdir -p {working_dir}")
 load_config_data()
 no_repo_error_text_default=lpak.get("no installation method", language)
 os.makedirs(AppImagesDir, exist_ok=True)
@@ -100,7 +103,7 @@ def show_allert(title, message):
 def open_setting(window):
     #Edit repo
     def settings_change_pacman_status():
-        with open("settings.conf", "r") as f:
+        with open(f"{working_dir}/settings.conf", "r") as f:
             file_configuration_data = [line.rstrip('\n') for line in f.readlines()]
         if setting_repo_pacman == "enable":
             new_status = "disable"
@@ -108,14 +111,14 @@ def open_setting(window):
         else:
             new_status = "enable"
             button_repo_pacman.setText(lpak.get("disable", language))
-        with open("settings.conf", "w") as f:
+        with open(f"{working_dir}/settings.conf", "w") as f:
             f.write("pacman="+new_status+"\n")
             for line in file_configuration_data:
                 if not "pacman=" in line:
                     f.write(line+"\n")   
         load_config_data()
     def settings_change_aur_status():
-        with open("settings.conf", "r") as f:
+        with open(f"{working_dir}/settings.conf", "r") as f:
             file_configuration_data = [line.rstrip('\n') for line in f.readlines()]
         if setting_repo_aur == "enable":
             new_status = "disable"
@@ -123,7 +126,7 @@ def open_setting(window):
         else:
             new_status = "enable"
             button_repo_aur.setText(lpak.get("disable", language))
-        with open("settings.conf", "w") as f:
+        with open(f"{working_dir}/settings.conf", "w") as f:
             f.write(file_configuration_data[0]+"\n")
             f.write("aur="+new_status+"\n")
             for line in file_configuration_data:
@@ -132,7 +135,7 @@ def open_setting(window):
         load_config_data()
 
     def settings_change_flatpak_status():
-        with open("settings.conf", "r") as f:
+        with open(f"{working_dir}/settings.conf", "r") as f:
             file_configuration_data = [line.rstrip('\n') for line in f.readlines()]
         if setting_repo_flatpak == "enable":
             new_status = "disable"
@@ -140,7 +143,7 @@ def open_setting(window):
         else:
             new_status = "enable"
             button_repo_flatpak.setText(lpak.get("disable", language))
-        with open("settings.conf", "w") as f:            
+        with open(f"{working_dir}/settings.conf", "w") as f:            
             for line in file_configuration_data:
                 for line in file_configuration_data:
                     if not "flatpak=" in line:
@@ -149,10 +152,10 @@ def open_setting(window):
                         f.write("flatpak="+new_status+"\n")
         load_config_data()
     def settings_change_language(settings_page):
-        with open("settings.conf", "r") as f:
+        with open(f"{working_dir}/settings.conf", "r") as f:
             file_configuration_data = [line.rstrip('\n') for line in f.readlines()]
         language = menu_select_language.currentText()
-        with open("settings.conf", "w") as f:
+        with open(f"{working_dir}/settings.conf", "w") as f:
             for line in file_configuration_data:
                 if not "language=" in line:
                     f.write(line+"\n")
@@ -165,9 +168,9 @@ def open_setting(window):
             new_method = "yay"
         else:
             new_method = "paru"
-        with open("settings.conf", "r") as f:
+        with open(f"{working_dir}/settings.conf", "r") as f:
             file_configuration_data = [line.rstrip('\n') for line in f.readlines()]        
-        with open("settings.conf", "w") as f:
+        with open(f"{working_dir}/settings.conf", "w") as f:
             for line in file_configuration_data:
                 if not "aur_method=" in line:
                     f.write(line+"\n")
@@ -186,11 +189,11 @@ def open_setting(window):
             pq.QMessageBox.StandardButton.No
         )
         if response == pq.QMessageBox.StandardButton.Yes:    
-            with open("appimages.data", "w") as f:
+            with open(f"{working_dir}/settings.conf", "w") as f:
                 f.write("")
-            with open("settings.conf", "r") as f:
+            with open(f"{working_dir}/settings.conf", "r") as f:
                 file_configuration_data = [line.rstrip('\n') for line in f.readlines()]
-            with open("settings.conf", "w") as f:
+            with open(f"{working_dir}/settings.conf", "w") as f:
                 for line in file_configuration_data:
                     if not "AppImmageDir=" in line:
                         f.write(line+"\n")
@@ -202,7 +205,7 @@ def open_setting(window):
             return
     #Other
     def settings_reset_settings(window):
-        os.remove("settings.conf")        
+        os.remove(f"{working_dir}/settings.conf")        
         load_config_data()
         show_allert(lpak.get("restart required", language), lpak.get("please restart to apply the changes", language))  
 
@@ -334,9 +337,9 @@ def open_appimages_settings(window):
             else:
                 desktop_path = os.path.expanduser(f"~/.local/share/applications/{name}-archstore.desktop")
                 os.remove(desktop_path)
-            with open("appimages.data", "r") as f:
+            with open(f"{working_dir}/appimages.data.conf", "r") as f:
                 appimage_data = f.readlines()
-            with open("appimages.data", "w") as f:
+            with open(f"{working_dir}/appimages.data", "w") as f:
                 for line in appimage_data:
                     if line != f"{name}|{program_user_base}":
                         f.write(line)
@@ -401,9 +404,9 @@ def open_appimages_settings(window):
                     desktop_path = os.path.expanduser(f"~/.local/share/applications/{name}-archstore.desktop")
                     with open(desktop_path, "w") as f:
                         f.write(desktop_entry_data)
-                with open("appimages.data", "r") as f:
+                with open(f"{working_dir}/appimages.data", "r") as f:
                     appimage_file_data = f.readlines()
-                with open ("appimages.data", "w") as f:
+                with open (f"{working_dir}/appimages.data", "w") as f:
                     for line in appimage_file_data:
                         f.write(line)                        
                     f.write(f"\n{name}|{program_user}")
@@ -560,15 +563,14 @@ def update_all_apps():
         update_window.close()
 
     def start_update():
-        global install_status
-        os.chdir(working_dir)
+        global install_status        
         install_status = True
         update_button.setDisabled(True)
         text_area.setText(lpak.get("update in progress", language))
         progress_bar.setRange(0, 0) 
         update_window.repaint()           
         proc = subprocess.run(["pkexec", "bash", os.path.join(working_dir, "actions.sh")])
-        os.remove("actions.sh")   
+        os.remove(f"{working_dir}/actions.sh")   
         install_status = False
         progress_bar.setRange(0, 1)  
         update_button.setText(lpak.get("finished", language))
@@ -583,7 +585,7 @@ def update_all_apps():
 
     update_window = pq.QWidget()
     update_window.setGeometry(100, 100, 400, 200)
-    update_window.setWindowIcon(QIcon(f"{working_dir}/icon.png"))
+    update_window.setWindowIcon(QIcon(f"icon.png"))
     update_window.setWindowTitle(lpak.get("update", language))
     layout = pq.QVBoxLayout(update_window)
     text_area = pq.QLabel(lpak.get("click to start update", language))
@@ -681,7 +683,7 @@ def start_selectionated_operations(program_name):
         operations_window.repaint()
         install_status = True
         proc = subprocess.run(["pkexec", "bash", os.path.join(working_dir, "actions.sh")])
-        os.remove("actions.sh")       
+        os.remove(f"{working_dir}/actions.sh")       
         install_status = False
         progress_bar.setRange(0, 1)  
         button.setText(lpak.get("finished", language))
@@ -697,7 +699,7 @@ def start_selectionated_operations(program_name):
 
     operations_window = pq.QWidget()
     operations_window.setWindowTitle(lpak.get("star actions", language))    
-    operations_window.setWindowIcon(QIcon(f"{working_dir}/icon.png"))
+    operations_window.setWindowIcon(QIcon("icon.png"))
     layout = pq.QVBoxLayout(operations_window)
     install_label = pq.QLabel(lpak.get("click to start operations", language))
     start_button = pq.QPushButton(lpak.get("start actions", language))
@@ -1225,7 +1227,7 @@ app = pq.QApplication(sys.argv)
 root = pq.QMainWindow()
 root.setWindowTitle(lpak.get("arch store", language))
 root.setGeometry(400, 100, 1000, 800)
-root.setWindowIcon(QIcon(f"{working_dir}/icon.png"))
+root.setWindowIcon(QIcon("icon.png"))
 
 central_widget = pq.QWidget()
 root.setCentralWidget(central_widget)
