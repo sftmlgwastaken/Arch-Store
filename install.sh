@@ -12,7 +12,7 @@ read -p "Select an option [1/2/3]: " action
 install_dependencies() {
     echo "📦 Downloading dependencies..."
     sudo pacman -Sy
-    sudo pacman -S git python3 python-pip --noconfirm --needed
+    sudo pacman -S git python3 python-pip python-pyqt6 --noconfirm --needed
     pip install PyQt6 --break-system-packages
 }
 
