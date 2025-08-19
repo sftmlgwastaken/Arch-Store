@@ -19,6 +19,8 @@ Arch store is an intuitive store for Arch Linux software written in Python!
 
 ## Installation/Update/Remove
 ### Automatic script
+<img width="676" height="270" alt="install script" src="https://github.com/user-attachments/assets/c35c3f94-80b2-4770-99da-6ee2201497f3" />
+
 There is an automatic script that allows you to install, remove and update everything at once, and allows you to choose between installation for the current user only or for everyone on the system.
 
 Just run: ```curl -LO https://raw.githubusercontent.com/Samuobe/Arch-Store/main/install.sh && bash install.sh```
@@ -27,10 +29,10 @@ Follow the two instructions and... Done! Easy, right?
 ### Manual
 #### Dependencies:
 ##### Arch:
-- Tkinter (Install with ```sudo pacman -S tk python3 python-pip```)
+- QT
 #### Python library:
 - os (pre-installed)
-- tkinter (Installed with the previous command)
+- PyQT 
 - subprocess (pre-installed)
 - threading (pre-installed)
 - lpak (included in the program download)
