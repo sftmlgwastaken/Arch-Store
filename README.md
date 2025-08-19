@@ -29,10 +29,10 @@ Follow the two instructions and... Done! Easy, right?
 ### Manual
 #### Dependencies:
 ##### Arch:
-- Tkinter (Install with ```sudo pacman -S tk python3 python-pip```)
+- QT
 #### Python library:
 - os (pre-installed)
-- tkinter (Installed with the previous command)
+- PyQT 
 - subprocess (pre-installed)
 - threading (pre-installed)
 - lpak (included in the program download)
