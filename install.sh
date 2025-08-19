@@ -14,7 +14,7 @@ if [[ "$action" == "1" ]]; then
     sudo pacman -S git python3 python-pip --noconfirm --needed
 
     PYTHON_PATH=$(which python3)
-
+    pip install PyQt6 --break-system-packages
     read -p "Install it for all users? (y/n): " choice
 
     if [[ "$choice" == "y" || "$choice" == "Y" ]]; then
