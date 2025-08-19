@@ -11,7 +11,7 @@ read -p "Select an option [1/2/3]: " action
 if [[ "$action" == "1" ]]; then
     echo "Downloading dependencies..."
     sudo pacman -Sy
-    sudo pacman -S tk git python3 python-pip --noconfirm --needed
+    sudo pacman -S git python3 python-pip --noconfirm --needed
 
     PYTHON_PATH=$(which python3)
 
