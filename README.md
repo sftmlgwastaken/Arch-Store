@@ -29,10 +29,10 @@ Follow the two instructions and... Done! Easy, right?
 ### Manual
 #### Dependencies:
 ##### Arch:
-- QT
+- QT (Pre-installed in most cases)
 #### Python library:
 - os (pre-installed)
-- PyQT 
+- PyQT (```pip install PyQt6 --break-system-packages```)
 - subprocess (pre-installed)
 - threading (pre-installed)
 - lpak (included in the program download)
