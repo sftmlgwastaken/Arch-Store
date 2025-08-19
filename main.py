@@ -1,5 +1,4 @@
 import os
-import tkinter as tk
 import subprocess
 import threading
 import library.lpak as lpak
