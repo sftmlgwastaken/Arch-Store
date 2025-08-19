@@ -38,9 +38,9 @@ modified_color = "lightblue"
 base_action_button_style="color: white; font: bold 12pt 'Arial'; padding: 4px 8px; border-radius: 5px;"
 
 #Auto-set variables
-#working_dir = os.path.dirname(os.path.realpath(__file__))
+base_dir = os.path.dirname(os.path.realpath(__file__))
 working_dir="/usr/local/share/arch-store/data"
-#os.chdir(working_dir)
+os.chdir(base_dir)
 user_name = getpass.getuser()
 
 #add anything global to global scope before using it global, also put defaults
