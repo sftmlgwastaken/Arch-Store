@@ -1,11 +1,6 @@
 #!/bin/bash
 clear
 
-sudo pacman -Sy
-sudo pacman -S git python3 python-pip --noconfirm --needed
-PYTHON_PATH=$(which python3)
-pip install PyQt6 --break-system-packages
-clear
 echo "Welcome to the Arch-Store installation program!"
 echo "What do you want to do?"
 echo "1) Install Arch-Store"
@@ -13,20 +8,28 @@ echo "2) Uninstall Arch-Store"
 echo "3) Update Arch-Store"
 read -p "Select an option [1/2/3]: " action
 
+# Funzione per installare le dipendenze
+install_dependencies() {
+    echo "📦 Downloading dependencies..."
+    sudo pacman -Sy
+    sudo pacman -S tk git python3 python-pip --noconfirm --needed
+    pip install PyQt6 --break-system-packages
+}
+
 if [[ "$action" == "1" ]]; then
-    
+    install_dependencies
+
+    PYTHON_PATH=$(which python3)
     read -p "Install it for all users? (y/n): " choice
 
-    if [[ "$choice" == "y" || "$choice" == "Y" ]]; then
+    if [[ "$choice" =~ ^[Yy]$ ]]; then
         echo "Installing Arch-Store for all users..."
 
-   
         if ! getent group archstore >/dev/null; then
             echo "Creating group 'archstore'..."
             sudo groupadd archstore
         fi
 
-  
         echo "Adding user $USER to group 'archstore'..."
         sudo usermod -aG archstore "$USER"
 
@@ -65,7 +68,6 @@ EOF"
         echo "👥 User $USER added to group 'archstore'."
         echo ""
         echo "⚠️  To apply group changes immediately, log out and log in"
-
     else
         echo "Installing Arch-Store for current user..."
 
@@ -120,8 +122,9 @@ elif [[ "$action" == "2" ]]; then
     fi
 
 elif [[ "$action" == "3" ]]; then
-    echo "Updating Arch-Store..."
+    install_dependencies
 
+    echo "Updating Arch-Store..."
     if [[ -d "/opt/Arch-Store/.git" ]]; then
         echo "Updating system-wide installation..."
         cd /opt/Arch-Store || exit
