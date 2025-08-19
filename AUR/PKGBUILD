@@ -13,7 +13,7 @@ md5sums=('SKIP')
 
 package() {
     install -d "$pkgdir/usr/share/arch-store"
-    cp -r "$srcdir/Arch-Store/"* "$pkgdir/usr/share/arch-store/"
+    cp -r "$srcdir/Arch-Store-$pkgver/"* "$pkgdir/usr/share/arch-store/"
 
     install -dm1777 "$pkgdir/usr/local/share/arch-store/data"
 
@@ -22,6 +22,6 @@ package() {
 exec python3 /usr/share/arch-store/main.py "\$@"
 EOF
 
-    install -Dm644 "$srcdir/Arch-Store/icon.png" "$pkgdir/usr/share/pixmaps/arch-store.png"
-    install -Dm644 "$srcdir/Arch-Store/arch-store.desktop" "$pkgdir/usr/share/applications/arch-store.desktop"
+    install -Dm644 "$srcdir/Arch-Store-$pkgver/icon.png" "$pkgdir/usr/share/pixmaps/arch-store.png"
+    install -Dm644 "$srcdir/Arch-Store-$pkgver/arch-store.desktop" "$pkgdir/usr/share/applications/arch-store.desktop"
 }
