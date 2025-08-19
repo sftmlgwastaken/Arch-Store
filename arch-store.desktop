@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=Arch Store
+Exec=arch-store
+Icon=arch-store
+Categories=System;
+Terminal=false
