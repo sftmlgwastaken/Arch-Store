@@ -14,6 +14,11 @@ install_dependencies() {
     sudo pacman -Sy
     sudo pacman -S git python3 python-pip python-pyqt6 --noconfirm --needed
     pip install PyQt6 --break-system-packages
+
+    sudo mkdir -p /var/lib/arch-store
+    sudo chown -R root:archstore /var/lib/arch-store
+    sudo chmod -R 770 /var/lib/arch-store
+
 }
 
 if [[ "$action" == "1" ]]; then
