@@ -11,9 +11,6 @@ from PyQt6.QtGui import QIcon
 from PyQt6.QtCore import QProcess
 import sys
 
-#
-from PyQt5.QtCore import QTimer
-
 #PY files
 import appimages as archstoreAppimages
 import settings as archstoreSettings
