@@ -39,7 +39,7 @@ base_action_button_style="color: white; font: bold 12pt 'Arial'; padding: 4px 8p
 
 #Auto-set variables
 base_dir = os.path.dirname(os.path.realpath(__file__))
-working_dir="/usr/local/share/arch-store/data"
+working_dir="/var/lib/arch-store"
 os.chdir(base_dir)
 user_name = getpass.getuser()
 
@@ -81,8 +81,6 @@ def load_config_data():
     if not language in avaible_languages:
         write_new_config_file()
         read_config_data()
-
-os.system(f"mkdir -p {working_dir}")
 load_config_data()
 no_repo_error_text_default=lpak.get("no installation method", language)
 os.makedirs(AppImagesDir, exist_ok=True)
@@ -893,7 +891,7 @@ def search_program(name):
 
     # Imposta la stringa di ricerca
     program_search = search_bar.text() if name == " " else name
-    search_bar.clear()
+    #search_bar.clear()
     program_search = program_search.strip()
 
     if not program_search:
