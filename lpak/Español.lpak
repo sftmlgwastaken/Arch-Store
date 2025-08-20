@@ -75,11 +75,14 @@ changed|¡Cambiado!
 install appimage|Instalar AppImage
 aur method|Instalar AUR
 change|Cambiar
-attenction|Attencion                                                 
-update in progress|Update in progress, relax wait a moment!             
-click to start update|Click to start the update
-click to start operations|Click to start operations
-install in progress|Installation in progress!
-please restart to apply the changes|Please restart to apply changes
-restart required|Resstart requied
+attenction|Atención
+update in progress|Actualización en progreso, ¿Hora de tomar un café?             
+click to start update|Click para iniciar la actualización
+click to start operations|Click para iniciar las operaciones
+install in progress|¡Instalación en progreso!
+please restart to apply the changes|Por favor reinicie para aplicar los cambios
+restart required|¡Reinicio necesario!
 help|Help
+exit|Exit
+installed packages|Installed packages
+remotion in progress|Remotion in progress

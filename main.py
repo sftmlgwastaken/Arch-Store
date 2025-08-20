@@ -8,12 +8,17 @@ import getpass
 import PyQt6.QtWidgets as pq
 from PyQt6.QtCore import QObject, pyqtSignal, QThread
 from PyQt6.QtGui import QIcon
+from PyQt6.QtCore import QProcess
 import sys
+
+#
+from PyQt5.QtCore import QTimer
 
 #PY files
 import appimages as archstoreAppimages
 import settings as archstoreSettings
 from show_allert import show_allert
+from show_installed_programs import show as show_installed_programs
 
 #fast access variables
 avaible_languages = ["Italiano", "English", "Español"]
@@ -119,42 +124,57 @@ def update_all_apps():
         if setting_repo_flatpak == "enable":
             f.write("\nflatpak upgrade --assumeyes")
 
-    def close_settings():
+    def close_updates():
         update_window.close()
 
     def start_update():
         global install_status        
         install_status = True
-        update_button.setDisabled(True)
-        text_area.setText(lpak.get("update in progress", language))
+        button.setDisabled(True)
+        label.setText(lpak.get("update in progress", language))
         progress_bar.setRange(0, 0) 
-        update_window.repaint()           
-        proc = subprocess.run(["pkexec", "bash", os.path.join(working_dir, "actions.sh")])
-        os.remove(f"{working_dir}/actions.sh")   
-        install_status = False
-        progress_bar.setRange(0, 1)  
-        update_button.setText(lpak.get("finished", language))
-        text_area.setText(lpak.get("finished", language))        
-        try:
-            update_button.pressed.disconnect()
-        except TypeError:
-            pass      
-        update_button.setDisabled(False)
-        update_button.clicked.connect(close_settings)
-        update_window.update()
+        update_window.repaint()  
+
+        proc = QProcess(update_window)       
+        def on_finished(exitCode, exitStatus):
+            global install_status
+            install_status = False
+            progress_bar.setRange(0, 1)
+            button.setText(lpak.get("finished", language))
+            label.setText(lpak.get("finished", language))
+            try:
+                button.pressed.disconnect()
+            except TypeError:
+                pass
+            button.setDisabled(False)
+            button.clicked.connect(close_updates)
+            update_window.update()
+
+        def on_error(err):
+            global install_status
+            install_status = False
+            progress_bar.setRange(0, 1)
+            label.setText(f"{lpak.get('error', language)}: {err}")
+            button.setDisabled(False)
+            operations_window.update()
+         
+        proc.finished.connect(on_finished)
+        proc.errorOccurred.connect(on_error)
+
+        proc.start("pkexec", ["bash", os.path.join(working_dir, "actions.sh")])
 
     update_window = pq.QWidget()
     update_window.setGeometry(100, 100, 400, 200)
     update_window.setWindowIcon(QIcon(f"icon.png"))
     update_window.setWindowTitle(lpak.get("update", language))
     layout = pq.QVBoxLayout(update_window)
-    text_area = pq.QLabel(lpak.get("click to start update", language))
-    layout.addWidget(text_area)
+    label = pq.QLabel(lpak.get("click to start update", language))
+    layout.addWidget(label)
     progress_bar = pq.QProgressBar()      
     layout.addWidget(progress_bar)  
-    update_button = pq.QPushButton(lpak.get("start update", language))    
-    layout.addWidget(update_button)
-    update_button.pressed.connect(start_update)
+    button = pq.QPushButton(lpak.get("start update", language))    
+    layout.addWidget(button)
+    button.pressed.connect(start_update)
 
     update_window.show()   
     
@@ -231,31 +251,50 @@ def start_selectionated_operations(program_name):
         search_program(last_search)
     
     def start_thread_operations(label, button):
-        global install_status
+        global install_status, proc
         if install_status == True:
-            messagebox.showinfo(lpak.get("an install instance is alredy in progress", language), lpak.get("an install instance is alredy in progress", language), parent=operations_window) 
+            show_allert(lpak.get("an install instance is alredy in progress", language), lpak.get("an install instance is alredy in progress", language))
             return
-        os.chdir(working_dir)
+
         install_status = True
+
+        # Aggiorna subito la UI (thread principale)
         button.setDisabled(True)
         label.setText(lpak.get("install in progress", language))
-        progress_bar.setRange(0, 0) 
+        progress_bar.setRange(0, 0)
         operations_window.repaint()
-        install_status = True
-        proc = subprocess.run(["pkexec", "bash", os.path.join(working_dir, "actions.sh")])
-        os.remove(f"{working_dir}/actions.sh")       
-        install_status = False
-        progress_bar.setRange(0, 1)  
-        button.setText(lpak.get("finished", language))
-        label.setText(lpak.get("finished", language))        
-        try:
-            button.pressed.disconnect()
-        except TypeError:
-            pass
-        after_operations()      
-        button.setDisabled(False)
-        button.clicked.connect(close_operations)
-        operations_window.update()
+    
+        proc = QProcess(operations_window) 
+
+
+        def on_finished(exitCode, exitStatus):
+            global install_status
+            install_status = False
+            progress_bar.setRange(0, 1)
+            button.setText(lpak.get("finished", language))
+            label.setText(lpak.get("finished", language))
+            try:
+                button.pressed.disconnect()
+            except TypeError:
+                pass
+            after_operations()
+            button.setDisabled(False)
+            button.clicked.connect(close_operations)
+            operations_window.update()
+
+        def on_error(err):
+            global install_status
+            install_status = False
+            progress_bar.setRange(0, 1)
+            label.setText(f"{lpak.get('error', language)}: {err}")
+            button.setDisabled(False)
+            operations_window.update()
+
+        proc.finished.connect(on_finished)
+        proc.errorOccurred.connect(on_error)
+
+        proc.start("pkexec", ["bash", os.path.join(working_dir, "actions.sh")])
+
 
     operations_window = pq.QWidget()
     operations_window.setWindowTitle(lpak.get("star actions", language))    
@@ -265,8 +304,6 @@ def start_selectionated_operations(program_name):
     start_button = pq.QPushButton(lpak.get("start actions", language))
     start_button.pressed.connect(lambda: start_thread_operations(install_label, start_button))
     progress_bar = pq.QProgressBar()     
-
-     
 
     layout.addWidget(install_label)
     layout.addWidget(progress_bar) 
@@ -429,7 +466,6 @@ def download_program(program_name, repository, button, status):
 def search_program(name):
     global program_button_download, search_status, last_search, no_program_found_label
     global pacman_programs, aur_programs, flatpak_programs, scrollable_layout
-
     # Pulizia etichette di errore
     for label in ['no_program_found_label', 'error_label_textbox_empty']:
         try:
@@ -452,7 +488,6 @@ def search_program(name):
 
     # Imposta la stringa di ricerca
     program_search = search_bar.text() if name == " " else name
-    #search_bar.clear()
     program_search = program_search.strip()
 
     if not program_search:
@@ -464,21 +499,7 @@ def search_program(name):
 
     search_label.setText(f"{lpak.get('i\'m looking for', language)} {program_search}...")
     root.repaint()
-
-    def parse_pacman_output(output):
-        lines = [l for l in output.split("\n") if l]
-        programs = []
-        for i in range(len(lines)-1, 0, -2):
-            programs.append(lines[i-1] + "|" + lines[i])
-        return programs
-
-    def parse_aur_output(output):
-        lines = [l for l in output.split("\n") if l]
-        programs = []
-        for i in range(len(lines)-1, 0, -2):
-            programs.append(lines[i-1] + "|" + lines[i])
-        return programs
-
+    
     #pacman
     if setting_repo_pacman == "enable":
         programs_pacman = os.popen("pacman -Ss "+program_search).read()   
@@ -534,15 +555,13 @@ def search_program(name):
     else:
         flatpak_programs = []
     #Generate interface
-    # Pulizia layout prima di generare interfaccia
+    #Clean widget
     for i in reversed(range(scrollable_layout.count())):
         widget_to_remove = scrollable_layout.itemAt(i).widget()
         if widget_to_remove:
             widget_to_remove.deleteLater()
 
-    # Header tabella
-   # Header tabella
-    #headers = ["actions", "programs",  "repository", "description"]
+    # Header tabella    
     actions_label = pq.QLabel(lpak.get("actions", language))
     programs_label = pq.QLabel(lpak.get("programs", language))
     repository_label = pq.QLabel(lpak.get("repository", language))
@@ -560,17 +579,8 @@ def search_program(name):
     scrollable_layout.addWidget(programs_label, 0, 2)
     scrollable_layout.addWidget(repository_label, 0, 4)
     scrollable_layout.addWidget(description_label, 0, 6)
-    """
-    for idx, key in enumerate(headers):
-    
-        header_label = pq.QLabel(lpak.get(key, language))
-        header_label.setStyleSheet("font: bold 14pt 'Arial'; color: #004080")
-        scrollable_layout.addWidget(header_label, 0, idx*2)
-    """
-
     row = 1
     #Generate download data
-
     if setting_repo_pacman == "enable":
         for program in pacman_programs:
             program_repository = program.split("/")[0]
@@ -714,7 +724,7 @@ def search_program(name):
 
                 program_button_download = pq.QPushButton(parent=scrollable_frame, text=button_download_text)
                 program_button_download.setStyleSheet(f"background-color: {button_action_color}; {base_action_button_style}")
-                program_button_download.pressed.connect(lambda name=program_name, repository=program_repository, button=program_button_download, stat=status: download_program(name, repository, button, stat))
+                program_button_download.pressed.connect(lambda name=program_id, repository="flatpak", button=program_button_download, stat=status: download_program(name, repository, button, stat))
                 
                 scrollable_layout.addWidget(pq.QLabel(program_name), row, 2)
                 scrollable_layout.addWidget(pq.QLabel(program_description), row, 6)
@@ -780,6 +790,10 @@ def search_program(name):
         scrollable_layout.addWidget(no_program_found_label, row, 0, 1, 6)
     last_search = program_search
 
+
+#small functions
+def open_github():
+    webbrowser.open("https://github.com/Samuobe/Arch-Store")
 # Inizializzazione GUI
 app = pq.QApplication(sys.argv)
 root = pq.QMainWindow()
@@ -803,14 +817,18 @@ settings_menu = menu_bar.addMenu(lpak.get("settings", language))
 open_setting_action = settings_menu.addAction(lpak.get("settings", language))
 open_setting_action.triggered.connect(open_setting)
 #
-other_menu = menu_bar.addMenu(lpak.get("help", language))
+other_menu = menu_bar.addMenu(lpak.get("other", language))
+open_currently_installed_packages = other_menu.addAction(lpak.get("installed packages", language))
 open_github_action = other_menu.addAction("GitHub")
-exit_action = other_menu.addAction("Esci")
+exit_action = other_menu.addAction(lpak.get("exit", language))
+
 exit_action.triggered.connect(app.quit)
+open_github_action.triggered.connect(open_github)
+open_currently_installed_packages.triggered.connect(lambda: show_installed_programs(language, working_dir, aur_method, setting_repo_pacman, setting_repo_aur, setting_repo_flatpak))
 
 ##END MENU
 
-# Barra superiore
+# TOP bar
 top_layout = pq.QHBoxLayout()
 search_label = pq.QLabel(lpak.get("search", language))
 search_label.setStyleSheet("font: bold 14pt 'Arial'")
