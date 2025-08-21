@@ -137,7 +137,6 @@ def remove(name, method, aur_method, working_dir, language):
 
 def show(language, working_dir, aur_method, pacman, aur, flatpak):
     global installed_packages_window
-    pacman = "disable"
     installed_packages_window = pq.QWidget()
     installed_packages_window.setWindowTitle("Installed packages")
     installed_packages_window.setWindowIcon(QIcon("icon.png"))  
@@ -183,8 +182,8 @@ def show(language, working_dir, aur_method, pacman, aur, flatpak):
                 continue
             name_label = pq.QLabel(name)
             version_label = pq.QLabel(version)    
-            remove_button.pressed.connect(lambda: remove(name, "aur", aur_method, working_dir, language))
-            update_button.pressed.connect(lambda: update(name, "aur", aur_method, working_dir, language))
+            remove_button.pressed.connect(lambda pkg=name: remove(pkg, "aur", aur_method, working_dir, language))
+            update_button.pressed.connect(lambda pkg=name: update(pkg, "aur", aur_method, working_dir, language))
             #
             layout.addWidget(remove_button, row, 0)
             layout.addWidget(update_button, row, 1)
@@ -220,8 +219,8 @@ def show(language, working_dir, aur_method, pacman, aur, flatpak):
             name_label = pq.QLabel(name)
             version_label = pq.QLabel(version)   
             repo = pq.QLabel("flatpak") 
-            remove_button.pressed.connect(lambda: remove(program_id, "flatpak", aur_method, working_dir, language))
-            update_button.pressed.connect(lambda: update(program_id, "flatpak", aur_method, working_dir, language))
+            remove_button.pressed.connect(lambda pkg=name: remove(pkg, "flatpak", aur_method, working_dir, language))
+            update_button.pressed.connect(lambda pkg=name: update(pkg, "flatpak", aur_method, working_dir, language))
             #
             layout.addWidget(remove_button, row, 0)
             layout.addWidget(update_button, row, 1)
@@ -235,9 +234,11 @@ def show(language, working_dir, aur_method, pacman, aur, flatpak):
             layout.addWidget(line, row + 1, 0, 1, 5)
 
             row = row + 2
-    if pacman == "enable":    
+    if pacman == "enable":
+        pacman_list = []    
         pacman_programs = os.popen("pacman -Q").read()
-        for package in flatpak_list:
+        pacman_list = pacman_programs.split("\n")
+        for package in pacman_list:
             remove_button = pq.QPushButton(lpak.get("remove", language))
             update_button = pq.QPushButton(lpak.get("update", language))
             try:
@@ -246,8 +247,8 @@ def show(language, working_dir, aur_method, pacman, aur, flatpak):
                 continue
             name_label = pq.QLabel(name)
             version_label = pq.QLabel(version)    
-            remove_button.pressed.connect(lambda: remove(name, "pacman", aur_method, working_dir, language))
-            update_button.pressed.connect(lambda: update(name, "pacman", aur_method, working_dir, language))
+            remove_button.pressed.connect(lambda pkg=name: remove(pkg, "pacman", aur_method, working_dir, language))
+            update_button.pressed.connect(lambda pkg=name: update(pkg, "pacman", aur_method, working_dir, language))
             repo = pq.QLabel("pacman") 
             #
             layout.addWidget(remove_button, row, 0)
