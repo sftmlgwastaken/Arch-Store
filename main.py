@@ -611,7 +611,7 @@ def search_program(name):
             more_info_button.setIcon(info_icon)     
                    
             program_button_download.pressed.connect(lambda name=program_name, repository_pac=program_repository, button=program_button_download, stat=status: download_program(name, repository_pac, button, stat))            
-            more_info_button.pressed.connect(lambda repository_pac=program_repository: show_more_informations(language, program_name, repository_pac, aur_method))
+            more_info_button.pressed.connect(lambda name=program_name, repository_pac=program_repository: show_more_informations(language, name, repository_pac, aur_method))
             #            
             scrollable_layout.addWidget(pq.QLabel(program_name), row, 2)
             scrollable_layout.addWidget(pq.QLabel(program_description), row, 6)

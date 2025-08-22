@@ -38,6 +38,8 @@ def show(language, name, repo, aur_method):
                 line = line + data_list[n]
             n = n + 1
 
+        print(clear_data[10])
+
         repo = clear_data[0]
         name = clear_data[1]
         version = clear_data[2]
@@ -112,13 +114,9 @@ def show(language, name, repo, aur_method):
         requiredSpace_label = pq.QLabel(clear_data[14])
         packager_label = pq.QLabel(clear_data[15])
         creationDate_label = pq.QLabel(clear_data[16])
-        validatedBy_label = pq.QLabel(clear_data[17])
+        validatedBy_label = pq.QLabel(clear_data[17])    
 
-        line = pq.QFrame()
-        line.setFrameShape(pq.QFrame.Shape.HLine)
-        line.setFrameShadow(pq.QFrame.Shadow.Sunken)
         
-
 
         # Inserimento nel layout
         row = 0
