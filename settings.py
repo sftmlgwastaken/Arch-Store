@@ -116,7 +116,7 @@ def open_setting(language, working_dir, avaible_languages):
     settings_page.setWindowTitle(lpak.get("arch store settings", language))
     settings_page.setGeometry(0, 0, 900, 600)   
     layout = pq.QGridLayout(settings_page)    
-    settings_page.setWindowIcon(QIcon(f"{working_dir}/icon.png"))
+    settings_page.setWindowIcon(QIcon(f"icon.png"))
 
     settings_label_title = pq.QLabel(lpak.get("settings", language))
     settings_label_repo = pq.QLabel(lpak.get("enable disable repo", language))
