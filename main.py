@@ -17,6 +17,7 @@ import settings as archstoreSettings
 from show_allert import show_allert
 from show_installed_programs import show as show_installed_programs
 from more_informations import show as show_more_informations
+from manage_installed_method import show_window as show_installed_method
 
 #fast access variables
 avaible_languages = ["Italiano", "English", "Español"]
@@ -823,12 +824,15 @@ install_appimage_action.triggered.connect(lambda: archstoreAppimages.start_add_a
 #
 settings_menu = menu_bar.addMenu(lpak.get("settings", language))
 open_setting_action = settings_menu.addAction(lpak.get("settings", language))
+open_manage_methods = settings_menu.addAction(lpak.get("manage installation methods", language))
 open_setting_action.triggered.connect(open_setting)
+open_manage_methods.triggered.connect(lambda: show_installed_method(language))
 #
 other_menu = menu_bar.addMenu(lpak.get("other", language))
 open_currently_installed_packages = other_menu.addAction(lpak.get("installed packages", language))
 open_github_action = other_menu.addAction("GitHub")
 exit_action = other_menu.addAction(lpak.get("exit", language))
+
 
 exit_action.triggered.connect(app.quit)
 open_github_action.triggered.connect(open_github)
