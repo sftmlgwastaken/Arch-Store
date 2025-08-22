@@ -85,7 +85,7 @@ restart required|Restart requied
 help|Help
 exit|Exit
 installed packages|Installed packages
-remotion in progress|Remotion in progress
+removal in progress|Removal in progress
 confirm changes|Confirm changes
 version|Versione
 updated settings|Updated settings
@@ -104,3 +104,6 @@ creation date|Creation date
 validated by|Validated by
 required space|Required space
 packager|Packager
+click to start removal|Click to start removal
+start removal|Start removal
+removal|Removal
