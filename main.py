@@ -294,7 +294,7 @@ def start_selectionated_operations(program_name):
 
 
     operations_window = pq.QWidget()
-    operations_window.setWindowTitle(lpak.get("star actions", language))    
+    operations_window.setWindowTitle(lpak.get("start actions", language))    
     operations_window.setWindowIcon(QIcon("icon.png"))
     layout = pq.QVBoxLayout(operations_window)
     install_label = pq.QLabel(lpak.get("click to start operations", language))
@@ -720,7 +720,10 @@ def search_program(name):
                 button_action_color = remove_color
             else:
                 button_action_color = modified_color
-            if not "No matches found ( )" in program_name:                
+            if not "No matches found ( )" in program_name:  
+                more_info_button= pq.QPushButton()
+                more_info_button.setIcon(info_icon) 
+                more_info_button.pressed.connect(lambda name=program_id, repository_pac=program_repository: show_more_informations(language, name, repository_pac, aur_method))       
 
                 program_button_download = pq.QPushButton(parent=scrollable_frame, text=button_download_text)
                 program_button_download.setStyleSheet(f"background-color: {button_action_color}; {base_action_button_style}")
@@ -730,6 +733,7 @@ def search_program(name):
                 scrollable_layout.addWidget(pq.QLabel(program_description), row, 6)
                 scrollable_layout.addWidget(pq.QLabel(program_repository), row, 4)
                 scrollable_layout.addWidget(program_button_download, row, 0)
+                scrollable_layout.addWidget(more_info_button, row, 1)
                 #
                 line = pq.QFrame()
                 line.setFrameShape(pq.QFrame.Shape.HLine)

@@ -107,3 +107,15 @@ packager|Pacchettizatore
 click to start removal|Clicca per avviare la rimozione
 start removal|Avvia la rimozione
 removal|Rimozione
+id|ID
+ref|Ref
+branch|Ramo
+origin|Origine
+collection|Collezione
+installed size|Dimensione installazione
+runtime|Runtime
+sdk|Sdk
+commit|Commit
+parent|Parent
+subject|Argomento
+date|Data

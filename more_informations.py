@@ -157,8 +157,110 @@ def show(language, name, repo, aur_method):
         add_row(attribute_outdated_label, outdated_label)
 
         
-    elif repo == "flatpak":
-        pass
+    elif repo == "flathub":
+        data = os.popen(f"flatpak remote-info flathub {name}").read()
+        data_list = data.split("\n")
+        clear_data = []
+        for data in data_list:
+            if ": " in data:       
+                clear_data.append(data.split(": ")[1])
+            elif "- " in data:    
+                clear_data.append(data.split("- ")[0])
+                clear_data.append(data.split("- ")[1])
+        title = clear_data[0]  
+        flatpak_id = clear_data[1]
+        ref = clear_data[2]
+        arch = clear_data[3]
+        branch = clear_data[4]
+        version = clear_data[5]
+        license_type = clear_data[6]
+        origin = clear_data[7]
+        collection = clear_data[8]
+        installation = clear_data[9]
+        installed_size = clear_data[10]
+        runtime = clear_data[11]
+        sdk = clear_data[12]
+        commit = clear_data[13]
+        parent = clear_data[14]
+        subject = clear_data[15]
+        date = clear_data[16]
+
+        attribute_title_label = pq.QLabel(lpak.get("name", language))
+        attribute_id_label = pq.QLabel(lpak.get("id", language))
+        attribute_ref_label = pq.QLabel(lpak.get("ref", language))
+        attribute_arch_label = pq.QLabel(lpak.get("architecture", language))
+        attribute_branch_label = pq.QLabel(lpak.get("branch", language))
+        attribute_version_label = pq.QLabel(lpak.get("version", language))
+        attribute_license_label = pq.QLabel(lpak.get("license", language))
+        attribute_origin_label = pq.QLabel(lpak.get("origin", language))
+        attribute_collection_label = pq.QLabel(lpak.get("collection", language))
+        attribute_installation_label = pq.QLabel(lpak.get("download size", language))
+        attribute_installedSize_label = pq.QLabel(lpak.get("installed size", language))
+        attribute_runtime_label = pq.QLabel(lpak.get("runtime", language))
+        attribute_sdk_label = pq.QLabel(lpak.get("sdk", language))
+        attribute_commit_label = pq.QLabel(lpak.get("commit", language))
+        attribute_parent_label = pq.QLabel(lpak.get("parent", language))
+        attribute_subject_label = pq.QLabel(lpak.get("subject", language))
+        attribute_date_label = pq.QLabel(lpak.get("date", language))
+
+        for lbl in [
+            attribute_title_label, attribute_id_label, attribute_ref_label,
+            attribute_arch_label, attribute_branch_label, attribute_version_label,
+            attribute_license_label, attribute_origin_label, attribute_collection_label,
+            attribute_installation_label, attribute_installedSize_label, attribute_runtime_label,
+            attribute_sdk_label, attribute_commit_label, attribute_parent_label,
+            attribute_subject_label, attribute_date_label
+        ]:
+            lbl.setStyleSheet("color: #004080; font: bold 12pt 'Arial'")
+
+        title_label = pq.QLabel(title)
+        id_label = pq.QLabel(flatpak_id)
+        ref_label = pq.QLabel(ref)
+        arch_label = pq.QLabel(arch)
+        branch_label = pq.QLabel(branch)
+        version_label = pq.QLabel(version)
+        license_label = pq.QLabel(license_type)
+        origin_label = pq.QLabel(origin)
+        collection_label = pq.QLabel(collection)
+        installation_label = pq.QLabel(installation)
+        installedSize_label = pq.QLabel(installed_size)
+        runtime_label = pq.QLabel(runtime)
+        sdk_label = pq.QLabel(sdk)
+        commit_label = pq.QLabel(commit)
+        parent_label = pq.QLabel(parent)
+        subject_label = pq.QLabel(subject)
+        date_label = pq.QLabel(date)
+
+        row = 0
+        def add_row(attr_label, value_label):
+            global row
+            layout.addWidget(attr_label, row, 0)
+            layout.addWidget(value_label, row, 1)
+            row += 1
+            line = pq.QFrame()
+            line.setFrameShape(pq.QFrame.Shape.HLine)
+            line.setFrameShadow(pq.QFrame.Shadow.Sunken)
+            layout.addWidget(line, row, 0, 1, 2)
+            row += 1
+
+        add_row(attribute_title_label, title_label)
+        add_row(attribute_id_label, id_label)
+        add_row(attribute_ref_label, ref_label)
+        add_row(attribute_arch_label, arch_label)
+        add_row(attribute_branch_label, branch_label)
+        add_row(attribute_version_label, version_label)
+        add_row(attribute_license_label, license_label)
+        add_row(attribute_origin_label, origin_label)
+        add_row(attribute_collection_label, collection_label)
+        add_row(attribute_installation_label, installation_label)
+        add_row(attribute_installedSize_label, installedSize_label)
+        add_row(attribute_runtime_label, runtime_label)
+        add_row(attribute_sdk_label, sdk_label)
+        add_row(attribute_commit_label, commit_label)
+        add_row(attribute_parent_label, parent_label)
+        add_row(attribute_subject_label, subject_label)
+        add_row(attribute_date_label, date_label)
+
     else:
         name = name.split(" ")[0]
         data = os.popen(f"pacman -Si {name}").read()
