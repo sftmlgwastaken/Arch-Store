@@ -15,7 +15,148 @@ def show(language, name, repo, aur_method):
     
 
     if repo == "aur":
-        pass
+        name = name.split(" ")[0]
+        data = os.popen(f"{aur_method} -Si {name}").read()
+        data_list = []
+        data_list = data.split("\n")
+        clear_data = []
+        for data in data_list:
+            if data != "" and data != " " and data != "\n":
+                clear_data.append(data.split(" : ")[1])       
+
+
+        repo = clear_data[0]
+        name = clear_data[1]
+        version = clear_data[2]
+        description = clear_data[3]
+        arch = clear_data[4]
+        url = clear_data[5]
+        license_type = clear_data[6]
+        group = clear_data[7]
+        provides = clear_data[8]
+        dependencies = clear_data[9]
+        make_dependencies = clear_data[10]
+        dependencies_control = clear_data[11]
+        conflict = clear_data[12]
+        replaces = clear_data[13]
+        aur_url = clear_data[14]
+        first_submit = clear_data[15]
+        keywords = clear_data[16]
+        last_modified = clear_data[17]
+        packager = clear_data[18]
+        popularity = clear_data[19]
+        votes = clear_data[20]
+        outdated = clear_data[21]
+
+        # Etichette localizzate
+        attribute_repo_label = pq.QLabel(lpak.get("repository", language))
+        attribute_name_label = pq.QLabel(lpak.get("name", language))
+        attribute_version_label = pq.QLabel(lpak.get("version", language))
+        attribute_description_label = pq.QLabel(lpak.get("description", language))
+        attribute_arch_label = pq.QLabel(lpak.get("architecture", language))
+        attribute_url_label = pq.QLabel(lpak.get("url", language))
+        attribute_license_label = pq.QLabel(lpak.get("license", language))
+        attribute_group_label = pq.QLabel(lpak.get("group", language))
+        attribute_provides_label = pq.QLabel(lpak.get("provides", language))
+        attribute_dependencies_label = pq.QLabel(lpak.get("dependencies", language))
+        attribute_makeDependencies_label = pq.QLabel(lpak.get("make dependencies", language))
+        attribute_dependenciesControl_label = pq.QLabel(lpak.get("dependencies control", language))
+        attribute_conflict_label = pq.QLabel(lpak.get("conflict", language))
+        attribute_replaces_label = pq.QLabel(lpak.get("replaces", language))
+        attribute_aurUrl_label = pq.QLabel(lpak.get("AUR url", language))
+        attribute_firstSubmit_label = pq.QLabel(lpak.get("first submit", language))
+        attribute_keywords_label = pq.QLabel(lpak.get("keywords", language))
+        attribute_lastModified_label = pq.QLabel(lpak.get("last modified", language))
+        attribute_packager_label = pq.QLabel(lpak.get("packager", language))
+        attribute_popularity_label = pq.QLabel(lpak.get("popularity", language))
+        attribute_votes_label = pq.QLabel(lpak.get("votes", language))
+        attribute_outdated_label = pq.QLabel(lpak.get("outdated", language))
+        
+        attribute_repo_label.setStyleSheet("color: #004080; font: bold 12pt 'Arial'")
+        attribute_name_label.setStyleSheet("color: #004080; font: bold 12pt 'Arial'")
+        attribute_version_label.setStyleSheet("color: #004080; font: bold 12pt 'Arial'")
+        attribute_description_label.setStyleSheet("color: #004080; font: bold 12pt 'Arial'")
+        attribute_arch_label.setStyleSheet("color: #004080; font: bold 12pt 'Arial'")
+        attribute_url_label.setStyleSheet("color: #004080; font: bold 12pt 'Arial'")
+        attribute_license_label.setStyleSheet("color: #004080; font: bold 12pt 'Arial'")
+        attribute_group_label.setStyleSheet("color: #004080; font: bold 12pt 'Arial'")
+        attribute_provides_label.setStyleSheet("color: #004080; font: bold 12pt 'Arial'")
+        attribute_dependencies_label.setStyleSheet("color: #004080; font: bold 12pt 'Arial'")
+        attribute_makeDependencies_label.setStyleSheet("color: #004080; font: bold 12pt 'Arial'")
+        attribute_dependenciesControl_label.setStyleSheet("color: #004080; font: bold 12pt 'Arial'")
+        attribute_conflict_label.setStyleSheet("color: #004080; font: bold 12pt 'Arial'")
+        attribute_replaces_label.setStyleSheet("color: #004080; font: bold 12pt 'Arial'")
+        attribute_aurUrl_label.setStyleSheet("color: #004080; font: bold 12pt 'Arial'")
+        attribute_firstSubmit_label.setStyleSheet("color: #004080; font: bold 12pt 'Arial'")
+        attribute_keywords_label.setStyleSheet("color: #004080; font: bold 12pt 'Arial'")
+        attribute_lastModified_label.setStyleSheet("color: #004080; font: bold 12pt 'Arial'")
+        attribute_packager_label.setStyleSheet("color: #004080; font: bold 12pt 'Arial'")
+        attribute_popularity_label.setStyleSheet("color: #004080; font: bold 12pt 'Arial'")
+        attribute_votes_label.setStyleSheet("color: #004080; font: bold 12pt 'Arial'")
+        attribute_outdated_label.setStyleSheet("color: #004080; font: bold 12pt 'Arial'")
+
+        # Valori
+        repo_label = pq.QLabel(repo)
+        name_label = pq.QLabel(name)
+        version_label = pq.QLabel(version)
+        description_label = pq.QLabel(description)
+        arch_label = pq.QLabel(arch)
+        url_label = pq.QLabel(url)
+        licenseType_label = pq.QLabel(license_type)
+        group_label = pq.QLabel(group)
+        provides_label = pq.QLabel(provides)
+        dependencies_label = pq.QLabel(dependencies)
+        makeDependencies_label = pq.QLabel(make_dependencies)
+        dependenciesControl_label = pq.QLabel(dependencies_control)
+        conflict_label = pq.QLabel(conflict)
+        replaces_label = pq.QLabel(replaces)
+        aurUrl_label = pq.QLabel(aur_url)
+        firstSubmit_label = pq.QLabel(first_submit)
+        keywords_label = pq.QLabel(keywords)
+        lastModified_label = pq.QLabel(last_modified)
+        packager_label = pq.QLabel(packager)
+        popularity_label = pq.QLabel(popularity)
+        votes_label = pq.QLabel(votes)
+        outdated_label = pq.QLabel(outdated)
+
+        # Funzione helper
+        row = 0
+        def add_row(attr_label, value_label):
+            global row
+            layout.addWidget(attr_label, row, 0)
+            layout.addWidget(value_label, row, 1)
+            row += 1
+            line = pq.QFrame()
+            line.setFrameShape(pq.QFrame.Shape.HLine)
+            line.setFrameShadow(pq.QFrame.Shadow.Sunken)
+            layout.addWidget(line, row, 0, 1, 2)
+            row += 1
+
+        # Inserimento nel layout
+        add_row(attribute_repo_label, repo_label)
+        add_row(attribute_name_label, name_label)
+        add_row(attribute_version_label, version_label)
+        add_row(attribute_description_label, description_label)
+        add_row(attribute_arch_label, arch_label)
+        add_row(attribute_url_label, url_label)
+        add_row(attribute_license_label, licenseType_label)
+        add_row(attribute_group_label, group_label)
+        add_row(attribute_provides_label, provides_label)
+        add_row(attribute_dependencies_label, dependencies_label)
+        add_row(attribute_makeDependencies_label, makeDependencies_label)
+        add_row(attribute_dependenciesControl_label, dependenciesControl_label)
+        add_row(attribute_conflict_label, conflict_label)
+        add_row(attribute_replaces_label, replaces_label)
+        add_row(attribute_aurUrl_label, aurUrl_label)
+        add_row(attribute_firstSubmit_label, firstSubmit_label)
+        add_row(attribute_keywords_label, keywords_label)
+        add_row(attribute_lastModified_label, lastModified_label)
+        add_row(attribute_packager_label, packager_label)
+        add_row(attribute_popularity_label, popularity_label)
+        add_row(attribute_votes_label, votes_label)
+        add_row(attribute_outdated_label, outdated_label)
+
+        
     elif repo == "flatpak":
         pass
     else:
@@ -38,7 +179,7 @@ def show(language, name, repo, aur_method):
                 line = line + data_list[n]
             n = n + 1
 
-        print(clear_data[10])
+      
 
         repo = clear_data[0]
         name = clear_data[1]
@@ -151,7 +292,7 @@ def show(language, name, repo, aur_method):
         add_row(attribute_creationDate_label, creationDate_label)
         add_row(attribute_validatedBy_label, validatedBy_label)
 
-
+    print(clear_data)
 
 
         

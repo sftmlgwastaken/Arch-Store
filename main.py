@@ -496,7 +496,7 @@ def search_program(name):
 
     search_label.setText(f"{lpak.get('i\'m looking for', language)} {program_search}...")
     root.repaint()
-    
+    programs_commodo = []
     #pacman
     if setting_repo_pacman == "enable":
         programs_pacman = os.popen("pacman -Ss "+program_search).read()   
@@ -762,11 +762,15 @@ def search_program(name):
                 button_action_color = modified_color
             program_button_download.setStyleSheet(f"background-color: {button_action_color}; {base_action_button_style}")
             program_button_download.pressed.connect(lambda name=program_name, repository=program_repository, button=program_button_download, stat=status: download_program(name, repository, button, stat))
+            more_info_button= pq.QPushButton()
+            more_info_button.setIcon(info_icon) 
+            more_info_button.pressed.connect(lambda name=program_name, repository_pac=program_repository: show_more_informations(language, name, repository_pac, aur_method))
             #            
             scrollable_layout.addWidget(pq.QLabel(program_name), row, 2)
             scrollable_layout.addWidget(pq.QLabel(program_description), row, 6)
             scrollable_layout.addWidget(pq.QLabel(program_repository), row, 4)
             scrollable_layout.addWidget(program_button_download, row, 0)
+            scrollable_layout.addWidget(more_info_button, row, 1)
             #
             line = pq.QFrame()
             line.setFrameShape(pq.QFrame.Shape.HLine)
