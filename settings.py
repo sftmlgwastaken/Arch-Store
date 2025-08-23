@@ -54,7 +54,8 @@ def open_setting(language, working_dir, avaible_languages):
         language = new_language
         if old_language != new_language:
             show_allert(lpak.get("restart required", language), lpak.get("please restart to apply the changes", language))   
-        show_allert(lpak.get("finished", language), lpak.get("updated settings", language))
+        else:   
+            show_allert(lpak.get("finished", language), lpak.get("updated settings", language))
         return True
         
     def settings_change_pacman_status(language, working_dir):    
