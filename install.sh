@@ -27,7 +27,7 @@ if [[ "$action" == "1" ]]; then
         echo "FINISHED!"        
     fi
 
-elif [[ "$action" == "2" ]]; then
+elif [[ "$action" == "2" ]]
     echo "Uninstalling Arch-Store..."
     sudo pacman -Rns arch-store
     sudo pacman -Rns arch-store-git
