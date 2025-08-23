@@ -63,7 +63,7 @@ def show(language, name, repo, aur_method):
         attribute_dependenciesControl_label = pq.QLabel(lpak.get("dependencies control", language))
         attribute_conflict_label = pq.QLabel(lpak.get("conflict", language))
         attribute_replaces_label = pq.QLabel(lpak.get("replaces", language))
-        attribute_aurUrl_label = pq.QLabel(lpak.get("AUR url", language))
+        attribute_aurUrl_label = pq.QLabel(lpak.get("aur url", language))
         attribute_firstSubmit_label = pq.QLabel(lpak.get("first submit", language))
         attribute_keywords_label = pq.QLabel(lpak.get("keywords", language))
         attribute_lastModified_label = pq.QLabel(lpak.get("last modified", language))
