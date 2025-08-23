@@ -16,6 +16,8 @@ import appimages as archstoreAppimages
 import settings as archstoreSettings
 from show_allert import show_allert
 from show_installed_programs import show as show_installed_programs
+from more_informations import show as show_more_informations
+from manage_installed_method import show_window as show_installed_method
 
 #fast access variables
 avaible_languages = ["Italiano", "English", "Español", "Română", "Polski", "Norsk"]
@@ -98,8 +100,7 @@ os.makedirs(AppImagesDir, exist_ok=True)
 
 def open_setting():
     respose = archstoreSettings.open_setting(language, working_dir, avaible_languages)
-    if respose == True:
-        load_config_data()
+    load_config_data()
     
 
 def update_all_apps():
@@ -294,7 +295,7 @@ def start_selectionated_operations(program_name):
 
 
     operations_window = pq.QWidget()
-    operations_window.setWindowTitle(lpak.get("star actions", language))    
+    operations_window.setWindowTitle(lpak.get("start actions", language))    
     operations_window.setWindowIcon(QIcon("icon.png"))
     layout = pq.QVBoxLayout(operations_window)
     install_label = pq.QLabel(lpak.get("click to start operations", language))
@@ -496,7 +497,7 @@ def search_program(name):
 
     search_label.setText(f"{lpak.get('i\'m looking for', language)} {program_search}...")
     root.repaint()
-    
+    programs_commodo = []
     #pacman
     if setting_repo_pacman == "enable":
         programs_pacman = os.popen("pacman -Ss "+program_search).read()   
@@ -578,6 +579,7 @@ def search_program(name):
     scrollable_layout.addWidget(description_label, 0, 6)
     row = 1
     #Generate download data
+    info_icon = root.style().standardIcon(pq.QStyle.StandardPixmap.SP_MessageBoxInformation)
     if setting_repo_pacman == "enable":
         for program in pacman_programs:
             program_repository = program.split("/")[0]
@@ -598,9 +600,8 @@ def search_program(name):
                     button_download_text = lpak.get("install", language)
                     status = ["Install"]
 
-
-
             program_button_download = pq.QPushButton(parent=scrollable_frame, text=button_download_text)
+            more_info_button = pq.QPushButton()
             if status[0] == "Install":
                 button_action_color = install_color
             elif status[0] == "Remove":
@@ -608,13 +609,16 @@ def search_program(name):
             else:
                 button_action_color = modified_color
             program_button_download.setStyleSheet(f"background-color: {button_action_color}; {base_action_button_style}")
-            program_button_download.pressed.connect(lambda name=program_name, repository=program_repository, button=program_button_download, stat=status: download_program(name, repository, button, stat))
-            #
-            
+            more_info_button.setIcon(info_icon)     
+                   
+            program_button_download.pressed.connect(lambda name=program_name, repository_pac=program_repository, button=program_button_download, stat=status: download_program(name, repository_pac, button, stat))            
+            more_info_button.pressed.connect(lambda name=program_name, repository_pac=program_repository: show_more_informations(language, name, repository_pac, aur_method))
+            #            
             scrollable_layout.addWidget(pq.QLabel(program_name), row, 2)
             scrollable_layout.addWidget(pq.QLabel(program_description), row, 6)
             scrollable_layout.addWidget(pq.QLabel(program_repository), row, 4)
             scrollable_layout.addWidget(program_button_download, row, 0)
+            scrollable_layout.addWidget(more_info_button, row, 1)
             #
             line = pq.QFrame()
             line.setFrameShape(pq.QFrame.Shape.HLine)
@@ -717,7 +721,10 @@ def search_program(name):
                 button_action_color = remove_color
             else:
                 button_action_color = modified_color
-            if not "No matches found ( )" in program_name:                
+            if not "No matches found ( )" in program_name:  
+                more_info_button= pq.QPushButton()
+                more_info_button.setIcon(info_icon) 
+                more_info_button.pressed.connect(lambda name=program_id, repository_pac=program_repository: show_more_informations(language, name, repository_pac, aur_method))       
 
                 program_button_download = pq.QPushButton(parent=scrollable_frame, text=button_download_text)
                 program_button_download.setStyleSheet(f"background-color: {button_action_color}; {base_action_button_style}")
@@ -727,6 +734,7 @@ def search_program(name):
                 scrollable_layout.addWidget(pq.QLabel(program_description), row, 6)
                 scrollable_layout.addWidget(pq.QLabel(program_repository), row, 4)
                 scrollable_layout.addWidget(program_button_download, row, 0)
+                scrollable_layout.addWidget(more_info_button, row, 1)
                 #
                 line = pq.QFrame()
                 line.setFrameShape(pq.QFrame.Shape.HLine)
@@ -759,11 +767,15 @@ def search_program(name):
                 button_action_color = modified_color
             program_button_download.setStyleSheet(f"background-color: {button_action_color}; {base_action_button_style}")
             program_button_download.pressed.connect(lambda name=program_name, repository=program_repository, button=program_button_download, stat=status: download_program(name, repository, button, stat))
+            more_info_button= pq.QPushButton()
+            more_info_button.setIcon(info_icon) 
+            more_info_button.pressed.connect(lambda name=program_name, repository_pac=program_repository: show_more_informations(language, name, repository_pac, aur_method))
             #            
             scrollable_layout.addWidget(pq.QLabel(program_name), row, 2)
             scrollable_layout.addWidget(pq.QLabel(program_description), row, 6)
             scrollable_layout.addWidget(pq.QLabel(program_repository), row, 4)
             scrollable_layout.addWidget(program_button_download, row, 0)
+            scrollable_layout.addWidget(more_info_button, row, 1)
             #
             line = pq.QFrame()
             line.setFrameShape(pq.QFrame.Shape.HLine)
@@ -795,7 +807,7 @@ def open_github():
 app = pq.QApplication(sys.argv)
 root = pq.QMainWindow()
 root.setWindowTitle(lpak.get("arch store", language))
-root.setGeometry(400, 100, 1000, 800)
+root.setGeometry(400, 100, 1300, 900)
 root.setWindowIcon(QIcon("icon.png"))
 
 central_widget = pq.QWidget()
@@ -812,12 +824,15 @@ install_appimage_action.triggered.connect(lambda: archstoreAppimages.start_add_a
 #
 settings_menu = menu_bar.addMenu(lpak.get("settings", language))
 open_setting_action = settings_menu.addAction(lpak.get("settings", language))
+open_manage_methods = settings_menu.addAction(lpak.get("manage installation methods", language))
 open_setting_action.triggered.connect(open_setting)
+open_manage_methods.triggered.connect(lambda: show_installed_method(language))
 #
 other_menu = menu_bar.addMenu(lpak.get("other", language))
 open_currently_installed_packages = other_menu.addAction(lpak.get("installed packages", language))
 open_github_action = other_menu.addAction("GitHub")
 exit_action = other_menu.addAction(lpak.get("exit", language))
+
 
 exit_action.triggered.connect(app.quit)
 open_github_action.triggered.connect(open_github)

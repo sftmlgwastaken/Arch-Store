@@ -26,7 +26,7 @@ def update(name, method, aur_method, working_dir, language):
 
         proc = QProcess(update_window)       
         def on_finished(exitCode, exitStatus):
-            global install_status
+            global install_status, installed_packages_window
             install_status = False
             progress_bar.setRange(0, 1)
             button.setText(lpak.get("finished", language))
@@ -38,7 +38,7 @@ def update(name, method, aur_method, working_dir, language):
             button.setDisabled(False)
             button.clicked.connect(update_window.close)
             update_window.update()
-            show_allert(lpak.get("finished", language), lpak.get("update completed", language))
+            installed_packages_window.close()
 
         def on_error(err):
             global install_status
@@ -72,6 +72,7 @@ def update(name, method, aur_method, working_dir, language):
 
     
 def remove(name, method, aur_method, working_dir, language):
+    global installed_packages_window
     if method=="aur":        
         command = f"{aur_method} -R {name} --noconfirm"
     elif method=="pacman":
@@ -84,16 +85,16 @@ def remove(name, method, aur_method, working_dir, language):
         f.write(command)
 
     def start_remove():
-        global install_status        
+        global install_status, installed_packages_window    
         install_status = True
         button.setDisabled(True)
-        label.setText(lpak.get("remotion in progress", language))
+        label.setText(lpak.get("removal in progress", language))
         progress_bar.setRange(0, 0) 
         remove_window.repaint()  
 
         proc = QProcess(remove_window)       
         def on_finished(exitCode, exitStatus):
-            global install_status
+            global install_status, installed_packages_window   
             install_status = False
             progress_bar.setRange(0, 1)
             button.setText(lpak.get("finished", language))
@@ -105,7 +106,8 @@ def remove(name, method, aur_method, working_dir, language):
             button.setDisabled(False)
             button.clicked.connect(remove_window.close)
             remove_window.update()
-            show_allert(lpak.get("finished", language), lpak.get("remove completed", language))
+            installed_packages_window.close()
+            
 
         def on_error(err):
             global install_status
@@ -123,13 +125,13 @@ def remove(name, method, aur_method, working_dir, language):
     remove_window = pq.QWidget()
     remove_window.setGeometry(100, 100, 400, 200)
     remove_window.setWindowIcon(QIcon(f"icon.png"))
-    remove_window.setWindowTitle(lpak.get("remotion", language))
+    remove_window.setWindowTitle(lpak.get("removal", language))
     layout = pq.QVBoxLayout(remove_window)
-    label = pq.QLabel(lpak.get("click to start remotion", language))
+    label = pq.QLabel(lpak.get("click to start removal", language))
     layout.addWidget(label)
     progress_bar = pq.QProgressBar()      
     layout.addWidget(progress_bar)  
-    button = pq.QPushButton(lpak.get("start remotion", language))    
+    button = pq.QPushButton(lpak.get("start removal", language))    
     layout.addWidget(button)
     button.pressed.connect(start_remove)
 

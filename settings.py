@@ -51,8 +51,11 @@ def open_setting(language, working_dir, avaible_languages):
             f.write("aur_method="+aur_method+"\n")
             f.write("language="+new_language+"\n")            
             f.write("AppImmageDir="+app_image_dir)
+        language = new_language
         if old_language != new_language:
             show_allert(lpak.get("restart required", language), lpak.get("please restart to apply the changes", language))   
+        else:   
+            show_allert(lpak.get("finished", language), lpak.get("updated settings", language))
         return True
         
     def settings_change_pacman_status(language, working_dir):    
@@ -116,7 +119,7 @@ def open_setting(language, working_dir, avaible_languages):
     settings_page.setWindowTitle(lpak.get("arch store settings", language))
     settings_page.setGeometry(0, 0, 900, 600)   
     layout = pq.QGridLayout(settings_page)    
-    settings_page.setWindowIcon(QIcon(f"{working_dir}/icon.png"))
+    settings_page.setWindowIcon(QIcon(f"icon.png"))
 
     settings_label_title = pq.QLabel(lpak.get("settings", language))
     settings_label_repo = pq.QLabel(lpak.get("enable disable repo", language))

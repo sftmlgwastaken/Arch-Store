@@ -85,4 +85,44 @@ restart required|Riavvio richiesto
 help|Aiuto
 exit|Esci
 installed packages|Pachetti installati
-remotion in progress|Rimozione in corso
+removal in progress|Rimozione in corso
+confirm changes|Conferma le modifiche
+version|Versione
+updated settings|Impostazioni aggiornate
+more info about|Informazioni su
+architecture|Architettura
+url|Link
+license|Licenza
+group|Gruppo
+provides|Fornisce
+dependencies|Dipendenze
+optional dependencies|Dipendenze opsionali
+conflict|Conflitti
+replaces|Rimpiazza
+download size|Dimensione download
+creation date|Data di creazione
+validated by|Verificato da
+required space|Spazio richiesto
+packager|Pacchettizatore
+click to start removal|Clicca per avviare la rimozione
+start removal|Avvia la rimozione
+removal|Rimozione
+id|ID
+ref|Ref
+branch|Ramo
+origin|Origine
+collection|Collezione
+installed size|Dimensione installazione
+runtime|Runtime
+sdk|Sdk
+commit|Commit
+parent|Parent
+subject|Argomento
+date|Data
+manage installation methods|Gestisci metodi di installazione
+installed|Installato
+not installed|Non installato
+status|Stato
+installation method|Metodo di installazione
+instructions|Istruzioni
+search for flatpak in the store and install it|Cerca nello store flatpak e installalo

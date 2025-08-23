@@ -37,7 +37,7 @@ def open_appimages_settings(language, working_dir):
 
         appimages_window = pq.QWidget()
         appimages_window.setWindowTitle(lpak.get("manage appimages", language))
-        appimages_window.setWindowIcon(QIcon(f"{working_dir}/icon.png"))       
+        appimages_window.setWindowIcon(QIcon("icon.png"))       
         appimages_window.setGeometry(0, 0, 600, 500)    
         layout = pq.QVBoxLayout(appimages_window)
         # Scroll Area
@@ -172,7 +172,7 @@ def start_add_appimage(language, working_dir):
             
             add_appimage_window = pq.QWidget()
             add_appimage_window.setGeometry(0, 0, 900, 500)
-            add_appimage_window.setWindowIcon(QIcon(f"{working_dir}/icon.png"))
+            add_appimage_window.setWindowIcon(QIcon(f"icon.png"))
             add_appimage_window.setWindowTitle(lpak.get("add appimage", language))
             appimage_name_label = pq.QLabel(lpak.get("name", language))
             appimage_name_textbox = pq.QLineEdit("")
