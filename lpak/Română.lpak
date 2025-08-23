@@ -1,0 +1,88 @@
+arch store|Arch store
+căutare software|Căutare software
+căutare|Căutare
+actualizare sistem|Actualizare sistem
+setări|Setări
+caut|Caut
+deci nu cauți nimic|Deci... nu ai căutat nimic,foarte bine pentru tine?
+pornire acțiuni|Pornire acțiuni
+o instanță de instalare este deja în desfășurare|O instalare este deja în desfășurare
+nicio acțiune de instalare pacman|Nicio acțiune de instalare pacman!
+nicio acțiune de eliminare pacman|Nicio acțiune de eliminare pacman!
+nicio acțiune de instalare aur|Nicio acțiune de instalare AUR!
+nicio acțiune de eliminare aur|Nicio acțiune de eliminare AUR!
+nicio acțiune de instalare flatpak|Nicio acțiune de instalare Flatpak!
+nicio acțiune de eliminare flatpak|Nicio acțiune de eliminare Flatpak!
+instalare|Se instalează...
+activare|Activare
+dezactivare|Dezactivare
+instalare|Instalare
+eliminare|Dezinstalare
+nu instalați|Nu instalați
+nu eliminați|Nu eliminați
+activare dezactivare depozit|Activare/Dezactivare depozit
+resetare setări|Resetare setări
+setări magazin arch|Setări magazin Arch
+nicio metodă de instalare|Nicio metodă de instalare activată, vă rugăm să activați cel puțin una în setări!
+instalare pacman|Instalări Pacman
+eliminare pacman|Eliminări Pacman
+instalare aur|Instalare AUR
+eliminare aur|Eliminări AUR
+instalare flatpak|Instalări Flatpak
+eliminare flatpak|Eliminări Flatpak
+nimic activare|Nimic activat
+actualizare|Actualizare
+pornire actualizare|Pornire actualizare
+terminat|Terminat!
+limbă|Limbă
+confirmă schimbarea limbii|Aplică limba
+niciun program găsit|Ne pare rău, niciun program găsit :-(
+programe|Programe
+descriere|Descriere
+repozitoriu|Repozitoriu
+acțiuni|Acțiuni
+create cu inimă de Samuobe|Create cu inimă de Samuobe
+proiect github|proiect GitHub
+altele|Altele
+alte opțiuni|Alte opțiuni
+gestionează imaginile aplicațiilor|Gestionează imaginile aplicațiilor
+nicio imagine aplicație|Nu există imagini aplicații instalate cu Arch Store
+nume|Nume
+pictogramă|Pictogramă
+cale|Cale
+adăugați imagine aplicație|Adăugați imagine aplicație
+selectați o imagine aplicație|Selectați o imagine aplicație
+selectați o pictogramă|Selectați o pictogramă
+caracter ilegal|Caracter ilegal
+nu puteți utiliza următorul caracter|Nu puteți utiliza următoarele caractere
+locație invalidă a imaginii aplicației|Locație invalidă a imaginii aplicației
+imaginea aplicației selectată nu a fost găsită|Imaginea aplicației selectată nu a fost găsită
+locație invalidă a pictogramei|Locație invalidă a pictogramei
+pictograma pe care selectat nu a fost găsit|Pictograma selectată nu a fost găsită
+tip aplicație|Tip aplicație
+confirmă instalarea|Confirmă instalarea
+dorești să o instalezi pentru toți utilizatorii|Dorești să o instalezi pentru toți utilizatorii?
+instalare finalizată|Instalare finalizată
+actualizare finalizată|Actualizare finalizată
+eliminare finalizată|Eliminare finalizată
+utilizator|Utilizator
+calea de instalare appimages|calea de instalare AppImages
+modifică calea appimage|Modifică calea AppImages
+selectează un folder|Selectează un folder
+confirmă modificarea|Confirmă modificarea
+atenție, această acțiune va șterge setul de date appimages existent|AVERTISMENT!!!! Reține că această acțiune va șterge setul de date AppImage, ceea ce înseamnă că nu vei mai putea să le dezinstalezi sau să le actualizezi din magazinul arch. Recomand să le dezinstalezi pe toate mai întâi și apoi să le reinstalezi după ce ai schimbat directorul. Continuă?
+modificat|Modificat!
+instalează appimage|Instalează AppImage
+metoda aur|Metoda AUR
+modifică|Modifică
+atenție|Atenție
+actualizare în curs|Actualizare în curs, relaxează-te, așteaptă un moment!
+clic pentru a începe actualizarea|Click pentru a porni actualizare
+faceți clic pentru a începe operațiunile|Faceți clic pentru a începe operațiunile
+instalare în curs|Instalare în curs!
+vă rugăm să reporniți pentru a aplica modificările|Vă rugăm să reporniți pentru a aplica modificările
+repornire necesară|Repornire necesară
+ajutor|Ajutor
+ieșire|Ieșire
+pachete instalate|Pachete instalate
+eliminare în curs|Eliminare în curs
