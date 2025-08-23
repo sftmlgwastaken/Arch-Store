@@ -51,6 +51,7 @@ def open_setting(language, working_dir, avaible_languages):
             f.write("aur_method="+aur_method+"\n")
             f.write("language="+new_language+"\n")            
             f.write("AppImmageDir="+app_image_dir)
+        language = new_language
         if old_language != new_language:
             show_allert(lpak.get("restart required", language), lpak.get("please restart to apply the changes", language))   
         show_allert(lpak.get("finished", language), lpak.get("updated settings", language))
