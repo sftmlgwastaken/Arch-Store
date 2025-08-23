@@ -1,0 +1,88 @@
+arch store|Arch-butikk
+search for software|Søk etter programvare
+search|Søk
+update system|Oppdater system
+settings|Innstillinger
+i'm looking for|Jeg leter etter
+so you're looking for nothing|Så... du søkte etter ingenting, godt gjort?
+start actions|Start handlinger
+an install instance is alredy in progress|En installasjon kjører allerede
+no pacman install actions|Ingen pacman-installasjoner
+no pacman remove actions|Ingen pacman-avinstalleringer
+no install aur actions|Ingen AUR-installasjoner
+no remove aur actions|Ingen AUR-avinstalleringer
+no install flatpak actions|Ingen Flatpak-installasjoner
+no remove flatpak actions|Ingen Flatpak-avinstalleringer
+installation|Installerer...
+enable|Aktiver
+disable|Deaktiver
+install|Installer
+remove|Avinstaller
+do not install|Ikke installer
+do not remove|Ikke avinstaller
+enable disable repo|Aktiver/Deaktiver repo
+reset settings|Tilbakestill innstillinger
+arch store settings|Arch-butikk innstillinger
+no installation method|Ingen installasjonsmetode aktivert
+pacman install|Pacman-installasjon
+pacman remove|Pacman-avinstallering
+aur install|AUR-installasjon
+aur remove|AUR-avinstallering
+flatpak install|Flatpak-installasjon
+flatpak remove|Flatpak-avinstallering
+nothing enable|Ingenting aktivert
+update|Oppdater
+start update|Start oppdatering
+finished|Ferdig!
+language|Språk
+confirm change language|Bruk språk
+no program found|Beklager, ingen program funnet :-(
+programs|Programmer
+description|Beskrivelse
+repository|Pakkelager/Repo
+actions|Handlinger
+made whit heart by Samuobe|Laget med hjerte av Samuobe
+github project|GitHub-prosjekt
+other|Annet
+other options|Andre alternativer
+manage appimages|Håndter AppImages
+no appimages app|Ingen AppImages installert via Arch-butikk
+name|Navn
+icon|Ikon
+path|Sti
+add appimage|Legg til AppImage
+select an appimage|Velg en AppImage
+select an icon|Velg et ikon
+illegal caracter|Ugyldig tegn
+you can't use the following caracther|Du kan ikke bruke følgende tegn
+invalid appimage location|Ugyldig AppImage-plassering
+the appimage you selected was not found|AppImagen du valgte ble ikke funnet
+invalid icon location|Ugyldig ikon-plassering
+the icon you selected was not found|Ikonet du valgte ble ikke funnet
+app type|Apptype
+confirm installation|Bekreft installasjon
+do you want to install it for all users|Vil du installere for alle brukere?
+installation completed|Installasjon fullført
+update completed|Oppdatering fullført
+remove completed|Avinstallering fullført
+user|Bruker
+appimages installation path|AppImages-installasjons sti
+change appimage path|Endre AppImages sti
+select a folder|Velg en mappe
+confirm change|Bekreft endring
+attenction this action will clear existing appimages dataset|ADVARSEL! Denne handlingen vil slette AppImage-datasettet, som betyr at du ikke lenger kan avinstallere eller oppdatere dem fra Arch-butikk. Jeg anbefaler å avinstallere alle først og reinstallere etter at du har endret mappen. Vil du fortsette?
+changed|Endret!
+install appimage|Installer AppImage
+aur method|AUR-metode
+change|Endre
+attenction|Advarsel
+update in progress|Oppdatering pågår, vent litt!
+click to start update|Klikk for å starte oppdatering
+click to start operations|Klikk for å starte handlinger
+install in progress|Installasjon pågår!
+please restart to apply the changes|Vennligst start på nytt for å bruke endringene
+restart required|Omstart kreves
+help|Hjelp
+exit|Avslutt
+installed packages|Installerte pakker
+remotion in progress|Avinstallasjon pågår
