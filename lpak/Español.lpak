@@ -120,3 +120,9 @@ parent|Parent
 subject|Subject
 date|Date
 manage installation methods|Manage installation methods
+installed|Installed
+not installed|Not installed
+status|Status
+installation method|Installation method
+instructions|Instructions
+search for flatpak in the store and install it|Search for flatpak in the store and install it
