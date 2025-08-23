@@ -1,88 +1,88 @@
 arch store|Arch store
-căutare software|Căutare software
-căutare|Căutare
-actualizare sistem|Actualizare sistem
-setări|Setări
-caut|Caut
-deci nu cauți nimic|Deci... nu ai căutat nimic,foarte bine pentru tine?
-pornire acțiuni|Pornire acțiuni
-o instanță de instalare este deja în desfășurare|O instalare este deja în desfășurare
-nicio acțiune de instalare pacman|Nicio acțiune de instalare pacman!
-nicio acțiune de eliminare pacman|Nicio acțiune de eliminare pacman!
-nicio acțiune de instalare aur|Nicio acțiune de instalare AUR!
-nicio acțiune de eliminare aur|Nicio acțiune de eliminare AUR!
-nicio acțiune de instalare flatpak|Nicio acțiune de instalare Flatpak!
-nicio acțiune de eliminare flatpak|Nicio acțiune de eliminare Flatpak!
-instalare|Se instalează...
-activare|Activare
-dezactivare|Dezactivare
-instalare|Instalare
-eliminare|Dezinstalare
-nu instalați|Nu instalați
-nu eliminați|Nu eliminați
-activare dezactivare depozit|Activare/Dezactivare depozit
-resetare setări|Resetare setări
-setări magazin arch|Setări magazin Arch
-nicio metodă de instalare|Nicio metodă de instalare activată, vă rugăm să activați cel puțin una în setări!
-instalare pacman|Instalări Pacman
-eliminare pacman|Eliminări Pacman
-instalare aur|Instalare AUR
-eliminare aur|Eliminări AUR
-instalare flatpak|Instalări Flatpak
-eliminare flatpak|Eliminări Flatpak
-nimic activare|Nimic activat
-actualizare|Actualizare
-pornire actualizare|Pornire actualizare
-terminat|Terminat!
-limbă|Limbă
-confirmă schimbarea limbii|Aplică limba
-niciun program găsit|Ne pare rău, niciun program găsit :-(
-programe|Programe
-descriere|Descriere
-repozitoriu|Repozitoriu
-acțiuni|Acțiuni
-create cu inimă de Samuobe|Create cu inimă de Samuobe
-proiect github|proiect GitHub
-altele|Altele
-alte opțiuni|Alte opțiuni
-gestionează imaginile aplicațiilor|Gestionează imaginile aplicațiilor
-nicio imagine aplicație|Nu există imagini aplicații instalate cu Arch Store
-nume|Nume
-pictogramă|Pictogramă
-cale|Cale
-adăugați imagine aplicație|Adăugați imagine aplicație
-selectați o imagine aplicație|Selectați o imagine aplicație
-selectați o pictogramă|Selectați o pictogramă
-caracter ilegal|Caracter ilegal
-nu puteți utiliza următorul caracter|Nu puteți utiliza următoarele caractere
-locație invalidă a imaginii aplicației|Locație invalidă a imaginii aplicației
-imaginea aplicației selectată nu a fost găsită|Imaginea aplicației selectată nu a fost găsită
-locație invalidă a pictogramei|Locație invalidă a pictogramei
-pictograma pe care selectat nu a fost găsit|Pictograma selectată nu a fost găsită
-tip aplicație|Tip aplicație
-confirmă instalarea|Confirmă instalarea
-dorești să o instalezi pentru toți utilizatorii|Dorești să o instalezi pentru toți utilizatorii?
-instalare finalizată|Instalare finalizată
-actualizare finalizată|Actualizare finalizată
-eliminare finalizată|Eliminare finalizată
-utilizator|Utilizator
-calea de instalare appimages|calea de instalare AppImages
-modifică calea appimage|Modifică calea AppImages
-selectează un folder|Selectează un folder
-confirmă modificarea|Confirmă modificarea
-atenție, această acțiune va șterge setul de date appimages existent|AVERTISMENT!!!! Reține că această acțiune va șterge setul de date AppImage, ceea ce înseamnă că nu vei mai putea să le dezinstalezi sau să le actualizezi din magazinul arch. Recomand să le dezinstalezi pe toate mai întâi și apoi să le reinstalezi după ce ai schimbat directorul. Continuă?
-modificat|Modificat!
-instalează appimage|Instalează AppImage
-metoda aur|Metoda AUR
-modifică|Modifică
-atenție|Atenție
-actualizare în curs|Actualizare în curs, relaxează-te, așteaptă un moment!
-clic pentru a începe actualizarea|Click pentru a porni actualizare
-faceți clic pentru a începe operațiunile|Faceți clic pentru a începe operațiunile
-instalare în curs|Instalare în curs!
-vă rugăm să reporniți pentru a aplica modificările|Vă rugăm să reporniți pentru a aplica modificările
-repornire necesară|Repornire necesară
-ajutor|Ajutor
-ieșire|Ieșire
-pachete instalate|Pachete instalate
-eliminare în curs|Eliminare în curs
+search for software|Căutare software
+search|Căutare
+update system|Actualizare sistem
+settings|Setări
+i'm looking for|Caut
+so you're looking for nothing|Deci... nu ai căutat nimic,foarte bine pentru tine?
+start actions|Pornire acțiuni
+an install instance is alredy in progress|O instalare este deja în desfășurare
+no pacman install actions|Nicio acțiune de instalare pacman!
+no pacman remove actions|Nicio acțiune de eliminare pacman!
+no install aur actions|Nicio acțiune de instalare AUR!
+no remove aur actions|Nicio acțiune de eliminare AUR!
+no install flatpak actions|Nicio acțiune de instalare Flatpak!
+no remove flatpak actions|Nicio acțiune de eliminare Flatpak!
+installation|Se instalează...
+enable|Activare
+disable|Dezactivare
+install|Instalare
+remove|Dezinstalare
+do not install|Nu instalați
+do not remobe|Nu eliminați
+enable disable repo|Activare/Dezactivare depozit
+reset settings|Resetare setări
+arch store settings|Setări magazin Arch
+no installation method|Nicio metodă de instalare activată, vă rugăm să activați cel puțin una în setări!
+pacman install|Instalări Pacman
+pacman remove|Eliminări Pacman
+aur install|Instalare AUR
+aur remove|Eliminări AUR
+flatpak install|Instalări Flatpak
+flatpka remove|Eliminări Flatpak
+nothing enable|Nimic activat
+update|Actualizare
+start update|Pornire actualizare
+finished|Terminat!
+language|Limbă
+confirm change language|Aplică limba
+no program found|Ne pare rău, niciun program găsit :-(
+programs|Programe
+description|Descriere
+repository|Repozitoriu
+actions|Acțiuni
+made whit heart by Samuobe|Create cu inimă de Samuobe
+github project|proiect GitHub
+other|Altele
+other options|Alte opțiuni
+manage appimages|Gestionează imaginile aplicațiilor
+no appimages app|Nu există imagini aplicații instalate cu Arch Store
+name|Nume
+icon|Pictogramă
+path|Cale
+add appimage|Adăugați imagine aplicație
+select an appimage|Selectați o imagine aplicație
+select an icon|Selectați o pictogramă
+illegal caracter|Caracter ilegal
+you can't use the following caracther|Nu puteți utiliza următoarele caractere
+invalid appimage location|Locație invalidă a imaginii aplicației
+the appimage you selected was not found|Imaginea aplicației selectată nu a fost găsită
+invalid icon location|Locație invalidă a pictogramei
+the icon you selected was not found|Pictograma selectată nu a fost găsită
+app type|Tip aplicație
+confirm installation|Confirmă instalarea
+do you want to install it for all users|Dorești să o instalezi pentru toți utilizatorii?
+installation completed|Instalare finalizată
+update completed|Actualizare finalizată
+remove completed|Eliminare finalizată
+user|Utilizator
+appimages installation path|calea de instalare AppImages
+change appimage path|Modifică calea AppImages
+select a folder|Selectează un folder
+confirm change|Confirmă modificarea
+attenction this action will clear existing appimages dataset|AVERTISMENT!!!! Reține că această acțiune va șterge setul de date AppImage, ceea ce înseamnă că nu vei mai putea să le dezinstalezi sau să le actualizezi din magazinul arch. Recomand să le dezinstalezi pe toate mai întâi și apoi să le reinstalezi după ce ai schimbat directorul. Continuă?
+changed|Modificat!
+install appimage|Instalează AppImage
+aur method|Metoda AUR
+change|Modifică
+attenction|Atenție
+update in progress|Actualizare în curs, relaxează-te, așteaptă un moment!
+click to start update|Click pentru a porni actualizare
+click to start operations|Faceți clic pentru a începe operațiunile
+install in progressS|Instalare în curs!
+please restart to apply the changes|Vă rugăm să reporniți pentru a aplica modificările
+restart required|Repornire necesară
+help|Ajutor
+exit|Ieșire
+installed packages|Pachete instalate
+remotion in progress|Eliminare în curs
