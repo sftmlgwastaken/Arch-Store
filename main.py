@@ -18,7 +18,7 @@ from show_allert import show_allert
 from show_installed_programs import show as show_installed_programs
 
 #fast access variables
-avaible_languages = ["Italiano", "English", "Español", "Română"]
+avaible_languages = ["Italiano", "English", "Español", "Română", "Polski"]
 
 #Base variables
 install_pacman_packages=[]
