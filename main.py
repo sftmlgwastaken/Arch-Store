@@ -20,7 +20,7 @@ from more_informations import show as show_more_informations
 from manage_installed_method import show_window as show_installed_method
 
 #fast access variables
-avaible_languages = ["Italiano", "English", "Español"]
+avaible_languages = ["Italiano", "English", "Español", "Română", "Polski", "Norsk"]
 
 #Base variables
 install_pacman_packages=[]
