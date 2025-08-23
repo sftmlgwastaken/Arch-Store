@@ -41,7 +41,7 @@ programs|Programmer
 description|Beskrivelse
 repository|Pakkelager/Repo
 actions|Handlinger
-made whit heart by Samuobe|Laget med hjerte av Samuobe
+made whit heart by Samuobe|Laget med kjærlighet av Samuobe
 github project|GitHub-prosjekt
 other|Annet
 other options|Andre alternativer
@@ -66,8 +66,8 @@ installation completed|Installasjon fullført
 update completed|Oppdatering fullført
 remove completed|Avinstallering fullført
 user|Bruker
-appimages installation path|AppImages-installasjons sti
-change appimage path|Endre AppImages sti
+appimages installation path|AppImages-installasjonssti
+change appimage path|Endre AppImages-sti
 select a folder|Velg en mappe
 confirm change|Bekreft endring
 attenction this action will clear existing appimages dataset|ADVARSEL! Denne handlingen vil slette AppImage-datasettet, som betyr at du ikke lenger kan avinstallere eller oppdatere dem fra Arch-butikk. Jeg anbefaler å avinstallere alle først og reinstallere etter at du har endret mappen. Vil du fortsette?
