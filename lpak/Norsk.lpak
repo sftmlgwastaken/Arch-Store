@@ -7,12 +7,12 @@ i'm looking for|Jeg leter etter
 so you're looking for nothing|Så... du søkte etter ingenting, godt gjort?
 start actions|Start handlinger
 an install instance is alredy in progress|En installasjon kjører allerede
-no pacman install actions|Ingen pacman-installasjoner
-no pacman remove actions|Ingen pacman-avinstalleringer
-no install aur actions|Ingen AUR-installasjoner
-no remove aur actions|Ingen AUR-avinstalleringer
-no install flatpak actions|Ingen Flatpak-installasjoner
-no remove flatpak actions|Ingen Flatpak-avinstalleringer
+no pacman install actions|Ingen pacman-installasjonshandlinger
+no pacman remove actions|Ingen pacman-avinstalleringshandlinger
+no install aur actions|Ingen AUR-installasjonshandlinger
+no remove aur actions|Ingen AUR-avinstalleringshandlinger
+no install flatpak actions|Ingen Flatpak-installasjonshandlinger
+no remove flatpak actions|Ingen Flatpak-avinstalleringshandlinger
 installation|Installerer...
 enable|Aktiver
 disable|Deaktiver
