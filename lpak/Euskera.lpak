@@ -6,9 +6,9 @@ settings|Ezarpenak
 i'm looking for|Bila nabil
 so you're looking for nothing|Orduan... ez duzu ezer bilatu, zuregatik ondo?
 start actions|Hasi eragiketak
-an install instance is alredy in progress|Instalazio-instantzia abian da
+an install instance is alredy in progress|Instalazio-instantzia martxan da
 no pacman install actions|Pacman instalazio eragiketarik ez!
-no pacman remove actions|Pacman ezabaketarik ez!
+no pacman remove actions|Pacman ezabaketa eragiketarik ez!
 no install aur actions|AUR instalazio eragiketarik ez!
 no remove aur actions|AUR ezabaketa eragiketarik ez!
 no install flatpak actions|Flatpak instalazio eragiketarik ez!
@@ -45,13 +45,13 @@ made whit heart by Samuobe|Samuobek maitasunez egina
 github project|GitHub proiektua
 other|Bestea
 other options|Beste aukerak
-manage appimages|AppImage-ak kudeatu
-no appimages app|Ez da AppImage-rik instalatu Arch Dendarekin
+manage appimages|AppImageak kudeatu
+no appimages app|Ez da AppImagerik instalatu Arch Dendarekin
 name|Izena
 icon|Ikonoa
 path|Bidea
-add appimage|AppImage-a gehitu
-select an appimage|AppImage-a aukeratu
+add appimage|AppImagea gehitu
+select an appimage|AppImagea aukeratu
 select an icon|Ikonoa aukeratu 
 illegal caracter|Illegal caracter
 you can't use the following caracther|Ezin dituzu honako karaktereak erabili
@@ -66,12 +66,12 @@ installation completed|Instalazioa amaituta
 update completed|Eguneraketa amaituta
 remove completed|Ezabaketa amaituta
 user|Erabiltzailea
-appimages installation path|AppImage-en instalazio bidea
-change appimage path|AppImage-en bidea aldatu
+appimages installation path|AppImageen instalazio bidea
+change appimage path|AppImageen bidea aldatu
 select a folder|Karpeta aukeratu
 confirm change|Aldaketa baieztatu
-attenction this action will clear existing appimages dataset|ERNE!!!! Kontuan izan ekintza horrek AppImage-aren datu-multzoa ezabatuko duela, eta horrek esan nahi du ezingo direla Arch dendatik desinstalatu edo eguneratu. Gomendatzen da lehendabizi guztiak desinstalatzea eta gero berriro instalatzea direktorioa aldatu ondoren. Jarraitu nahi duzu?
-install appimage|AppImage-a instalatu
+attenction this action will clear existing appimages dataset|ERNE!!!! Kontuan izan ekintza horrek AppImagearen datu-multzoa ezabatuko duela, eta horrek esan nahi du ezingo direla Arch Dendatik desinstalatu edo eguneratu. Gomendatzen da lehendabizi guztiak desinstalatzea eta gero berriro instalatzea direktorioa aldatu ondoren. Jarraitu nahi duzu?
+install appimage|AppImagea instalatu
 aur method|AUR modua
 change|Aldatu
 attenction|Attencion
@@ -82,7 +82,7 @@ install in progress|Instalazioa martxan da!
 please restart to apply the changes|Mesedez, aldaketak aplikatzeko berrabiarazi
 restart required|Beharrezkoa da berrabiaraztea
 help|Laguntza
-exit|Exit
+exit|Irten
 installed packages|Instalatutako paketeak
 removal in progress|Ezabaketa martxan
 confirm changes|Aldaketak baieztatu
@@ -102,14 +102,14 @@ download size|Download size
 creation date|Sortze-data
 validated by|Validated by
 required space|Required space
-packager|Packager
+packager|Pakete-egile
 click to start removal|Klik egin ezabaketa hasteko
 start removal|Hasi ezabaketa
-removal|Removal
+removal|Ezabaketa
 id|ID
 ref|Ref
 branch|Branch
-origin|Origin
+origin|Jatorria
 collection|Kolekzioa
 installed size|Installed size
 runtime|Runtime
@@ -124,4 +124,4 @@ not installed|Inslatu gabe
 status|Esatusa
 installation method|Instalazio modua
 instructions|Argibideak
-search for flatpak in the store and install it|AppImage-a bilatu eta instalatu
+search for flatpak in the store and install it|AppImagea bilatu eta instalatu
