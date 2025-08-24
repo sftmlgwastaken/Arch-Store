@@ -44,7 +44,9 @@ with open("README.md", "r", encoding="utf-8") as f:
     readme = f.read()
 
 # Sostituisce la sezione ### Trick: Change language
-pattern = re.compile(r"### Trick: Change language[\s\S]*?(?=\n## |\Z)", re.MULTILINE)
+# Modifica la regex
+pattern = re.compile(r"(### Trick: Change language\s*[\s\S]*?)(?=\n##|\n###|\Z)", re.MULTILINE)
+
 if pattern.search(readme):
     readme = pattern.sub(new_section, readme)
 else:
