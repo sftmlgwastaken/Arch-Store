@@ -45,6 +45,21 @@ If it is written by hand and there is an error, the configuration file will be r
 | Language | Coverage |
 |----------|----------|
 | Español | 94.89% |
+| Euskera | 81.02% |
+| Italiano | 94.16% |
+| Norsk | 64.96% |
+| Polski | 56.93% |
+| Română | 62.04% |
+
+## Languages
+
+To change the language, start the program, go to settings and select the language from the list, then press confirm.  
+The interface will restart with the new language. Be careful to select the language from the list and not write it by hand.  
+If it is written by hand and there is an error, the configuration file will be restored to prevent errors during startup.
+
+| Language | Coverage |
+|----------|----------|
+| Español | 94.89% |
 | Euskera | 78.1% |
 | Italiano | 94.16% |
 | Norsk | 64.96% |
