@@ -1,4 +1,6 @@
 #!/bin/bash
+
+
 echo "Welcome to the Arch-Store installation program!"
 echo "What do you want to do?"
 echo "1) Install/Update Arch-Store"
@@ -6,7 +8,8 @@ echo "2) Uninstall Arch-Store"
 read -p "Select an option [1/2]: " action
 
 if [[ "$action" == "1" ]]; then
-    # install_dependencies   # <--- togli se non hai questa funzione
+    mkdir arch-store-install
+    cd arch-store-install
 
     PYTHON_PATH=$(which python3)
     clear
@@ -27,9 +30,16 @@ if [[ "$action" == "1" ]]; then
         echo "FINISHED!"        
     fi
 
+    cd ..
+    rm -rf arch-store-install
+
 elif [[ "$action" == "2" ]]; then
     echo "Uninstalling Arch-Store..."
     sudo pacman -Rns arch-store
     sudo pacman -Rns arch-store-git
     echo "FINISHED!"
 fi
+
+
+rm -- "$0"
+
