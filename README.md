@@ -12,7 +12,7 @@ Arch store is an intuitive store for Arch Linux software written in Python!
 - Allows you to select a series of programs to install or remove before launching the actions you have chosen.
 - It allows you to update everything automatically with just one click!
 - AppImage support for single user or for all
-- Multilingual (Italiano, English, Español, Română, Polski, Norsk)
+- Multilingual (see language section for avaible langiages list)
 - Allows you to easily choose which repositories to use
 - Allows you to check which installation methods are installed and install any missing ones
 - Display the list of installed packages, remove them, or update them.
