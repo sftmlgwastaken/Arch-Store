@@ -82,56 +82,56 @@ click to start operations|Click para iniciar las operaciones
 install in progress|¡Instalación en progreso!
 please restart to apply the changes|Por favor reinicie para aplicar los cambios
 restart required|¡Reinicio necesario!
-help|Help
-exit|Exit
-installed packages|Installed packages
-removal in progress|Removal in progress
-confirm changes|Confirm changes
-version|Version
-updated settings|Updated settings
-more info about|More informations about
-architecture|Architecture
+help|Ayuda
+exit|Salir
+installed packages|Paquetes instalados
+removal in progress|Desinstalación en progreso
+confirm changes|Confirmar cambios
+version|Versión
+updated settings|Ajustes actualizados
+more info about|Mas informacion acerca de
+architecture|Arquitectura
 url|Url
-license|License
-group|Group
-provides|Provides
-dependencies|Dependencies
-optional dependencies|Optional dependencies
-conflict|Conflicr
-replaces|Replaces
-download size|Download size
-creation date|Creation date
-validated by|Validated by
-required space|Required space
-packager|Packager
-click to start removal|Click to start removal
-start removal|Start removal
-removal|Removal
+license|Licencia
+group|Grupo
+provides|Provee
+dependencies|Dependencias
+optional dependencies|Dependencias opcionales
+conflict|En conflicto
+replaces|Remplaza
+download size|Tamaño de descarga
+creation date|Fecha de creación
+validated by|Validado por
+required space|Espacio requerido
+packager|Empaquetador
+click to start removal|Click para empezar la limpieza
+start removal|Empezar limpieza
+removal|Limpieza
 id|ID
-ref|Ref
-branch|Branch
-origin|Origin
-collection|Collection
-installed size|Installed size
+ref|Referencia
+branch|Rama
+origin|Origen
+collection|Colección
+installed size|Tamaño instalado
 runtime|Runtime
 sdk|Sdk
 commit|Commit
-parent|Parent
-subject|Subject
-date|Date
-manage installation methods|Manage installation methods
-installed|Installed
-not installed|Not installed
-status|Status
-installation method|Installation method
-instructions|Instructions
-search for flatpak in the store and install it|Search for flatpak in the store and install it
-make dependencies|Make dependencies
-dependencies control|Dependencies control
-aur_url|Aur url
-first submit|First submit
-keywords|Keywords
-last modified|Last modified
-popularity|Popularity
-votes|Votes
-outdated|Outdated
+parent|Padre
+subject|Sujeto
+date|Fecha
+manage installation methods|Administrar metodos de instalación
+installed|Instalado
+not installed|No instalado
+status|Estado
+installation method|Metodo de instalación
+instructions|Instrucciones
+search for flatpak in the store and install it|Buscar flatpak en la tienda e instalarlo
+make dependencies|Dependencias Make
+dependencies control|Control de dependencias
+aur_url|Url Aur
+first submit|Primer envio
+keywords|Palabras claves
+last modified|Ultima vez modificado
+popularity|Popularidad
+votes|Votos
+outdated|Obsoleto
