@@ -1,0 +1,138 @@
+arch store|Arch mağaza
+search for software|Yazılım ara
+search|Ara
+update system|Sistemi güncelle
+settings|Ayarlar
+i'm looking for|Arıyorum
+so you're looking for nothing|Yani... Hiçbir şey aramadın?
+start actions|Eylemleri başlat
+an install instance is alredy in progress|Bir kurulum zaten devam ediyor
+no pacman install actions|Pacman kurulum eylemi yok!
+no pacman remove actions|Pacman kaldırma eylemi yok!
+no install aur actions|AUR kurulum eylemi yok!
+no remove aur actions|AUR kaldırma eylemi yok!
+no install flatpak actions|Flatpak kurulum eylemi yok!
+no remove flatpak actions|Flatpak kaldırma eylemi yok!
+installation|Kuruluyor...
+enable|Etkinleştir
+disable|Devre dışı bırak
+install|Kur
+remove|Kaldır
+do not install|Kurma
+do not remove|Kaldırma
+enable disable repo|Repoyu etkinleştir/devre dışı bırak
+reset settings|Ayarları sıfırla
+arch store settings|Arch Mağaza ayarları
+no installation method|Hiçbir kurulum yöntemi etkin değil, lütfen ayarlarda en az birini etkinleştir!
+pacman install|Pacman kurulumları
+pacman remove|Pacman kaldırmaları
+aur install|AUR kurulumu
+aur remove|AUR kaldırmaları
+flatpak install|Flatpak kurulumları
+flatpak remove|Flatpak kaldırmaları
+nothing enable|Hiçbir şey etkin değil
+update|Güncelle
+start update|Güncellemeyi başlat
+finished|Bitti!
+language|Dil
+confirm change language|Dili değiştirmeyi onayla
+no program found|Üzgünüm, hiçbir program bulunamadı :-(
+programs|Programlar
+description|Açıklama
+repository|Repo
+actions|Aksiyonlar
+made whit heart by Samuobe|Samuobe tarafından sevgiyle yapıldı
+github project|GitHub projesi
+other|Diğer
+other options|Diğer seçenekler
+manage appimages|AppImage'ları yönet
+no appimages app|Arch Mağaza ile kurulmuş AppImage yok
+name|İsim
+icon|Simge
+path|Yol
+add appimage|AppImage ekle
+select an appimage|Bir AppImage seç
+select an icon|Bir simge seç
+illegal caracter|Uyumsuz karakter
+you can't use the following caracther|Aşağıdaki karakterleri kullanamazsınız
+invalid appimage location|Geçersiz AppImage konumu
+the appimage you selected was not found|Seçtiğiniz AppImage bulunamadı
+invalid icon location|Geçersiz simge konumu
+the icon you selected was not found|Seçtiğiniz simge bulunamadı
+app type|Uygulama türü
+confirm installation|Kurulumu onayla
+do you want to install it for all users|Tüm kullanıcılar için kurmak ister misiniz?
+installation completed|Kurulum tamamlandı
+update completed|Güncelleme tamamlandı
+remove completed|Kaldırma tamamlandı
+user|Kullanıcı
+appimages installation path|AppImage kurulum yolu
+change appimage path|AppImage yolunu değiştir
+select a folder|Bir klasör seç
+confirm change|Değişikliği onayla
+attenction this action will clear existing appimages dataset|UYARI!!!! Dikkat: Bu işlem mevcut appimages veri kümesini silecektir.
+changed|Değiştirildi!
+install appimage|AppImage kur
+aur method|AUR yöntemi
+change|Değiştir
+attenction|Dikkat
+update in progress|Güncelleme devam ediyor, biraz bekle!
+click to start update|Güncellemeyi başlatmak için tıkla
+click to start operations|İşlemleri başlatmak için tıkla
+install in progress|Kurulum devam ediyor!
+please restart to apply the changes|Değişiklikleri uygulamak için lütfen yeniden başlat
+restart required|Yeniden başlatma gerekli
+help|Yardım
+exit|Çıkış
+installed packages|Kurulu paketler
+removal in progress|Kaldırma işlemi devam ediyor
+confirm changes|Değişiklikleri onayla
+version|Sürüm
+updated settings|Güncellenmiş ayarlar
+more info about|Daha fazla bilgi
+architecture|Mimari
+url|URL
+license|Lisans
+group|Grup
+provides|Sağladıkları
+dependencies|Bağımlılıklar
+optional dependencies|İsteğe bağlı bağımlılıklar
+conflict|Çakışmalar
+replaces|Yerine geçer
+download size|İndirme boyutu
+creation date|Oluşturulma tarihi
+validated by|Doğrulayan
+required space|Gerekli alan
+packager|Paketleyici
+click to start removal|Kaldırmaya başlamak için tıkla
+start removal|Kaldırmayı başlat
+removal|Kaldırma
+id|ID
+ref|Referans
+branch|Kol 
+origin|Kaynak
+collection|Koleksiyon
+installed size|Kurulum boyutu
+runtime|Çalışma zamanı
+sdk|SDK
+commit|Commit
+parent|Ana paket
+subject|Konu
+date|Tarih
+manage installation methods|Kurulum yöntemlerini yönet
+installed|Kurulu
+not installed|Kurulu değil
+status|Durum
+installation method|Kurulum yöntemi
+instructions|Talimatlar
+search for flatpak in the store and install it|Mağazada Flatpak ara ve kur
+make dependencies|Derleme bağımlılıkları
+dependencies control|Bağımlılık kontrolü
+aur_url|AUR URL
+first submit|İlk gönderim
+keywords|Anahtar kelimeler
+last modified|Son değiştirilme
+popularity|Popülerite
+votes|Oylar
+outdated|Güncel değil
+

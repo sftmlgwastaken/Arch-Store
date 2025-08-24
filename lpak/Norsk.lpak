@@ -86,52 +86,52 @@ help|Hjelp
 exit|Avslutt
 installed packages|Installerte pakker
 remotion in progress|Avinstallasjon pågår
-confirm changes|Confirm changes
-version|Version
-updated settings|Updated settings
-more info about|More informations about
-architecture|Architecture
-url|Url
-license|License
-group|Group
+confirm changes|Bekreft endringer
+version|Versjon
+updated settings|Oppdaterte innstillinger
+more info about|Mer informasjon om
+architecture|Arkitektur
+url|URL
+license|Lisens
+group|Gruppe
 provides|Provides
-dependencies|Dependencies
-optional dependencies|Optional dependencies
-conflict|Conflicr
-replaces|Replaces
-download size|Download size
-creation date|Creation date
-validated by|Validated by
-required space|Required space
-packager|Packager
-click to start removal|Click to start removal
-start removal|Start removal
-removal|Removal
+dependencies|Avhengigheter
+optional dependencies|Valgfrie avhengigheter
+conflict|Konflikt
+replaces|Erstatter
+download size|Nedlastingsstørrelse
+creation date|Opprettelsesdato
+validated by|Validert av
+required space|Påkrevd plass
+packager|Pakkebygger
+click to start removal|Klikk for å starte avinstallering
+start removal|Start avinstallering
+removal|Avinstallering
 id|ID
 ref|Ref
 branch|Branch
 origin|Origin
-collection|Collection
-installed size|Installed size
+collection|Samling
+installed size|Installert størrelse
 runtime|Runtime
-sdk|Sdk
+sdk|SDK
 commit|Commit
 parent|Parent
-subject|Subject
-date|Date
-manage installation methods|Manage installation methods
-installed|Installed
-not installed|Not installed
+subject|Emne
+date|Dato
+manage installation methods|Administrer installasjonsmetoder
+installed|Installert
+not installed|Ikke installert
 status|Status
-installation method|Installation method
-instructions|Instructions
-search for flatpak in the store and install it|Search for flatpak in the store and install it
-make dependencies|Make dependencies
-dependencies control|Dependencies control
-aur_url|Aur url
-first submit|First submit
-keywords|Keywords
-last modified|Last modified
-popularity|Popularity
-votes|Votes
-outdated|Outdated
+installation method|Installasjonsmetode
+instructions|Instruksjoner
+search for flatpak in the store and install it|Søk etter flatpak i butikken og installer det
+make dependencies|Byggavhengigheter
+dependencies control|Avhengighetskontroll
+aur_url|AUR-URL
+first submit|Første innsending
+keywords|Nøkkelord
+last modified|Sist endret
+popularity|Popularitet
+votes|Stemmer
+outdated|Utdatert
