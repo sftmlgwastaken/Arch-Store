@@ -85,53 +85,54 @@ restart required|Yeniden başlatma gerekli
 help|Yardım
 exit|Çıkış
 installed packages|Kurulu paketler
-removal in progress|Kaldırma devam ediyor
-confirm changes|Confirm changes
-version|Version
-updated settings|Updated settings
-more info about|More informations about
-architecture|Architecture
-url|Url
-license|License
-group|Group
-provides|Provides
-dependencies|Dependencies
-optional dependencies|Optional dependencies
-conflict|Conflicts
-replaces|Replaces
-download size|Download size
-creation date|Creation date
-validated by|Validated by
-required space|Required space
-packager|Packager
-click to start removal|Click to start removal
-start removal|Start removal
-removal|Removal
+removal in progress|Kaldırma işlemi devam ediyor
+confirm changes|Değişiklikleri onayla
+version|Sürüm
+updated settings|Güncellenmiş ayarlar
+more info about|Daha fazla bilgi
+architecture|Mimari
+url|URL
+license|Lisans
+group|Grup
+provides|Sağladıkları
+dependencies|Bağımlılıklar
+optional dependencies|İsteğe bağlı bağımlılıklar
+conflict|Çakışmalar
+replaces|Yerine geçer
+download size|İndirme boyutu
+creation date|Oluşturulma tarihi
+validated by|Doğrulayan
+required space|Gerekli alan
+packager|Paketleyici
+click to start removal|Kaldırmaya başlamak için tıkla
+start removal|Kaldırmayı başlat
+removal|Kaldırma
 id|ID
-ref|Ref
-branch|Branch
-origin|Origin
-collection|Collection
-installed size|Installed size
-runtime|Runtime
-sdk|Sdk
+ref|Referans
+branch|Kol 
+origin|Kaynak
+collection|Koleksiyon
+installed size|Kurulum boyutu
+runtime|Çalışma zamanı
+sdk|SDK
 commit|Commit
-parent|Parent
-subject|Subject
-date|Date
-manage installation methods|Manage installation methods
-installed|Installed
-not installed|Not installed
-status|Status
-installation method|Installation method
-instructions|Instructions
-search for flatpak in the store and install it|Search flatpak in the store and install it
-make dependencies|Make dependencies
-dependencies control|Dependencies control
-aur_url|Aur url
-first submit|First submit
-keywords|Keywords
-last modified|Last modified
-popularity|Popularity
-votes|Votes
-outdated|Outdated
+parent|Ana paket
+subject|Konu
+date|Tarih
+manage installation methods|Kurulum yöntemlerini yönet
+installed|Kurulu
+not installed|Kurulu değil
+status|Durum
+installation method|Kurulum yöntemi
+instructions|Talimatlar
+search for flatpak in the store and install it|Mağazada Flatpak ara ve kur
+make dependencies|Derleme bağımlılıkları
+dependencies control|Bağımlılık kontrolü
+aur_url|AUR URL
+first submit|İlk gönderim
+keywords|Anahtar kelimeler
+last modified|Son değiştirilme
+popularity|Popülerlik
+votes|Oylar
+outdated|Güncel değil
+
