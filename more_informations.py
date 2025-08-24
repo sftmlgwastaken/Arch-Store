@@ -25,7 +25,10 @@ def show(language, name, repo, aur_method):
         clear_data = []
         for data in data_list:
             if data != "" and data != " " and data != "\n":
-                clear_data.append(data.split(" : ")[1])  
+                try:
+                    clear_data.append(data.split(" : ")[1])  
+                except:
+                    pass
         
         if aur_method == "yay":  
             repo = clear_data[0]
