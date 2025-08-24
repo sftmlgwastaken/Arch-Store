@@ -8,13 +8,13 @@ def show_window(language):
     global installation_methods_window
 
 
-    def install_yay():
-        show_allert(lpak.get("instructions"), lpak.get("search for flatpak in the store and install it", language))
+    def install_flatpak():
+        show_allert(lpak.get("instructions", language), lpak.get("search for flatpak in the store and install it", language))
 
     def install_paru():
         webbrowser.open("https://github.com/Morganamilo/paru")
 
-    def install_flatpak():
+    def install_yay():
         webbrowser.open("https://github.com/Jguer/yay")
 
 
@@ -62,7 +62,7 @@ def show_window(language):
         yay_status_label = pq.QLabel(lpak.get("not installed", language))
         yay_install_button = pq.QPushButton(lpak.get("install", language))
         yay_install_button.pressed.connect(install_yay)
-        layout.addWidget(yay_install_button, 5, 3)
+        layout.addWidget(yay_install_button, 6, 3)
 
     def make_separator():
         line = pq.QFrame()
