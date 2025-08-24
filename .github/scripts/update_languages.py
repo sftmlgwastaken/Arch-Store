@@ -43,10 +43,8 @@ new_section = f"## Languages\n\n{intro}{table_md}\n"
 with open("README.md", "r", encoding="utf-8") as f:
     readme = f.read()
 
-# Sostituisce la sezione ### Trick: Change language
-# Modifica la regex
-pattern = re.compile(r"(### Trick: Change language\s*[\s\S]*?)(?=\n##|\n###|\Z)", re.MULTILINE)
-
+# Cerca qualsiasi sezione ## Languages e la sostituisce
+pattern = re.compile(r"(## Languages\s*[\s\S]*?)(?=\n## |\Z)", re.MULTILINE)
 if pattern.search(readme):
     readme = pattern.sub(new_section, readme)
 else:
@@ -61,13 +59,5 @@ else:
 
 with open("README.md", "w", encoding="utf-8") as f:
     f.write(readme)
-
-# DEBUG dopo le definizioni
-print("DEBUG: Current working directory:", os.getcwd())
-print("DEBUG: lpak files:", os.listdir("lpak"))
-print("DEBUG: Results table:", results)
-print("DEBUG: Markdown table:\n", table_md)
-print("DEBUG: README contains '### Trick: Change language':", bool(pattern.search(readme)))
-print("DEBUG: README length after:", len(readme))
 
 print("✅ README.md aggiornato con la tabella di copertura delle lingue nella posizione corretta")
