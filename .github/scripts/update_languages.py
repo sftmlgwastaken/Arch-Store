@@ -1,16 +1,5 @@
-import re
 import os
-
-print("DEBUG: Current working directory:", os.getcwd())
-print("DEBUG: lpak files:", os.listdir("lpak"))
-
-# Dopo il calcolo dei risultati
-print("DEBUG: Results table:", results)
-print("DEBUG: Markdown table:\n", table_md)
-
-# Dopo aver letto README
-print("DEBUG: README contains '### Trick: Change language':", bool(pattern.search(readme)))
-print("DEBUG: README length before:", len(readme))
+import re
 
 BASE = "lpak/English.lpak"
 FILES = [f for f in os.listdir("lpak") if f.endswith(".lpak") and f != "English.lpak"]
@@ -59,7 +48,7 @@ pattern = re.compile(r"### Trick: Change language[\s\S]*?(?=\n## |\Z)", re.MULTI
 if pattern.search(readme):
     readme = pattern.sub(new_section, readme)
 else:
-    # Se non trova, inserisce subito dopo "### Manual" (puoi modificare se vuoi un altro punto preciso)
+    # Se non trova, inserisce subito dopo "### Manual"
     manual_pos = readme.find("### Manual")
     if manual_pos != -1:
         insert_pos = readme.find("\n", manual_pos) + 1
@@ -70,5 +59,13 @@ else:
 
 with open("README.md", "w", encoding="utf-8") as f:
     f.write(readme)
+
+# DEBUG dopo le definizioni
+print("DEBUG: Current working directory:", os.getcwd())
+print("DEBUG: lpak files:", os.listdir("lpak"))
+print("DEBUG: Results table:", results)
+print("DEBUG: Markdown table:\n", table_md)
+print("DEBUG: README contains '### Trick: Change language':", bool(pattern.search(readme)))
+print("DEBUG: README length after:", len(readme))
 
 print("✅ README.md aggiornato con la tabella di copertura delle lingue nella posizione corretta")
