@@ -70,7 +70,7 @@ appimages installation path|AppImage kurulum yolu
 change appimage path|AppImage yolunu değiştir
 select a folder|Bir klasör seç
 confirm change|Değişikliği onayla
-attenction this action will clear existing appimages dataset|UYARI!!!! Bu işlem AppImage veri setini silecektir, bu da Arch Mağaza üzerinden artık bunları kaldıramayacağınız veya güncelleyemeyeceğiniz anlamına gelir. Önce hepsini kaldırmanızı ve ardından dizini değiştirdikten sonra yeniden kurmanızı öneririm. Devam edilsin mi?
+attenction this action will clear existing appimages dataset|UYARI!!!! Dikkat: Bu işlem mevcut appimages veri kümesini silecektir.
 changed|Değiştirildi!
 install appimage|AppImage kur
 aur method|AUR yöntemi
@@ -132,7 +132,7 @@ aur_url|AUR URL
 first submit|İlk gönderim
 keywords|Anahtar kelimeler
 last modified|Son değiştirilme
-popularity|Popülerlik
+popularity|Popülerite
 votes|Oylar
 outdated|Güncel değil
 
