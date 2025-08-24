@@ -87,7 +87,7 @@ exit|Exit
 installed packages|Installed packages
 removal in progress|Removal in progress
 confirm changes|Confirm changes
-version|Versione
+version|Version
 updated settings|Updated settings
 more info about|More informations about
 architecture|Architecture
@@ -97,7 +97,7 @@ group|Group
 provides|Provides
 dependencies|Dependencies
 optional dependencies|Optional dependencies
-conflict|Conflicr
+conflict|Conflicts
 replaces|Replaces
 download size|Download size
 creation date|Creation date
@@ -122,10 +122,10 @@ date|Date
 manage installation methods|Manage installation methods
 installed|Installed
 not installed|Not installed
-status|Stato
-installation method|Metodo di installazione
-instructions|Istruzioni
-search for flatpak in the store and install it|Cerca nello store flatpak e installalo
+status|Status
+installation method|Installation method
+instructions|Instructions
+search for flatpak in the store and install it|Search flatpak in the store and install it
 make dependencies|Make dependencies
 dependencies control|Dependencies control
 aur_url|Aur url
