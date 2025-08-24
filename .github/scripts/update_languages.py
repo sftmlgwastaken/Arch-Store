@@ -5,7 +5,6 @@ BASE = "lpak/English.lpak"
 FILES = [f for f in os.listdir("lpak") if f.endswith(".lpak") and f != "English.lpak"]
 
 def load_file(path):
-    """Carica un file .lpak in un dizionario key->valore."""
     data = {}
     with open(path, encoding="utf-8") as f:
         for line in f:
@@ -20,10 +19,7 @@ results = {}
 for fname in FILES:
     other = load_file(os.path.join("lpak", fname))
     total = len(english)
-    diff = sum(
-        1 for k, v in english.items()
-        if k in other and other[k] != v
-    )
+    diff = sum(1 for k, v in english.items() if k in other and other[k] != v)
     percent = round((diff / total) * 100, 2) if total else 0
     results[fname.replace(".lpak", "")] = percent
 
@@ -31,10 +27,9 @@ for fname in FILES:
 table = ["| Language | Coverage |", "|----------|----------|"]
 for lang, perc in sorted(results.items()):
     table.append(f"| {lang} | {perc}% |")
-
 table_md = "\n".join(table)
 
-# Testo iniziale fisso sotto Languages
+# Testo fisso sotto Languages
 intro = (
     "To change the language, start the program, go to settings and select the language from the list, "
     "then press confirm.  \n"
@@ -44,21 +39,25 @@ intro = (
 
 new_section = f"## Languages\n\n{intro}{table_md}\n"
 
-# Aggiorna README.md
-if os.path.exists("README.md"):
-    with open("README.md", "r", encoding="utf-8") as f:
-        readme = f.read()
-else:
-    readme = ""
+# Legge README
+with open("README.md", "r", encoding="utf-8") as f:
+    readme = f.read()
 
-pattern = re.compile(r"## Languages[\s\S]*?(?=\n## |\Z)", re.MULTILINE)
-
+# Sostituisce la sezione ### Trick: Change language
+pattern = re.compile(r"### Trick: Change language[\s\S]*?(?=\n## |\Z)", re.MULTILINE)
 if pattern.search(readme):
     readme = pattern.sub(new_section, readme)
 else:
-    readme += f"\n\n{new_section}"
+    # Se non trova, inserisce subito dopo "### Manual" (puoi modificare se vuoi un altro punto preciso)
+    manual_pos = readme.find("### Manual")
+    if manual_pos != -1:
+        insert_pos = readme.find("\n", manual_pos) + 1
+        readme = readme[:insert_pos] + "\n" + new_section + readme[insert_pos:]
+    else:
+        # fallback: alla fine
+        readme += "\n\n" + new_section
 
 with open("README.md", "w", encoding="utf-8") as f:
     f.write(readme)
 
-print("✅ README.md aggiornato con le percentuali di traduzione")
+print("✅ README.md aggiornato con la tabella di copertura delle lingue nella posizione corretta")
