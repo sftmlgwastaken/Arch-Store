@@ -12,7 +12,10 @@ md5sums=('SKIP')
 
 package() {
     install -d "$pkgdir/usr/share/arch-store"
-    cp -r "$srcdir/Arch-Store-$pkgver/"* "$pkgdir/usr/share/arch-store/"
+    cp "$srcdir/Arch-Store-$pkgver"/*.py "$pkgdir/usr/share/arch-store/"
+    cp -r "$srcdir/Arch-Store-$pkgver/lpak" "$pkgdir/usr/share/arch-store/"
+    cp -r "$srcdir/Arch-Store-$pkgver/library" "$pkgdir/usr/share/arch-store/"
+    cp -r "$srcdir/Arch-Store-$pkgver/icon.png" "$pkgdir/usr/share/arch-store/"
 
     install -dm1777 "$pkgdir/var/lib/arch-store"
 
