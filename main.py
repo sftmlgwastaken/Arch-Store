@@ -99,8 +99,10 @@ os.makedirs(AppImagesDir, exist_ok=True)
 #END ALLERT
 
 def open_setting():
-    respose = archstoreSettings.open_setting(language, working_dir, avaible_languages)
+    win = archstoreSettings.open_setting(language, working_dir, avaible_languages)
+    win.exec()
     load_config_data()
+    
     
 
 def update_all_apps():
