@@ -59,6 +59,7 @@ If it is written by hand and there is an error, the configuration file will be r
 |----------|----------|
 | Español | 94.89% |
 | Euskera | 81.02% |
+| Français | 90.51% |
 | Italiano | 94.16% |
 | Norsk | 92.7% |
 | Polski | 56.93% |
