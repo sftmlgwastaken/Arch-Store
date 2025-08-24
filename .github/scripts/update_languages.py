@@ -1,5 +1,16 @@
-import os
 import re
+import os
+
+print("DEBUG: Current working directory:", os.getcwd())
+print("DEBUG: lpak files:", os.listdir("lpak"))
+
+# Dopo il calcolo dei risultati
+print("DEBUG: Results table:", results)
+print("DEBUG: Markdown table:\n", table_md)
+
+# Dopo aver letto README
+print("DEBUG: README contains '### Trick: Change language':", bool(pattern.search(readme)))
+print("DEBUG: README length before:", len(readme))
 
 BASE = "lpak/English.lpak"
 FILES = [f for f in os.listdir("lpak") if f.endswith(".lpak") and f != "English.lpak"]
