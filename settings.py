@@ -115,7 +115,7 @@ def open_setting(language, working_dir, avaible_languages):
         load_config_data(working_dir, avaible_languages, language)
         show_allert(lpak.get("restart required", language), lpak.get("please restart to apply the changes", language))  
 
-    settings_page = pq.QWidget()
+    settings_page = pq.QDialog()
     settings_page.setWindowTitle(lpak.get("arch store settings", language))
     settings_page.setGeometry(0, 0, 900, 600)   
     layout = pq.QGridLayout(settings_page)    
@@ -217,3 +217,5 @@ def open_setting(language, working_dir, avaible_languages):
     layout.setRowStretch(layout.rowCount(), 1)
 
     settings_page.show()
+
+    return settings_page

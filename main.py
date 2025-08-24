@@ -20,7 +20,7 @@ from more_informations import show as show_more_informations
 from manage_installed_method import show_window as show_installed_method
 
 #fast access variables
-avaible_languages = ["Italiano", "English", "Español", "Română", "Polski", "Norsk"]
+avaible_languages= ["English", "Español", "Italiano", "Norsk", "Polski", "Română"]
 
 #Base variables
 install_pacman_packages=[]
@@ -99,8 +99,10 @@ os.makedirs(AppImagesDir, exist_ok=True)
 #END ALLERT
 
 def open_setting():
-    respose = archstoreSettings.open_setting(language, working_dir, avaible_languages)
+    win = archstoreSettings.open_setting(language, working_dir, avaible_languages)
+    win.exec()
     load_config_data()
+    
     
 
 def update_all_apps():
