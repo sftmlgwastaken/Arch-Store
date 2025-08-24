@@ -1,0 +1,137 @@
+arch store|Arch Store
+search for software|Software suchen
+search|Suchen
+update system|Betriebssystem aktualisieren
+settings|Einstellungen
+i'm looking for|Ich suche
+so you're looking for nothing|Also... du hast gar nichts gesucht, passt das?
+start actions|Aktion ausführen
+an install instance is alredy in progress|Die Installation läuft gerade!
+no pacman install actions|Keine Pacman Installation Aktionen!
+no pacman remove actions|Keine Pacman Entfernung Aktionen!
+no install aur actions|Keine AUR Installation Aktionen!
+no remove aur actions|Keine AUR Entfernung Aktionen!
+no install flatpak actions|Keine Flatpak Installation Aktionen!
+no remove flatpak actions|Keine Flatpak Installation Aktionen!
+installation|Installiere...
+enable|aktivieren
+disable|deaktivieren
+install|installieren
+remove|löschen
+do not install|Nicht installieren
+do not remove|Nicht löschen
+enable disable repo|Aktivieren/deaktivieren repo
+reset settings|Einstellungen zurücksetzen
+arch store settings|Arch Store Einstellungen
+no installation method|Keine Installationmethoden aktivieren, bitte aktiviere zumindest eine in den Einstellungen!
+pacman install|Pacman Installation
+pacman remove|Pacman Deinstallation
+aur install|AUR Installation
+aur remove|AUR Deinstallation
+flatpak install|Flatpak Installation
+flatpak remove|Flatpak Deinstallation
+nothing enable|Nichts aktiviert
+update|Aktualisieren
+start update|Aktualisierung starten
+finished|Fertig!
+language|Sprache
+confirm change language|Spracheinstellungen anwenden
+no program found|Sorry, kein Programm gefunden :-(
+programs|Programm
+description|Beschreibung
+repository|Repositorium
+actions|Aktionen
+made whit heart by Samuobe|Mit Herz von Samuobe erstellt
+github project|GitHub Projekt
+other|Andere
+other options|Andere Optionen
+manage appimages|AppImages verwalten
+no appimages app|Es wurden keine Appimages mit Arch Store installiert
+name|Name
+icon|Symbol
+path|Pfad
+add appimage|AppImage hinzufügen
+select an appimage|AppImage auswählen
+select an icon|Symbol wählen
+illegal caracter|Nicht erlaubte Zeichen
+you can't use the following caracther|Du darfst folgende Zeichen nicht benutzen
+invalid appimage location|AppImage Ort ist nicht korrekt
+the appimage you selected was not found|Das AppImage welches du ausgewählt hast wurde nicht gefunden
+invalid icon location|Symbol Ort ist nicht korrekt
+the icon you selected was not found|Das Symbol du weches du ausgewählt hast wurde nicht gefunden
+app type|App Typ
+confirm installation|Installation bestätigen
+do you want to install it for all users|Möchtest du es für alle Benutzer installieren?
+installation completed|Installation abgeschloßen
+update completed|Update abgeschloßen
+remove completed|Deinstallation completed
+user|Benutzer
+appimages installation path|AppImages Installation Pfad
+change appimage path|Ändere AppImages Pfad
+select a folder|Ordner auswöhlen
+confirm change|Änderung bestätigen
+attenction this action will clear existing appimages dataset|ACHTUNG!!!! Bitte beachten, dass diese aktion wird das AppImage Dataset löschen, es bedeutet, dass du nicht mehr in der Lage sein wirst es über den Arch Store zu Deinstalliaren oder Aktualisieren. Ich empfehle zuerst sie alle zu deinstallieren und dann wieder Neuinstallieren sobald du den Pfad geändert hast. Fortfahren?
+changed|Geändert!
+install appimage|AppImage installieren
+aur method|AUR Methode
+change|Änderung
+attenction|Achtung
+update in progress|Das Update läuft gerade, entspanne dich für ein Momment!
+click to start update|Hier klicken um die Aktualisierung zu starten
+click to start operations|Hier klicken um die Operation zu starten
+install in progress|Installation läuft!
+please restart to apply the changes|Bitte neustarten um die Änderungen anzuwenden
+restart required|Neustart erforderlich
+help|Hilfe
+exit|Beenden
+installed packages|Installierte Pakete
+removal in progress|Deinstallation läuft
+confirm changes|Änderungen bestätigen
+version|Version
+updated settings|Aktualisierte Einstellungen
+more info about|Mehr Informationen über
+architecture|Architektur
+url|Url
+license|Lizenz
+group|Gruppe
+provides|Anbieter
+dependencies|Abhängigkeiten
+optional dependencies|Optionale Abhängigkeiten
+conflict|Konflikte
+replaces|Ersetzt
+download size|Download Größe
+creation date|Erstelldatum
+validated by|Validiert von
+required space|Erforderlicher Speicherplatz
+packager|Verpacker
+click to start removal|Start klicken um die Deinstallation zu starten
+start removal|Deinstallation starten
+removal|Deinstallation
+id|ID
+ref|Ref
+branch|Branch
+origin|Ursprung
+collection|Kollektion
+installed size|Installierte Größe
+runtime|Laufzeit
+sdk|Sdk
+commit|Commit
+parent|Parent
+subject|Thema
+date|Datum
+manage installation methods|Installationsmethoden verwalten
+installed|Installiert
+not installed|Nicht installiert
+status|Status
+installation method|Installationsmethode
+instructions|Anleitung
+search for flatpak in the store and install it|Flatpak im Store suchen und installiernen
+make dependencies|Abhängigkeiten erstellen
+dependencies control|Abhändigkeiten kontrollieren
+aur_url|Aur Url
+first submit|Erster Submit
+keywords|Schlüsselwörter
+last modified|Letztens bearbeitet
+popularity|Popularität
+votes|Stimmen
+outdated|Veraltet
