@@ -12,7 +12,8 @@ if [[ "$action" == "1" ]]; then
     cd arch-store-install
 
     PYTHON_PATH=$(which python3)
-    clear
+    echo 
+    echo
     read -p "Install the stable version? (y/n): " choice
 
     if [[ "$choice" =~ ^[Yy]$ ]]; then
@@ -34,6 +35,8 @@ if [[ "$action" == "1" ]]; then
     rm -rf arch-store-install
 
 elif [[ "$action" == "2" ]]; then
+    echo
+    echo
     echo "Uninstalling Arch-Store..."
     sudo pacman -Rns arch-store
     sudo pacman -Rns arch-store-git
