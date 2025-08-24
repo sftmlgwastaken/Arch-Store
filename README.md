@@ -62,7 +62,7 @@ If it is written by hand and there is an error, the configuration file will be r
 | Norsk | 64.96% |
 | Polski | 56.93% |
 | Română | 62.04% |
-| Turkish | 63.5% |
+| Turkish | 64.23% |
 
 ## How to use
 It is easy to use, with three main screens.
