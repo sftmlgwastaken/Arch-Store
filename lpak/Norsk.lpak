@@ -95,8 +95,8 @@ url|URL
 license|Lisens
 group|Gruppe
 provides|Provides
-dependencies|Dependencies
-optional dependencies|Valgfrie dependencies
+dependencies|Avhengigheter
+optional dependencies|Valgfrie avhengigheter
 conflict|Konflikt
 replaces|Erstatter
 download size|Nedlastingsstørrelse
@@ -126,8 +126,8 @@ status|Status
 installation method|Installasjonsmetode
 instructions|Instruksjoner
 search for flatpak in the store and install it|Søk etter flatpak i butikken og installer det
-make dependencies|Make dependencies
-dependencies control|Dependencies control
+make dependencies|Byggavhengigheter
+dependencies control|Avhengighetskontroll
 aur_url|AUR-URL
 first submit|Første innsending
 keywords|Nøkkelord
