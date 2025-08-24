@@ -23,9 +23,9 @@ jobs:
       - name: Run translation update script
         run: python .github/scripts/update_languages.py
 
-      - name: Commit files
-        uses: stefanzweifel/git-auto-commit-action@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
         with:
-          commit_message: Update translation coverage table
-          branch: main
-          file_pattern: README.md
+          token: ${{ secrets.GITHUB_TOKEN }}
+          persist-credentials: false
+
