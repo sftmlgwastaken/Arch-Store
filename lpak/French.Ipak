@@ -1,0 +1,137 @@
+arch store|Arch store
+search for software|Recherche de logiciels
+search|Recherche
+update system|Mise à jour du système
+settings|Paramètres
+i'm looking for|Je recherche
+so you're looking for nothing|Vous n'avez rien cherché, est-ce que cela vous va?
+start actions|Débuter les actions
+an install instance is alredy in progress|Une installation est déjà en cours
+no pacman install actions|Aucune action d'installation avec pacman!
+no pacman remove actions|Aucune action de désinstallation avec pacman!
+no install aur actions|Aucune action d'installation avec le AUR!
+no remove aur actions|Aucune action de désinstallation avec le AUR!
+no install flatpak actions|Aucune action d'installation avec flatpak!
+no remove flatpak actions|Aucune action de désinstallation avec flatpak!
+installation|Installation...
+enable|Activer
+disable|Désactiver
+install|Installer
+remove|Désinstaller
+do not install|Ne pas installer
+do not remove|Ne pas désinstaller
+enable disable repo|Activer/Désactiver le dépot
+reset settings|Réinitialiser les paramètres
+arch store settings|Paramètres du Arch Store
+no installation method|Aucune méthode d'installation n'est activée, veuillez en activer au moins une dans les paramètres!
+pacman install|Installations avec Pacman 
+pacman remove|Désinstallations avec Pacman
+aur install|Installations avec le AUR
+aur remove|Désinstallations avec le AUR
+flatpak install|Installations avec Flatpak
+flatpak remove|Désinstallations avec Flatpak
+nothing enable|Rien n'est activé
+update|Mettre à jour
+start update|Débuter la mise à jour
+finished|Terminé!
+language|Langue
+confirm change language|Appliquer la langue
+no program found|Désolé, aucun logiciel n'a été trouvé :-(
+programs|Logiciels
+description|Description
+repository|Dépôt
+actions|Actions
+made whit heart by Samuobe|Développé avec amour par Samuobe
+github project|Projet sur GitHub
+other|Autre
+other options|Autres options
+manage appimages|Gérer les AppImages
+no appimages app|Il n'y a aucun AppImage d'installé via Arch Store
+name|Nom
+icon|Icône
+path|Chemin
+add appimage|Ajouter un AppImage
+select an appimage|Séléctionner un AppImage
+select an icon|Séléctionner une iĉone
+illegal caracter|Caractère illégal
+you can't use the following caracther|Vous ne pouvez pas utiliser les caractères suivants
+invalid appimage location|Emplacement de l'AppImage invalide
+the appimage you selected was not found|Le AppImage séléctionné n'a pas été trouvé
+invalid icon location|Emplacement de l'icône invalide
+the icon you selected was not found|L'icône séléctionnée n'a pas été trouvée
+app type|Type d'application
+confirm installation|Confirmer l'installation
+do you want to install it for all users|Voulez-vous l'installer pour tous les utilisateurs?
+installation completed|Installation terminée
+update completed|Mise à jour terminée
+remove completed|Désinstallation terminée
+user|Utilisateur
+appimages installation path|Chemin d'installation des AppImages
+change appimage path|Changer le chemin d'installation des AppImages
+select a folder|Choisir un dossier
+confirm change|Confirmer le changement
+attenction this action will clear existing appimages dataset|Attention!!!! Veuillez noter que cette action effacera le dataset des AppImages, ce qui veut dire que vous serez dans l'incapacité de désinstaller ou de mettre à jour les AppImages depuis le Arch Store. Il est recommandé de déinsinstaller tous les AppImages puis de les réinstaller une fois ce changement effectué. Procéder?
+changed|Chemin changé!
+install appimage|Installer un AppImage
+aur method|Méthode AUR
+change|Changer
+attenction|Attention
+update in progress|Mise à jour en cours, veuillez patienter un moment!
+click to start update|Cliquer pour débuter la mise à jour
+click to start operations|Cliquer pour débuter les opérations
+install in progress|Installation en cours!
+please restart to apply the changes|Veuillez redémarrer pour appliquer les changements
+restart required|Redémarrage requis
+help|Aide
+exit|Quitter
+installed packages|Paquets installés
+removal in progress|Désinstallation en cours
+confirm changes|Confirmer les changements
+version|Version
+updated settings|Paramètres mis à jour
+more info about|Informations additionnelles
+architecture|Architecture
+url|URL
+license|Licence
+group|Groupe
+provides|Fournit
+dependencies|Dépendances
+optional dependencies|Dépendances optionnelles
+conflict|Conflits
+replaces|Remplace
+download size|Taille du téléchargement
+creation date|Date de création
+validated by|Validé par
+required space|Espace requis
+packager|Emballeur
+click to start removal|Cliquer pour débuter la désinstallation
+start removal|Débuter la désinstallation
+removal|Désinstallation
+id|ID
+ref|Réf
+branch|Branche
+origin|Origine
+collection|Collection
+installed size|Taille installée
+runtime|Runtime
+sdk|SDK
+commit|Commit
+parent|Parent
+subject|Sujet
+date|Date
+manage installation methods|Gérer les méthodes d'installation
+installed|Installé
+not installed|Non installé
+status|Statut
+installation method|Méthode d'installation
+instructions|Instructions
+search for flatpak in the store and install it|Rechercher flatpak dans le Store et l'installer
+make dependencies|Dépendances make 
+dependencies control|Contrôle des dépendances
+aur_url|URL de l'AUR
+first submit|Date de soumission
+keywords|Mots-clés
+last modified|Modifié
+popularity|Popularité
+votes|Votes
+outdated|Obsolète
