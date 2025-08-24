@@ -1,0 +1,127 @@
+arch store|Arch Denda
+search for software|Softwarea bilatu
+search|Bilatu
+update system|Sistema eguneratu
+settings|Ezarpenak
+i'm looking for|Bila nabil
+so you're looking for nothing|Orduan... ez duzu ezer bilatu, zuregatik ondo?
+start actions|Hasi eragiketak
+an install instance is alredy in progress|Instalazio-instantzia abian da
+no pacman install actions|Pacman instalazio eragiketarik ez!
+no pacman remove actions|Pacman ezabaketarik ez!
+no install aur actions|AUR instalazio eragiketarik ez!
+no remove aur actions|AUR ezabaketa eragiketarik ez!
+no install flatpak actions|Flatpak instalazio eragiketarik ez!
+no remove flatpak actions|Flatpak ezabaketa eragiketarik ez!
+installation|Instalatzen...
+enable|Gaitu
+disable|Desgaitu
+install|Instalatu
+remove|Desinstalatu
+do not install|Ez instalatu
+do not remove|Ez ezabatu
+enable disable repo|Gaitu/Desgaitu biltegia
+reset settings|Ezarpenak berrabiarazi
+arch store settings|Arch Dendaren ezarpenak
+no installation method|Ez da instalazio modurik gaitu, mesedez, gaitu moduren bat ezarepenetan!
+pacman install|Pacman instalazioak
+pacman remove|Pacman ezabaketak
+aur install|AUR instalazioak
+aur remove|AUR ezabaketak
+flatpak install|Flatpak instalazioak
+flatpak remove|Flatpak ezabaketak
+nothing enable|Ez da ezer gaitu
+update|Eguneratu
+start update|Eguneraketa hasi
+finished|Amaituta!
+language|Hizkuntza
+confirm change language|Hizkuntza aldaketa aplikatu
+no program found|Sentitzen dugu, ez da programarik aurkitu :-(
+programs|Programak
+description|Deskribapena
+repository|Biltegia
+actions|Eragiketak
+made whit heart by Samuobe|Samuobek maitasunez egina
+github project|GitHub proiektua
+other|Bestea
+other options|Beste aukerak
+manage appimages|AppImage-ak kudeatu
+no appimages app|Ez da AppImage-rik instalatu Arch Dendarekin
+name|Izena
+icon|Ikonoa
+path|Bidea
+add appimage|AppImage-a gehitu
+select an appimage|AppImage-a aukeratu
+select an icon|Ikonoa aukeratu 
+illegal caracter|Illegal caracter
+you can't use the following caracther|Ezin dituzu honako karaktereak erabili
+invalid appimage location|Baliogabeko AppImage-aren kokapena
+the appimage you selected was not found|Aukeratutako AppImage-a ez da aurkitu
+invalid icon location|Baliogabeko ikonoaren kokapena
+the icon you selected was not found|Aukeratutako ikonoa ez da aurkitu
+app type|App mota
+confirm installation|Instalazioa baieztatu
+do you want to install it for all users|Erabiltazile guztientzat instalatzea nahi duzu?
+installation completed|Instalazioa amaituta
+update completed|Eguneraketa amaituta
+remove completed|Ezabaketa amaituta
+user|Erabiltzailea
+appimages installation path|AppImage-en instalazio bidea
+change appimage path|AppImage-en bidea aldatu
+select a folder|Karpeta aukeratu
+confirm change|Aldaketa baieztatu
+attenction this action will clear existing appimages dataset|ERNE!!!! Kontuan izan ekintza horrek AppImage-aren datu-multzoa ezabatuko duela, eta horrek esan nahi du ezingo direla Arch dendatik desinstalatu edo eguneratu. Gomendatzen da lehendabizi guztiak desinstalatzea eta gero berriro instalatzea direktorioa aldatu ondoren. Jarraitu nahi duzu?
+install appimage|AppImage-a instalatu
+aur method|AUR modua
+change|Aldatu
+attenction|Attencion
+update in progress|Eguneraketa martxan da, lasai hartu eta itxaron une bat!
+click to start update|Klik egin eguneraketa hasteko
+click to start operations|Klik egin eragiketak hasteko
+install in progress|Instalazioa martxan da!
+please restart to apply the changes|Mesedez, aldaketak aplikatzeko berrabiarazi
+restart required|Beharrezkoa da berrabiaraztea
+help|Laguntza
+exit|Exit
+installed packages|Instalatutako paketeak
+removal in progress|Ezabaketa martxan
+confirm changes|Aldaketak baieztatu
+version|Bertsioa
+updated settings|Eguneratutako ezarpenak
+more info about|Informazio gehiago
+architecture|Arkitektura
+url|Url-a
+license|Lizentzia
+group|Taldea
+provides|Provides
+dependencies|Dependentziak
+optional dependencies|Optional dependencies
+conflict|Conflicr
+replaces|Replaces
+download size|Download size
+creation date|Sortze-data
+validated by|Validated by
+required space|Required space
+packager|Packager
+click to start removal|Klik egin ezabaketa hasteko
+start removal|Hasi ezabaketa
+removal|Removal
+id|ID
+ref|Ref
+branch|Branch
+origin|Origin
+collection|Kolekzioa
+installed size|Installed size
+runtime|Runtime
+sdk|Sdk
+commit|Commit
+parent|Parent
+subject|Gaia
+date|Data
+manage installation methods|Instalazio moduak kudeatu
+installed|Instalatuta
+not installed|Inslatu gabe
+status|Esatusa
+installation method|Instalazio modua
+instructions|Argibideak
+search for flatpak in the store and install it|AppImage-a bilatu eta instalatu
