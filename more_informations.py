@@ -12,6 +12,9 @@ def show(language, name, repo, aur_method):
     more_info_window.setGeometry(0,0,900,600)
     more_info_window.setWindowIcon(QIcon("icon.png"))
     layout=pq.QGridLayout(more_info_window)
+
+    def open_link(link):
+        webbrowser.open(link)
     
 
     if repo == "aur":
@@ -91,7 +94,7 @@ def show(language, name, repo, aur_method):
             name_label = pq.QLabel(name)
             version_label = pq.QLabel(version)
             description_label = pq.QLabel(description)
-            url_label = pq.QLabel(url)
+            url_button = pq.QPushButton(url)
             licenseType_label = pq.QLabel(license_type)
             group_label = pq.QLabel(group)
             provides_label = pq.QLabel(provides)
@@ -101,7 +104,7 @@ def show(language, name, repo, aur_method):
             dependenciesControl_label = pq.QLabel(dependencies_control)
             conflict_label = pq.QLabel(conflict)
             replaces_label = pq.QLabel(replaces)
-            aurUrl_label = pq.QLabel(aur_url)
+            aurUrl_button = pq.QPushButton(aur_url)
             firstSubmit_label = pq.QLabel(first_submit)
             keywords_label = pq.QLabel(keywords)
             lastModified_label = pq.QLabel(last_modified)
@@ -110,6 +113,8 @@ def show(language, name, repo, aur_method):
             votes_label = pq.QLabel(votes)
             outdated_label = pq.QLabel(outdated)
 
+            url_button.pressed.connect(lambda: open_link(url))
+            aurUrl_button.pressed.connect(lambda: open_link(aur_url))
             # Funzione helper
             row = 0
             def add_row(attr_label, value_label):
@@ -128,7 +133,7 @@ def show(language, name, repo, aur_method):
             add_row(attribute_name_label, name_label)
             add_row(attribute_version_label, version_label)
             add_row(attribute_description_label, description_label)
-            add_row(attribute_url_label, url_label)
+            add_row(attribute_url_label, url_button)
             add_row(attribute_license_label, licenseType_label)
             add_row(attribute_group_label, group_label)
             add_row(attribute_provides_label, provides_label)
@@ -138,7 +143,7 @@ def show(language, name, repo, aur_method):
             add_row(attribute_dependenciesControl_label, dependenciesControl_label)
             add_row(attribute_conflict_label, conflict_label)
             add_row(attribute_replaces_label, replaces_label)
-            add_row(attribute_aurUrl_label, aurUrl_label)
+            add_row(attribute_aurUrl_label, aurUrl_button)
             add_row(attribute_firstSubmit_label, firstSubmit_label)
             add_row(attribute_keywords_label, keywords_label)
             add_row(attribute_lastModified_label, lastModified_label)
@@ -206,8 +211,8 @@ def show(language, name, repo, aur_method):
             name_label = pq.QLabel(name)
             version_label = pq.QLabel(version)
             description_label = pq.QLabel(description)
-            url_label = pq.QLabel(url)
-            aurUrl_label = pq.QLabel(aur_url)
+            url_button = pq.QPushButton(url)
+            aurUrl_button = pq.QPushButton(aur_url)
             group_label = pq.QLabel(group)
             licenseType_label = pq.QLabel(license_type)
             provides_label = pq.QLabel(provides)
@@ -222,6 +227,9 @@ def show(language, name, repo, aur_method):
             creationDate_label = pq.QLabel(creation_date)
             lastModified_label = pq.QLabel(last_modified)
             outdated_label = pq.QLabel(outdated)
+
+            url_button.pressed.connect(lambda: open_link(url))
+            aurUrl_button.pressed.connect(lambda: open_link(aur_url))
 
             row = 0
             def add_row(attr_label, value_label):
@@ -239,8 +247,8 @@ def show(language, name, repo, aur_method):
             add_row(attribute_name_label, name_label)
             add_row(attribute_version_label, version_label)
             add_row(attribute_description_label, description_label)
-            add_row(attribute_url_label, url_label)
-            add_row(attribute_aurUrl_label, aurUrl_label)
+            add_row(attribute_url_label, url_button)
+            add_row(attribute_aurUrl_label, aurUrl_button)
             add_row(attribute_group_label, group_label)
             add_row(attribute_license_label, licenseType_label)
             add_row(attribute_provides_label, provides_label)
@@ -255,8 +263,7 @@ def show(language, name, repo, aur_method):
             add_row(attribute_creationDate_label, creationDate_label)
             add_row(attribute_lastModified_label, lastModified_label)
             add_row(attribute_outdated_label, outdated_label)
-
-        
+ 
     elif repo == "flathub":
         data = os.popen(f"flatpak remote-info flathub {name}").read()
         data_list = data.split("\n")
@@ -445,7 +452,7 @@ def show(language, name, repo, aur_method):
         version_label = pq.QLabel(clear_data[2])
         description_label = pq.QLabel(clear_data[3])
         arch_label = pq.QLabel(clear_data[4])
-        url_label = pq.QLabel(clear_data[5])
+        url_button = pq.QPushButton(clear_data[5])
         licenseType_label = pq.QLabel(clear_data[6])
         group_label = pq.QLabel(clear_data[7])
         provides_label = pq.QLabel(clear_data[8])
@@ -459,7 +466,7 @@ def show(language, name, repo, aur_method):
         creationDate_label = pq.QLabel(clear_data[16])
         validatedBy_label = pq.QLabel(clear_data[17])    
 
-        
+        url_button.pressed.connect(lambda: open_link(url))
 
         # Inserimento nel layout
         row = 0
@@ -480,7 +487,7 @@ def show(language, name, repo, aur_method):
         add_row(attribute_version_label, version_label)
         add_row(attribute_description_label, description_label)
         add_row(attribute_arch_label, arch_label)
-        add_row(attribute_url_label, url_label)
+        add_row(attribute_url_label, url_button)
         add_row(attribute_license_label, licenseType_label)
         add_row(attribute_group_label, group_label)
         add_row(attribute_provides_label, provides_label)
