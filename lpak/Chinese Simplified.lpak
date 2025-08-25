@@ -1,0 +1,137 @@
+arch store|Arch store
+search for software|搜索
+search|搜索
+update system|更新
+settings|设置
+i'm looking for|我在找...
+so you're looking for nothing|所以……你什么都没搜，对你来说挺好的？
+start actions|开始操作
+an install instance is alredy in progress|安装实例已经在进行中
+no pacman install actions|没有 pacman 安装操作！
+no pacman remove actions|没有 pacman 卸载操作！
+no install aur actions|没有 AUR 安装操作！
+no remove aur actions|没有 AUR 卸载操作！
+no install flatpak actions|没有 Flatpak 安装操作！
+no remove flatpak actions|没有 Flatpak 卸载操作！
+installation|安装中...
+enable|启用
+disable|禁用
+install|安装
+remove|卸载
+do not install|不安装
+do not remove|不卸载
+enable disable repo|启用/禁用仓库
+reset settings|重置设置
+arch store settings|Arch Store 设置
+no installation method|未启用安装方法，请至少在设置中启用一种！
+pacman install|Pacman 安装
+pacman remove|Pacman 卸载
+aur install|AUR 安装
+aur remove|AUR 卸载
+flatpak install|Flatpak 安装
+flatpak remove|Flatpak 卸载
+nothing enable|Nothing enabled
+update|更新
+start update|开始更新
+finished|完成！
+language|语言
+confirm change language|应用语言
+no program found|抱歉，未找到程序 :-(
+programs|程序
+description|描述
+repository|软件源
+actions|操作
+made whit heart by Samuobe|由 Samuobe 精心制作
+github project|GitHub 项目
+other|其他
+other options|其他选项
+manage appimages|管理 AppImages
+no appimages app|未安装 AppImages
+name|名称
+icon|图标
+path|路径
+add appimage|添加 AppImage
+select an appimage|选择一个 AppImage
+select an icon|选择一个图标
+illegal caracter|非法字符
+you can't use the following caracther|您不能使用以下字符
+invalid appimage location|无效的 AppImage 位置
+the appimage you selected was not found|未找到您选择的 AppImage
+invalid icon location|无效的图标位置
+the icon you selected was not found|未找到您选择的图标
+app type|应用类型
+confirm installation|确认安装
+do you want to install it for all users|您想为所有用户安装吗？
+installation completed|安装完成
+update completed|更新完成
+remove completed|卸载完成
+user|用户
+appimages installation path|AppImages 安装路径
+change appimage path|更改 AppImages 路径
+select a folder|选择一个文件夹
+confirm change|确认更改
+attenction this action will clear existing appimages dataset|警告!!!! 请注意，此操作将删除 AppImage 数据集，这意味着您将无法再从 Arch Store 卸载或更新它们。我建议您先卸载所有内容，然后在更改目录后重新安装它们。继续吗？
+changed|已更改!
+install appimage|安装 AppImage
+aur method|AUR 方法
+change|更改
+attenction|注意
+update in progress|更新中，请稍候片刻！
+click to start update|点击开始更新
+click to start operations|点击开始操作
+install in progress|安装中...
+please restart to apply the changes|请重启以应用更改
+restart required|需要重启
+help|帮助
+exit|退出
+installed packages|已安装的软件包
+removal in progress|卸载中
+confirm changes|确认更改
+version|版本
+updated settings|已更新设置
+more info about|更多信息
+architecture|架构
+url|网址
+license|许可证
+group|组
+provides|提供
+dependencies|依赖
+optional dependencies|可选依赖
+conflict|冲突
+replaces|替代
+download size|下载大小
+creation date|创建日期
+validated by|验证者
+required space|所需空间
+packager|打包者
+click to start removal|点击开始卸载
+start removal|开始卸载
+removal|卸载
+id|ID
+ref|Ref
+branch|分支
+origin|来源
+collection|集合
+installed size|已安装大小
+runtime|运行时
+sdk|软件开发工具包
+commit|提交
+parent|父级
+subject|主题
+date|日期
+manage installation methods|管理安装方法
+installed|已安装
+not installed|未安装
+status|状态
+installation method|安装方法
+instructions|说明
+search for flatpak in the store and install it|在商店中搜索 flatpak 并安装
+make dependencies|生成依赖项
+dependencies control|依赖项控制
+aur_url|AUR URL
+first submit|首次提交
+keywords|关键字
+last modified|最后修改
+popularity|受欢迎程度
+votes|投票
+outdated|过时
