@@ -42,7 +42,7 @@ description|Opis
 repository|Repozytorium
 actions|Akcje
 made whit heart by Samuobe|Stworzone z sercem przez Samuobe
-github project|Project GitHub
+github project|Projekt GitHub
 other|Inne
 other options|Inne opcje
 manage obraz aplikacjis|Zarządzaj obrazami aplikacji
@@ -86,52 +86,52 @@ help|Pomoc
 exit|Wyjdź
 installed packages|Zainstalowane pakiety
 remotion in progress|Proces w trakcie
-confirm changes|Confirm changes
-version|Version
-updated settings|Updated settings
-more info about|More informations about
-architecture|Architecture
+confirm changes|Potwierdz zmiany
+version|Wersja
+updated settings|Zaktualizowano ustawienia
+more info about|Więcej imforacji o
+architecture|Architektura
 url|Url
-license|License
-group|Group
-provides|Provides
-dependencies|Dependencies
-optional dependencies|Optional dependencies
-conflict|Conflicr
-replaces|Replaces
-download size|Download size
-creation date|Creation date
-validated by|Validated by
-required space|Required space
-packager|Packager
-click to start removal|Click to start removal
-start removal|Start removal
-removal|Removal
+license|Licencja
+group|Grupa
+provides|Dostawca
+dependencies|Zależności
+optional dependencies|Opcjonalne zależności
+conflict|Konflikt
+replaces|Zastępuje
+download size|Rozmiar pobierania
+creation date|Data stworzenia
+validated by|Sprawdzone przez
+required space|Wymagane miejsce
+packager|Pakujący
+click to start removal|Kliknij aby rozpocząć usuwanie
+start removal|Rozpocznij usuwanie
+removal|Usuwanie
 id|ID
 ref|Ref
-branch|Branch
-origin|Origin
-collection|Collection
-installed size|Installed size
-runtime|Runtime
+branch|Gałąź
+origin|Pochodzenie
+collection|Kolekcja
+installed size|Rozmiar instalacji
+runtime|Czas działania
 sdk|Sdk
-commit|Commit
-parent|Parent
-subject|Subject
-date|Date
-manage installation methods|Manage installation methods
-installed|Installed
-not installed|Not installed
+commit|Zgłoszenie
+parent|Rodzic
+subject|Temat
+date|Data
+manage installation methods|Zarządzaj metodami instalacji
+installed|Zainstalowano
+not installed|Nie zainstalowano
 status|Status
-installation method|Installation method
-instructions|Instructions
-search for flatpak in the store and install it|Search for flatpak in the store and install it
-make dependencies|Make dependencies
-dependencies control|Dependencies control
+installation method|Metoda instalacji
+instructions|Instrukcje
+search for flatpak in the store and install it|Szukaj flatpaka w sklepie i zainstaluj go
+make dependencies|Stwórz zależności
+dependencies control|Kontrola zależnościami
 aur_url|Aur url
-first submit|First submit
-keywords|Keywords
-last modified|Last modified
-popularity|Popularity
-votes|Votes
-outdated|Outdated
+first submit|Pierwsze zamieszczenie
+keywords|Słowa klucze
+last modified|Ostatnio zmodyfikowano
+popularity|Popularność
+votes|Głosy
+outdated|Przestarzały
