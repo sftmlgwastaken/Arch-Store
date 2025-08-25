@@ -57,6 +57,7 @@ If it is written by hand and there is an error, the configuration file will be r
 
 | Language | Coverage |
 |----------|----------|
+| Chinese Simplified | 97.08% |
 | Deutsch | 92.7% |
 | Español | 94.89% |
 | Euskera | 81.02% |
