@@ -64,7 +64,7 @@ If it is written by hand and there is an error, the configuration file will be r
 | Français | 90.51% |
 | Italiano | 94.89% |
 | Norsk | 92.7% |
-| Polski | 56.93% |
+| Polski | 86.86% |
 | Română | 62.04% |
 | Türkçe | 98.54% |
 
