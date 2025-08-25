@@ -1,0 +1,136 @@
+arch store|Arch parduotuvė
+search for software|Ieškok programų
+search|Paieška
+update system|Atnaujink sistemą
+settings|Parametrai
+i'm looking for|Aš ieškau
+so you're looking for nothing|Tai, tu žiūri į nieką
+start actions|Pradžios veiksmai
+an install instance is alredy in progress|Instaliacija progrese
+no pacman install actions|Jokios pacman įrašymo
+no install aur actions|Jokios AUR įrašymo
+no remove aur actions|Jokio AUR ištrynimo
+no install flatpak actions|Jokios Flatpak įrašymo
+no remove flatpak actions|Jokio Flatpak ištrynimo
+installation|Įrašymas
+enable|Įjungti
+disable|Išjungti
+install|Įrašyti
+remove|Ištrinti
+do not install|Neįrašyk
+do not remove|Neištrink
+enable disable repo|Įjunk/Išjung repo
+reset settings|Atstatyk parametrus
+arch store settings|Arch parduotuvės parametrai
+no installation method|Jokio įdiegimo metodo, įjunk bent vieną parametruose
+pacman install|Pacman įdiegimas
+pacman remove|Pacman ištrynimas
+aur install|AUR įdiegimas
+aur remove|AUR ištrynimas
+flatpak install|Flatpak įdiegimas
+flatpak remove|Flatpak išdiegimas
+nothing enable|Niekas įjungta
+update|Atnaujink
+start update|Pradėk atnaujinimą
+finished|Pabaigta!
+language|Kalba
+confirm change language|Nustatyk kalbą
+no program found|Ieškojome, bet jokios programos neradome (T﹏T)
+programs|Programos
+description|Aprašas
+repository|Saugykla
+actions|Veiksmai
+made whit heart by Samuobe|Šią parduotuvę Samuobe padarė su meile
+github project|GitHub projektas
+other|Kita
+other options|Kiti parametrai
+manage appimages|Valdyk AppImages
+no appimages app|Neradau appimages įdiegtų su Arch Store
+name|Pavadinimas
+icon|Piktograma
+path|Takas
+add appimage|Pridėk AppImage
+select an appimage|Pasirink AppImage
+select an icon|Pasirink piktogramą
+illegal caracter|Netinkantis simbolis
+you can't use the following caracther|Tu negali naudoti šių simbolių
+invalid appimage location|Negaliojinti AppImage lokacija
+the appimage you selected was not found|Appimage tu pasirinkai nebuvo rastas
+invalid icon location|Netinkama piktogramų lokacija
+the icon you selected was not found|Piktograma, kurią jūs pasirinkote nebuvo rasta
+app type|Programos tipas
+confirm installation|Patvirtink įdiegimą
+do you want to install it for all users|Ar norite įdiegti visiems vartotojams?
+installation completed|Įdiegimas įvykdytas
+update completed|Atnaujinimas įvykdytas
+remove completed|Išdiegimas įvykdytas
+user|Vartotojas
+appimages installation path|AppImages įdiegimo vieta
+change appimage path|Pakeisk AppImage vietą
+select a folder|Pasirink aplankalą
+confirm change|Patvirtink pakeitimą
+attenction this action will clear existing appimages dataset|DĖMESIO!!!!!! Suprask, kad šis veiksmas ištrins AppImage datarinkinį, o tai reiškia, kad tu negalėsi ištrinti, ar atnaujinti juos iš Arch Store. Rekomenduoju visus ištriniti pirma ir tada įdiegti iš naujo, tada kai pakeitei direktoriją. Tęsi?
+changed|Pakeitei!
+install appimage|Įdieg AppImage
+aur method|AUR metodas
+change|Pakeisk
+attenction|Dėmesio
+update in progress|Atnaujinimas progrese...
+click to start update|Paspausk atnaujinimui
+click to start operations|Paspausk operacijoms
+install in progress|Įdiegimas progrese!
+please restart to apply the changes|Perkrauk iš naujo, kad pakeitimai įvyktų
+restart required|Reikalaujamas perkrovimas iš naujo
+help|Pagalba
+exit|Išeik
+installed packages|Įdiegti paketai
+removal in progress|Išdiegimas progrese
+confirm changes|Priimk pakeitimus
+version|Versija
+updated settings|Atnaujinti parametrai
+more info about|Daugiau informacijos apie
+architecture|Architektūra
+url|vienodas išteklių paieškos įrankis (Url)
+license|Licenzija
+group|Grupė
+provides|Duoda
+dependencies|Reikalavimai
+optional dependencies|Nebūtini reikalavimai
+conflict|Konfliktai
+replaces|Pakeičia
+download size|Įdiegimo dydis
+creation date|Kūrimo data
+validated by|Patvirtino
+required space|Reikalaujamas dydis diske
+packager|Pakuotojas
+click to start removal|Paspausk išdiegimui
+start removal|Pradėk išdiegimą
+removal|Išdiegimas
+id|ID
+ref|Ref
+branch|Šaknis
+origin|Kilmė
+collection|Kolekcija
+installed size|Įdiegtas dydis
+runtime|Vykdymo laikas
+sdk|Sdk
+commit|Įpareiguok
+parent|Tėvas
+subject|Tema
+date|Data
+manage installation methods|Valdyk įdiegimo metodus
+installed|Įdiegta
+not installed|Ne įdiegta
+status|Statusas
+installation method|Įdiegimo metodas
+instructions|Instrukcijos
+search for flatpak in the store and install it|Ieškok flatpak pardotuvėje ir įrašyk tai
+make dependencies|Padaryk reikalavimus
+dependencies control|Reikalavimų kontrolė
+aur_url|Aur vienodas išteklių paieškos įrankis (Url)
+first submit|Pirma pateiktis
+keywords|Raktažodžiai
+last modified|Paskutinį kartą redaguota
+popularity|Populiarumas
+votes|Balsai
+outdated|Senesnis
