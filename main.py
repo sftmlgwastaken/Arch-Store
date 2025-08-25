@@ -20,7 +20,7 @@ from more_informations import show as show_more_informations
 from manage_installed_method import show_window as show_installed_method
 
 #fast access variables
-avaible_languages= ["Deutsch", "English", "Español", "Euskera", "Français", "Italiano", "Norsk", "Polski", "Română", "Türkçe"]
+avaible_languages= ["Chinese Simplified", "Deutsch", "English", "Español", "Euskera", "Français", "Italiano", "Norsk", "Polski", "Română", "Türkçe"]
 
 
 #Base variables
