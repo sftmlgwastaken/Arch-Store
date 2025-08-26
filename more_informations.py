@@ -271,40 +271,42 @@ def show(language, name, repo, aur_method):
         data = os.popen(f"flatpak remote-info flathub {name}").read()
         data_list = data.split("\n")
         clear_data = []
-        for data in data_list:
-            if ": " in data:       
-                clear_data.append(data.split(": ")[1])
-            elif "- " in data:    
-                clear_data.append(data.split("- ")[0])
-                clear_data.append(data.split("- ")[1])
-        title = clear_data[0]  
-        flatpak_id = clear_data[1]
-        ref = clear_data[2]
-        arch = clear_data[3]
-        branch = clear_data[4]
-        version = clear_data[5]
-        license_type = clear_data[6]
-        origin = clear_data[7]
-        collection = clear_data[8]
-        installation = clear_data[9]
-        installed_size = clear_data[10]
-        runtime = clear_data[11]
-        sdk = clear_data[12]
-        commit = clear_data[13]
-        parent = clear_data[14]
-        subject = clear_data[15]
-        date = clear_data[16]
 
+        for line in data_list:
+            if ": " in line:
+                clear_data.append(line.split(": ", 1)[1])  # dividi solo una volta
+
+        # Ora mappa i valori come fai tu
+        title = data_list[1].split(" - ")[0].strip() if " - " in data_list[1] else data_list[1].strip()
+        description = data_list[1].split(" - ")[1].strip() if " - " in data_list[1] else ""
+        flatpak_id = clear_data[0]
+        ref = clear_data[1]
+        arch = clear_data[2]
+        branch = clear_data[3]
+        version = clear_data[4]
+        license_type = clear_data[5]
+        collection = clear_data[6]
+        download_size = clear_data[7]
+        installed_size = clear_data[8]
+        runtime = clear_data[9]
+        sdk = clear_data[10]
+        commit = clear_data[11]
+        parent = clear_data[12]
+        subject = clear_data[13]
+        date = clear_data[14]
+
+
+        # Attributi
         attribute_title_label = pq.QLabel(lpak.get("name", language))
+        attribute_description_label = pq.QLabel(lpak.get("description", language))
         attribute_id_label = pq.QLabel(lpak.get("id", language))
         attribute_ref_label = pq.QLabel(lpak.get("ref", language))
         attribute_arch_label = pq.QLabel(lpak.get("architecture", language))
         attribute_branch_label = pq.QLabel(lpak.get("branch", language))
         attribute_version_label = pq.QLabel(lpak.get("version", language))
         attribute_license_label = pq.QLabel(lpak.get("license", language))
-        attribute_origin_label = pq.QLabel(lpak.get("origin", language))
         attribute_collection_label = pq.QLabel(lpak.get("collection", language))
-        attribute_installation_label = pq.QLabel(lpak.get("download size", language))
+        attribute_downloadSize_label = pq.QLabel(lpak.get("download size", language))
         attribute_installedSize_label = pq.QLabel(lpak.get("installed size", language))
         attribute_runtime_label = pq.QLabel(lpak.get("runtime", language))
         attribute_sdk_label = pq.QLabel(lpak.get("sdk", language))
@@ -313,26 +315,27 @@ def show(language, name, repo, aur_method):
         attribute_subject_label = pq.QLabel(lpak.get("subject", language))
         attribute_date_label = pq.QLabel(lpak.get("date", language))
 
+        # Stile uniforme
         for lbl in [
-            attribute_title_label, attribute_id_label, attribute_ref_label,
+            attribute_title_label, attribute_description_label, attribute_id_label, attribute_ref_label,
             attribute_arch_label, attribute_branch_label, attribute_version_label,
-            attribute_license_label, attribute_origin_label, attribute_collection_label,
-            attribute_installation_label, attribute_installedSize_label, attribute_runtime_label,
-            attribute_sdk_label, attribute_commit_label, attribute_parent_label,
-            attribute_subject_label, attribute_date_label
+            attribute_license_label, attribute_collection_label, attribute_downloadSize_label,
+            attribute_installedSize_label, attribute_runtime_label, attribute_sdk_label,
+            attribute_commit_label, attribute_parent_label, attribute_subject_label, attribute_date_label
         ]:
             lbl.setStyleSheet("color: #004080; font: bold 12pt 'Arial'")
 
+        # Valori
         title_label = pq.QLabel(title)
+        description_label = pq.QLabel(description)
         id_label = pq.QLabel(flatpak_id)
         ref_label = pq.QLabel(ref)
         arch_label = pq.QLabel(arch)
         branch_label = pq.QLabel(branch)
         version_label = pq.QLabel(version)
         license_label = pq.QLabel(license_type)
-        origin_label = pq.QLabel(origin)
         collection_label = pq.QLabel(collection)
-        installation_label = pq.QLabel(installation)
+        downloadSize_label = pq.QLabel(download_size)
         installedSize_label = pq.QLabel(installed_size)
         runtime_label = pq.QLabel(runtime)
         sdk_label = pq.QLabel(sdk)
@@ -341,6 +344,7 @@ def show(language, name, repo, aur_method):
         subject_label = pq.QLabel(subject)
         date_label = pq.QLabel(date)
 
+        # Layout
         row = 0
         def add_row(attr_label, value_label):
             global row
@@ -354,15 +358,15 @@ def show(language, name, repo, aur_method):
             row += 1
 
         add_row(attribute_title_label, title_label)
+        add_row(attribute_description_label, description_label)
         add_row(attribute_id_label, id_label)
         add_row(attribute_ref_label, ref_label)
         add_row(attribute_arch_label, arch_label)
         add_row(attribute_branch_label, branch_label)
         add_row(attribute_version_label, version_label)
         add_row(attribute_license_label, license_label)
-        add_row(attribute_origin_label, origin_label)
         add_row(attribute_collection_label, collection_label)
-        add_row(attribute_installation_label, installation_label)
+        add_row(attribute_downloadSize_label, downloadSize_label)
         add_row(attribute_installedSize_label, installedSize_label)
         add_row(attribute_runtime_label, runtime_label)
         add_row(attribute_sdk_label, sdk_label)
@@ -370,6 +374,7 @@ def show(language, name, repo, aur_method):
         add_row(attribute_parent_label, parent_label)
         add_row(attribute_subject_label, subject_label)
         add_row(attribute_date_label, date_label)
+
 
     else:
         name = name.split(" ")[0]
