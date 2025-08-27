@@ -23,7 +23,7 @@ Arch store is an intuitive store for Arch Linux software written in Python!
 ### AUR
 
 It's finally arrived on AUR! There are two packages:
-- ```arch-store```        Monst stable (i hope), it download the latest stable relase
+- ```arch-store```        The most stable one (i hope), it download the latest stable release
 - ```arch-store-git```    It download the latest files from the main branch
 
 ### Automatic script
@@ -37,10 +37,10 @@ Follow the two instructions and... Done! Easy, right?
 ### Manual
 #### Dependencies:
 ##### Arch:
-- QT (Pre-installed in most cases)
+- Qt (Pre-installed in most cases)
 #### Python library:
 - os (pre-installed)
-- PyQT (```pip install PyQt6 --break-system-packages```)
+- PyQt (```pacman -S python-pyqt6```)
 - subprocess (pre-installed)
 - threading (pre-installed)
 - lpak (included in the program download)
