@@ -6,13 +6,13 @@ settings|Einstellungen
 i'm looking for|Ich suche
 so you're looking for nothing|Also... du hast gar nichts gesucht, passt das?
 start actions|Aktion ausführen
-an install instance is alredy in progress|Die Installation läuft gerade!
-no pacman install actions|Keine Pacman Installation Aktionen!
-no pacman remove actions|Keine Pacman Entfernung Aktionen!
-no install aur actions|Keine AUR Installation Aktionen!
-no remove aur actions|Keine AUR Entfernung Aktionen!
-no install flatpak actions|Keine Flatpak Installation Aktionen!
-no remove flatpak actions|Keine Flatpak Installation Aktionen!
+an install instance is alredy in progress|Die Installation läuft bereits!
+no pacman install actions|Keine Pacman Installations-Aktionen!
+no pacman remove actions|Keine Pacman Entfernungs-Aktionen!
+no install aur actions|Keine AUR Installations-Aktionen!
+no remove aur actions|Keine AUR Entfernungs-Aktionen!
+no install flatpak actions|Keine Flatpak Installations-Aktionen!
+no remove flatpak actions|Keine Flatpak Entfernungs-Aktionen!
 installation|Installiere...
 enable|aktivieren
 disable|deaktivieren
@@ -20,10 +20,10 @@ install|installieren
 remove|löschen
 do not install|Nicht installieren
 do not remove|Nicht löschen
-enable disable repo|Aktivieren/deaktivieren repo
+enable disable repo|Repo aktivieren/deaktivieren
 reset settings|Einstellungen zurücksetzen
 arch store settings|Arch Store Einstellungen
-no installation method|Keine Installationmethoden aktivieren, bitte aktiviere zumindest eine in den Einstellungen!
+no installation method|Keine Installationsmethoden aktiviert, bitte aktiviere zumindest eine in den Einstellungen!
 pacman install|Pacman Installation
 pacman remove|Pacman Deinstallation
 aur install|AUR Installation
@@ -46,46 +46,46 @@ github project|GitHub Projekt
 other|Andere
 other options|Andere Optionen
 manage appimages|AppImages verwalten
-no appimages app|Es wurden keine Appimages mit Arch Store installiert
+no appimages app|Es wurden keine AppImages mit Arch Store installiert
 name|Name
 icon|Symbol
 path|Pfad
 add appimage|AppImage hinzufügen
 select an appimage|AppImage auswählen
 select an icon|Symbol wählen
-illegal caracter|Nicht erlaubte Zeichen
-you can't use the following caracther|Du darfst folgende Zeichen nicht benutzen
+illegal caracter|Nicht erlaubte(s) Zeichen
+you can't use the following caracther|Du darfst folgende Zeichen nicht verwenden
 invalid appimage location|AppImage Ort ist nicht korrekt
-the appimage you selected was not found|Das AppImage welches du ausgewählt hast wurde nicht gefunden
+the appimage you selected was not found|Das ausgewählte AppImage wurde nicht gefunden
 invalid icon location|Symbol Ort ist nicht korrekt
-the icon you selected was not found|Das Symbol du weches du ausgewählt hast wurde nicht gefunden
+the icon you selected was not found|Das ausgewählte Symbol wurde nicht gefunden
 app type|App Typ
 confirm installation|Installation bestätigen
 do you want to install it for all users|Möchtest du es für alle Benutzer installieren?
-installation completed|Installation abgeschloßen
-update completed|Update abgeschloßen
-remove completed|Deinstallation completed
+installation completed|Installation abgeschlossen
+update completed|Update abgeschlossen
+remove completed|Entfernung abgeschlossen
 user|Benutzer
-appimages installation path|AppImages Installation Pfad
-change appimage path|Ändere AppImages Pfad
-select a folder|Ordner auswöhlen
+appimages installation path|AppImages Installations-Pfad
+change appimage path|AppImages Pfad ändern
+select a folder|Ordner auswählen
 confirm change|Änderung bestätigen
-attenction this action will clear existing appimages dataset|ACHTUNG!!!! Bitte beachten, dass diese aktion wird das AppImage Dataset löschen, es bedeutet, dass du nicht mehr in der Lage sein wirst es über den Arch Store zu Deinstalliaren oder Aktualisieren. Ich empfehle zuerst sie alle zu deinstallieren und dann wieder Neuinstallieren sobald du den Pfad geändert hast. Fortfahren?
+attenction this action will clear existing appimages dataset|ACHTUNG!!!! Diese Aktion wird das AppImage Dataset löschen. Du wirst nicht mehr in der Lage sein es über den Arch Store zu entfernen oder zu aktualisieren. Ich empfehle, zuerst alle zu entfernen und dann neu zu installieren sobald du den Pfad geändert hast. Fortfahren?
 changed|Geändert!
 install appimage|AppImage installieren
 aur method|AUR Methode
 change|Änderung
 attenction|Achtung
-update in progress|Das Update läuft gerade, entspanne dich für ein Momment!
-click to start update|Hier klicken um die Aktualisierung zu starten
-click to start operations|Hier klicken um die Operation zu starten
+update in progress|Das Update läuft gerade
+click to start update|Hier klicken, um die Aktualisierung zu starten
+click to start operations|Hier klicken, um die Operationen zu starten
 install in progress|Installation läuft!
-please restart to apply the changes|Bitte neustarten um die Änderungen anzuwenden
+please restart to apply the changes|Bitte starte neu, um die Änderungen anzuwenden
 restart required|Neustart erforderlich
 help|Hilfe
 exit|Beenden
 installed packages|Installierte Pakete
-removal in progress|Deinstallation läuft
+removal in progress|Entfernung läuft
 confirm changes|Änderungen bestätigen
 version|Version
 updated settings|Aktualisierte Einstellungen
@@ -100,13 +100,13 @@ optional dependencies|Optionale Abhängigkeiten
 conflict|Konflikte
 replaces|Ersetzt
 download size|Download Größe
-creation date|Erstelldatum
+creation date|Erstellungsdatum
 validated by|Validiert von
 required space|Erforderlicher Speicherplatz
 packager|Verpacker
-click to start removal|Start klicken um die Deinstallation zu starten
-start removal|Deinstallation starten
-removal|Deinstallation
+click to start removal|Start klicken, um die Entfernung zu starten
+start removal|Entfernung starten
+removal|Entfernung
 id|ID
 ref|Ref
 branch|Branch
@@ -125,13 +125,13 @@ not installed|Nicht installiert
 status|Status
 installation method|Installationsmethode
 instructions|Anleitung
-search for flatpak in the store and install it|Flatpak im Store suchen und installiernen
+search for flatpak in the store and install it|Flatpak im Store suchen und installieren
 make dependencies|Abhängigkeiten erstellen
 dependencies control|Abhändigkeiten kontrollieren
 aur_url|Aur Url
 first submit|Erster Submit
 keywords|Schlüsselwörter
-last modified|Letztens bearbeitet
+last modified|als letztes verändert
 popularity|Popularität
 votes|Stimmen
 outdated|Veraltet
