@@ -6,7 +6,7 @@ settings|Einstellungen
 i'm looking for|Ich suche
 so you're looking for nothing|Also... du hast gar nichts gesucht, passt das?
 start actions|Aktion ausführen
-an install instance is already in progress|Die Installation läuft bereits!
+an install instance is alredy in progress|Die Installation läuft bereits!
 no pacman install actions|Keine Pacman Installations-Aktionen!
 no pacman remove actions|Keine Pacman Entfernungs-Aktionen!
 no install aur actions|Keine AUR Installations-Aktionen!
@@ -41,7 +41,7 @@ programs|Programm
 description|Beschreibung
 repository|Repositorium
 actions|Aktionen
-made with heart by Samuobe|Mit Herz von Samuobe erstellt
+made whit heart by Samuobe|Mit Herz von Samuobe erstellt
 github project|GitHub Projekt
 other|Andere
 other options|Andere Optionen
@@ -53,8 +53,8 @@ path|Pfad
 add appimage|AppImage hinzufügen
 select an appimage|AppImage auswählen
 select an icon|Symbol wählen
-illegal character|Nicht erlaubte(s) Zeichen
-you can't use the following character|Du darfst folgende Zeichen nicht verwenden
+illegal caracter|Nicht erlaubte(s) Zeichen
+you can't use the following caracter|Du darfst folgende Zeichen nicht verwenden
 invalid appimage location|AppImage Ort ist nicht korrekt
 the appimage you selected was not found|Das ausgewählte AppImage wurde nicht gefunden
 invalid icon location|Symbol Ort ist nicht korrekt
@@ -70,12 +70,12 @@ appimages installation path|AppImages Installations-Pfad
 change appimage path|AppImages Pfad ändern
 select a folder|Ordner auswählen
 confirm change|Änderung bestätigen
-attention this action will clear existing appimages dataset|ACHTUNG!!!! Diese Aktion wird das AppImage Dataset löschen. Du wirst nicht mehr in der Lage sein, es über den Arch Store zu entfernen oder zu aktualisieren. Ich empfehle zuerst alle zu entfernen und dann neu zu installieren, sobald du den Pfad geändert hast. Fortfahren?
+attenction this action will clear existing appimages dataset|ACHTUNG!!!! Diese Aktion wird das AppImage Dataset löschen. Du wirst nicht mehr in der Lage sein es über den Arch Store zu entfernen oder zu aktualisieren. Ich empfehle, zuerst alle zu entfernen und dann neu zu installieren sobald du den Pfad geändert hast. Fortfahren?
 changed|Geändert!
 install appimage|AppImage installieren
 aur method|AUR Methode
 change|Änderung
-attention|Achtung
+attenction|Achtung
 update in progress|Das Update läuft gerade
 click to start update|Hier klicken, um die Aktualisierung zu starten
 click to start operations|Hier klicken, um die Operationen zu starten
@@ -94,7 +94,7 @@ architecture|Architektur
 url|Url
 license|Lizenz
 group|Gruppe
-providers|Anbieter
+provides|Anbieter
 dependencies|Abhängigkeiten
 optional dependencies|Optionale Abhängigkeiten
 conflict|Konflikte
