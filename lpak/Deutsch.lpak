@@ -54,7 +54,7 @@ add appimage|AppImage hinzufügen
 select an appimage|AppImage auswählen
 select an icon|Symbol wählen
 illegal caracter|Nicht erlaubte(s) Zeichen
-you can't use the following caracter|Du darfst folgende Zeichen nicht verwenden
+you can't use the following caracther|Du darfst folgende Zeichen nicht verwenden
 invalid appimage location|AppImage Ort ist nicht korrekt
 the appimage you selected was not found|Das ausgewählte AppImage wurde nicht gefunden
 invalid icon location|Symbol Ort ist nicht korrekt
