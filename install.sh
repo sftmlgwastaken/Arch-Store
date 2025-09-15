@@ -31,6 +31,8 @@ if [[ "$action" == "1" ]]; then
         echo "FINISHED!"        
     fi
 
+    sudo touch /usr/share/arch-store/script 
+
     cd ..
     rm -rf arch-store-install
 

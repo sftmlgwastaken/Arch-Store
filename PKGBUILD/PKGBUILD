@@ -27,4 +27,10 @@ EOF
 
     install -Dm644 "$srcdir/Arch-Store-$pkgver/icon.png" "$pkgdir/usr/share/pixmaps/arch-store.png"
     install -Dm644 "$srcdir/Arch-Store-$pkgver/arch-store.desktop" "$pkgdir/usr/share/applications/arch-store.desktop"
+
+    #version type
+    install -Dm644 /dev/null "$pkgdir/usr/share/arch-store/stable"
+
+    rm -f "$pkgdir/usr/share/arch-store/script"
+
 }
