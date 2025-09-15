@@ -4,6 +4,7 @@ from PyQt6.QtGui import QIcon
 import os
 from show_allert import show_allert
 import webbrowser
+from PyQt6.QtCore import QProcess
 def load_config_data(working_dir, avaible_languages, language):
     def write_new_config_file():
         with open(f"{working_dir}/settings.conf", "w") as f:
@@ -35,7 +36,7 @@ def load_config_data(working_dir, avaible_languages, language):
         read_config_data()
 
 
-def open_setting(language, working_dir, avaible_languages):
+def open_setting(language, working_dir, avaible_languages, version):
     global pacman_status, aur_status, flatpak_status, aur_method, new_language, app_image_dir
     load_config_data(working_dir, avaible_languages, language)
     #Edit repo
@@ -92,8 +93,7 @@ def open_setting(language, working_dir, avaible_languages):
         else:
             aur_method = "paru"       
         label.setText(lpak.get("aur method", language)+": "+aur_method)
-              
-        
+               
     def setting_change_appimagedir(button):
         new_dir_temp = pq.QFileDialog.getExistingDirectory(settings_page, lpak.get("select a folder", language))
         response = pq.QMessageBox.question(settings_page,
@@ -109,6 +109,103 @@ def open_setting(language, working_dir, avaible_languages):
             
         else:
             return
+    
+    def update_arch_store():   
+        if not os.path.isfile(working_dir+"/script"):     
+            def after_operations():            
+                button_update_archStore.setText(lpak.get("updated", language))
+                
+            
+            def start_thread_operations(label, button):
+            
+
+                global proc
+                
+                # Aggiorna subito la UI (thread principale)
+                button.setDisabled(True)
+                label.setText(lpak.get("install in progress", language))
+                progress_bar.setRange(0, 0)
+                operations_window.repaint()
+            
+                proc = QProcess(operations_window) 
+
+                def close_updates():
+                    operations_window.close()
+
+
+                def on_finished(exitCode, exitStatus):
+                    global install_status
+                    install_status = False
+                    progress_bar.setRange(0, 1)
+                    button.setText(lpak.get("finished", language))
+                    label.setText(lpak.get("finished", language))
+                    try:
+                        button.pressed.disconnect()
+                    except TypeError:
+                        pass
+                    after_operations()
+                    button.setDisabled(False)
+                    button.clicked.connect(close_updates)
+                    operations_window.update()
+
+                def on_error(err):
+                    global install_status
+                    install_status = False
+                    progress_bar.setRange(0, 1)
+                    label.setText(f"{lpak.get('error', language)}: {err}")
+                    button.setDisabled(False)
+                    operations_window.update()
+
+                proc.finished.connect(on_finished)
+                proc.errorOccurred.connect(on_error)
+
+                proc.start("pkexec", ["bash", "/tmp/arch_store_actions.sh"])
+                
+            response = pq.QMessageBox.question(settings_page,
+                lpak.get("Select a version", language),
+                lpak.get("Do you want to install the stable version?", language),
+                pq.QMessageBox.StandardButton.Yes | pq.QMessageBox.StandardButton.No,
+                pq.QMessageBox.StandardButton.No
+            )
+
+            if response == pq.QMessageBox.StandardButton.Yes:
+                remove_other_version_command = "sudo pacman -Rns arch-store-git --noconfirm"       
+                makepkg_command = f"{aur_method} -S arch-store --noconfirm"
+            else:
+                remove_other_version_command = "sudo pacman -Rns arch-store --noconfirm" 
+                makepkg_command = f"{aur_method} -S arch-store-git --noconfirm"
+            
+            with open(f"/tmp/arch_store_actions.sh", "w") as f:
+                f.write("#!/bin/bash\n")
+                f.write(remove_other_version_command+"\n")
+                f.write(makepkg_command+"\n")
+            
+            operations_window = pq.QWidget()
+            operations_window.setWindowTitle(lpak.get("start update", language))    
+            operations_window.setWindowIcon(QIcon("icon.png"))
+            layout = pq.QVBoxLayout(operations_window)
+            install_label = pq.QLabel(lpak.get("click to start update", language))
+            start_button = pq.QPushButton(lpak.get("start update", language))
+            start_button.pressed.connect(lambda: start_thread_operations(install_label, start_button))
+            progress_bar = pq.QProgressBar()     
+
+            layout.addWidget(install_label)
+            layout.addWidget(progress_bar) 
+            layout.addWidget(start_button)
+
+            operations_window.show()
+        else:
+            response = pq.QMessageBox.question(settings_page,
+                lpak.get("Do you want to open GitHub?", language),
+                lpak.get("It appears that you installed ArchStore from the script. Would you like to open GitHub to rerun the script?", language),
+                pq.QMessageBox.StandardButton.Yes | pq.QMessageBox.StandardButton.No,
+                pq.QMessageBox.StandardButton.No
+            )
+
+            if response == pq.QMessageBox.StandardButton.Yes:
+                webbrowser.open("https://github.com/Samuobe/Arch-Store?tab=readme-ov-file#automatic-script")
+
+
     #Other
     def settings_reset_settings(working_dir, avaible_languages, language):
         os.remove(f"{working_dir}/settings.conf")        
@@ -153,6 +250,9 @@ def open_setting(language, working_dir, avaible_languages):
     #RESET
     button_reset_settings= pq.QPushButton(lpak.get("reset settings", language))
     button_reset_settings.pressed.connect(lambda: settings_reset_settings(working_dir, avaible_languages, language))
+    #update Arch Store
+    button_update_archStore = pq.QPushButton(lpak.get("Update ArchStore", language))
+    button_update_archStore.pressed.connect(update_arch_store)
     #change AUR method
     label_aur_method = pq.QLabel(lpak.get("aur method", language)+": "+aur_method)
     button_change_aur_method = pq.QPushButton(lpak.get("change", language))
@@ -178,6 +278,9 @@ def open_setting(language, working_dir, avaible_languages):
     author_label = pq.QLabel(lpak.get("made whit heart by Samuobe", language))
     project_link = pq.QPushButton(lpak.get("github project", language))
     project_link.pressed.connect(github_button)
+    #Version
+    version_label = pq.QLabel(lpak.get("version", language))
+    version_label_var = pq.QLabel(version)
     #LINE
     line_separazione = pq.QFrame()
     line_separazione.setFrameShape(pq.QFrame.Shape.HLine)   
@@ -188,6 +291,7 @@ def open_setting(language, working_dir, avaible_languages):
     layout.addWidget(settings_label_title)
     layout.addWidget(settings_label_title, 0, 0, 1, 2)  
     layout.addWidget(button_reset_settings, 0, 3)
+    layout.addWidget(button_update_archStore, 1, 3)
     layout.addWidget(settings_label_repo, 1, 0)
     layout.addWidget(label_repo_pacman, 2, 0)
     layout.addWidget(button_repo_pacman, 2, 1)
@@ -199,11 +303,9 @@ def open_setting(language, working_dir, avaible_languages):
     layout.addWidget(button_change_aur_method, 5, 1)
     layout.addWidget(empty_label, 6, 0)
     layout.addWidget(label_other_settings, 7, 0)
-    #setLayout(layout)
     #
     layout.addWidget(label_language, 8, 0)
-    layout.addWidget(menu_select_language, 8, 1)
-    
+    layout.addWidget(menu_select_language, 8, 1)    
 
     layout.addWidget(appimagesdir_label, 9, 0)
     layout.addWidget(appimagesdir_button, 9, 1)
@@ -213,6 +315,9 @@ def open_setting(language, working_dir, avaible_languages):
     layout.addWidget(line_separazione, 12, 0, 1, 3)  # row=12, colspan=3
     layout.addWidget(author_label, 13, 0)
     layout.addWidget(project_link, 13, 1)
+
+    layout.addWidget(version_label, 15, 0)
+    layout.addWidget(version_label_var, 15, 1)
 
     layout.setRowStretch(layout.rowCount(), 1)
 

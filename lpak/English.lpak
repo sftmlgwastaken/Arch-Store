@@ -135,3 +135,8 @@ last modified|Last modified
 popularity|Popularity
 votes|Votes
 outdated|Outdated
+Update ArchStore|Update ArchStore
+Select a version|Select a version
+Do you want to install the stable version?|Do you want to install the stable version?
+Do you want to open GitHub?|Do you want to open GitHub?
+It appears that you installed ArchStore from the script. Would you like to open GitHub to rerun the script?|It appears that you installed ArchStore from the script. Would you like to open GitHub to rerun the script?

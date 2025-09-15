@@ -21,7 +21,7 @@ from manage_installed_method import show_window as show_installed_method
 
 #fast access variables
 avaible_languages= ["Chinese Simplified", "Deutsch", "English", "Español", "Euskera", "Français", "Italiano", "Lietuvių", "Norsk", "Polski", "Română", "Türkçe"]
-
+arch_store_version = "dev_NEW-UPDATE_1.0.0"
 
 #Base variables
 install_pacman_packages=[]
@@ -60,6 +60,7 @@ setting_repo_flatpak="enable"
 aur_method="yay"
 language="English"
 AppImagesDir=f"{working_dir}/AppImages"
+
 
 #Config data
 def load_config_data():    
@@ -100,7 +101,7 @@ os.makedirs(AppImagesDir, exist_ok=True)
 #END ALLERT
 
 def open_setting():
-    win = archstoreSettings.open_setting(language, working_dir, avaible_languages)
+    win = archstoreSettings.open_setting(language, working_dir, avaible_languages, arch_store_version)
     win.exec()
     load_config_data()
     
