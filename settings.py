@@ -39,6 +39,11 @@ def load_config_data(working_dir, avaible_languages, language):
 def open_setting(language, working_dir, avaible_languages, version):
     global pacman_status, aur_status, flatpak_status, aur_method, new_language, app_image_dir
     load_config_data(working_dir, avaible_languages, language)
+
+    if not os.path.isfile(working_dir+"/script"):
+        script_installation_status = False
+    else:
+        script_installation_status = True
     #Edit repo
     def confirm_changes():
         global pacman_status, aur_status, flatpak_status, aur_method, new_language, app_image_dir, old_language
@@ -111,7 +116,7 @@ def open_setting(language, working_dir, avaible_languages, version):
             return
     
     def update_arch_store():   
-        if not os.path.isfile(working_dir+"/script"):     
+        if script_installation_status == False:     
             def after_operations():            
                 button_update_archStore.setText(lpak.get("updated", language))
                 
@@ -280,7 +285,11 @@ def open_setting(language, working_dir, avaible_languages, version):
     project_link.pressed.connect(github_button)
     #Version
     version_label = pq.QLabel(lpak.get("version", language))
-    version_label_var = pq.QLabel(version)
+    if script_installation_status == False:
+        archstore_installation_method = "AUR"
+    else:
+        archstore_installation_method = "Script"
+    version_label_var = pq.QLabel(f"{version}   ({lpak.get("Installated with", language)} {lpak.get(archstore_installation_method, language)})")
     #LINE
     line_separazione = pq.QFrame()
     line_separazione.setFrameShape(pq.QFrame.Shape.HLine)   
