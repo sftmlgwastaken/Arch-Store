@@ -5,7 +5,7 @@ echo "Welcome to the Arch-Store installation program!"
 echo "What do you want to do?"
 echo "1) Install/Update Arch-Store"
 echo "2) Uninstall Arch-Store"
-read -p "Select an option [1/2]: " action
+read -p "Select an option [1/2/5]: " action
 
 if [[ "$action" == "1" ]]; then
     mkdir arch-store-install
@@ -31,6 +31,8 @@ if [[ "$action" == "1" ]]; then
         echo "FINISHED!"        
     fi
 
+    sudo touch /usr/share/arch-store/script 
+
     cd ..
     rm -rf arch-store-install
 
@@ -41,6 +43,16 @@ elif [[ "$action" == "2" ]]; then
     sudo pacman -Rns arch-store
     sudo pacman -Rns arch-store-git
     echo "FINISHED!"
+elif [[ "$action" == "5" ]]; then
+    echo "Installing Arch-Store DEV branch..."
+    wget https://raw.githubusercontent.com/samuobe/Arch-Store/main/PKGBUILD/PKGBUILD-dev
+    mv PKGBUILD-dev PKGBUILD
+    makepkg -si
+    rm PKGBUILD
+    echo "FINISHED!" 
+
+    cd ..
+    rm -rf arch-store-install
 fi
 
 
