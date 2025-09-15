@@ -43,7 +43,7 @@ elif [[ "$action" == "2" ]]; then
     sudo pacman -Rns arch-store
     sudo pacman -Rns arch-store-git
     echo "FINISHED!"
-elif [[ "$actions" == "5" ]]; then
+elif [[ "$action" == "5" ]]; then
     echo "Installing Arch-Store DEV branch..."
     wget https://raw.githubusercontent.com/samuobe/Arch-Store/main/PKGBUILD/PKGBUILD-dev
     mv PKGBUILD-dev PKGBUILD
