@@ -23,7 +23,7 @@ Arch store is an intuitive store for Arch Linux software written in Python!
 ### AUR
 
 It's finally arrived on AUR! There are two packages:
-- ```arch-store```        Monst stable (i hope), it download the latest stable relase
+- ```arch-store```        The most stable one (i hope), it download the latest stable release
 - ```arch-store-git```    It download the latest files from the main branch
 
 ### Automatic script
@@ -37,10 +37,10 @@ Follow the two instructions and... Done! Easy, right?
 ### Manual
 #### Dependencies:
 ##### Arch:
-- QT (Pre-installed in most cases)
+- Qt (Pre-installed in most cases)
 #### Python library:
 - os (pre-installed)
-- PyQT (```pip install PyQt6 --break-system-packages```)
+- PyQt (```pacman -S python-pyqt6```)
 - subprocess (pre-installed)
 - threading (pre-installed)
 - lpak (included in the program download)
@@ -57,17 +57,17 @@ If it is written by hand and there is an error, the configuration file will be r
 
 | Language | Coverage |
 |----------|----------|
-| Chinese Simplified | 97.08% |
-| Deutsch | 92.7% |
-| Español | 94.89% |
-| Euskera | 81.02% |
-| Français | 90.51% |
-| Italiano | 94.89% |
-| Lietuvių | 97.08% |
-| Norsk | 92.7% |
-| Polski | 86.86% |
-| Română | 62.04% |
-| Türkçe | 98.54% |
+| Chinese Simplified | 91.1% |
+| Deutsch | 86.99% |
+| Español | 89.04% |
+| Euskera | 76.03% |
+| Français | 84.93% |
+| Italiano | 94.52% |
+| Lietuvių | 91.1% |
+| Norsk | 86.99% |
+| Polski | 81.51% |
+| Română | 58.22% |
+| Türkçe | 92.47% |
 
 ## How to use
 It is easy to use, with three main screens.

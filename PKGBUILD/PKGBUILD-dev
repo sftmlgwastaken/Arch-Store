@@ -1,6 +1,6 @@
 # Maintainer: Samuobe samuobe@ik.me
 
-pkgname=arch-store-git
+pkgname=arch-store-dev-git
 pkgver=2.0.1
 pkgrel=1
 pkgdesc="A graphical app for managing your programs with pacman, AUR, flatpak, and appimage"
@@ -9,7 +9,7 @@ url="https://github.com/Samuobe/Arch-Store"
 license=('GPL3')
 depends=('python' 'python-pyqt6')
 makedepends=('git' 'python-setuptools')
-source=("git+$url.git")
+source=("git+$url.git#branch=dev")
 md5sums=('SKIP')
 
 pkgver() {
