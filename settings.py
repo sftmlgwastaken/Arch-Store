@@ -118,8 +118,7 @@ def open_setting(language, working_dir, avaible_languages, version):
     def update_arch_store():   
         if script_installation_status == False:     
             def after_operations():            
-                button_update_archStore.setText(lpak.get("updated", language))
-                
+                button_update_archStore.setText(lpak.get("updated", language))                
             
             def start_thread_operations(label, button):
             
@@ -143,7 +142,7 @@ def open_setting(language, working_dir, avaible_languages, version):
                     install_status = False
                     progress_bar.setRange(0, 1)
                     button.setText(lpak.get("finished", language))
-                    label.setText(lpak.get("finished", language))
+                    label.setText(lpak.get("updated, please restart", language))
                     try:
                         button.pressed.disconnect()
                     except TypeError:

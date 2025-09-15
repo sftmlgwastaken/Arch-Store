@@ -10,6 +10,7 @@ from PyQt6.QtCore import QObject, pyqtSignal, QThread
 from PyQt6.QtGui import QIcon
 from PyQt6.QtCore import QProcess
 import sys
+import glob
 
 #PY files
 import appimages as archstoreAppimages
@@ -20,7 +21,6 @@ from more_informations import show as show_more_informations
 from manage_installed_method import show_window as show_installed_method
 
 #fast access variables
-avaible_languages= ["Chinese Simplified", "Deutsch", "English", "Español", "Euskera", "Français", "Italiano", "Lietuvių", "Norsk", "Polski", "Română", "Türkçe"]
 arch_store_version = "dev_NEW-UPDATE_1.0.0"
 
 #Base variables
@@ -52,6 +52,7 @@ base_dir = os.path.dirname(os.path.realpath(__file__))
 working_dir="/var/lib/arch-store"
 os.chdir(base_dir)
 user_name = getpass.getuser()
+avaible_languages_temp = glob.glob(f"{base_dir}/lpak/*.lpak")
 
 #add anything global to global scope before using it global, also put defaults
 setting_repo_pacman="enable"
@@ -60,6 +61,16 @@ setting_repo_flatpak="enable"
 aur_method="yay"
 language="English"
 AppImagesDir=f"{working_dir}/AppImages"
+
+#####################
+###starting things###
+#####################
+
+#Adjust languages name
+avaible_languages = []
+for language in avaible_languages_temp:
+    avaible_languages.append(language.split("/")[-1].split(".")[0])
+avaible_languages.sort(key=str.lower)
 
 
 #Config data
