@@ -40,7 +40,7 @@ def open_setting(language, working_dir, avaible_languages, version):
     global pacman_status, aur_status, flatpak_status, aur_method, new_language, app_image_dir
     load_config_data(working_dir, avaible_languages, language)
 
-    if os.path.isfile("/usr/share/arch-store/script"):
+    if not os.path.isfile("/usr/share/arch-store/AUR"):
         script_installation_status = True
     else:
         script_installation_status = False
