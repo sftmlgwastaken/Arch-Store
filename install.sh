@@ -31,14 +31,11 @@ if [[ "$action" == "1" ]]; then
         sudo pacman -Rns arch-store
         wget https://raw.githubusercontent.com/samuobe/Arch-Store/main/PKGBUILD/PKGBUILD-git
         mv PKGBUILD-git PKGBUILD
-        makepkg -si
+        makepkg -si        
         rm PKGBUILD
         echo "FINISHED!"        
     fi
-
-    sudo touch /usr/share/arch-store/script 
-
-    sudo touch /usr/share/arch-store/script 
+    rm /usr/share/arch-store/AUR
 
     cd ..
     rm -rf arch-store-install
@@ -63,13 +60,13 @@ elif [[ "$action" == "5" ]]; then
     mv PKGBUILD-dev PKGBUILD
     makepkg -si
     rm PKGBUILD
-    sudo touch /usr/share/arch-store/script 
+    rm /usr/share/arch-store/AUR
     echo "FINISHED!" 
-
 
     cd ..
     rm -rf arch-store-install
 fi
+
 
 
 rm -- "$0"
