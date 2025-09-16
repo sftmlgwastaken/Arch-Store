@@ -6,6 +6,7 @@ echo "What do you want to do?"
 echo "1) Install/Update Arch-Store"
 echo "2) Uninstall Arch-Store"
 read -p "Select an option [1/2/5]: " action
+read -p "Select an option [1/2/5]: " action
 
 if [[ "$action" == "1" ]]; then
     mkdir arch-store-install
@@ -34,6 +35,8 @@ if [[ "$action" == "1" ]]; then
         rm PKGBUILD
         echo "FINISHED!"        
     fi
+
+    sudo touch /usr/share/arch-store/script 
 
     sudo touch /usr/share/arch-store/script 
 
