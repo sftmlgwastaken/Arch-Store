@@ -142,7 +142,7 @@ def show(language, working_dir, aur_method, pacman, aur, flatpak):
     installed_packages_window = pq.QWidget()
     installed_packages_window.setWindowTitle("Installed packages")
     installed_packages_window.setWindowIcon(QIcon("icon.png"))  
-    installed_packages_window.setGeometry(0, 0, 600, 500)
+    installed_packages_window.setGeometry(0, 0, 800, 500)
     main_layout = pq.QVBoxLayout(installed_packages_window)
 
     # Scroll area
