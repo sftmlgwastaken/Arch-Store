@@ -6,6 +6,7 @@ echo "What do you want to do?"
 echo "1) Install/Update Arch-Store"
 echo "2) Uninstall Arch-Store"
 read -p "Select an option [1/2/5]: " action
+read -p "Select an option [1/2/5]: " action
 
 if [[ "$action" == "1" ]]; then
     mkdir arch-store-install
@@ -30,11 +31,11 @@ if [[ "$action" == "1" ]]; then
         sudo pacman -Rns arch-store
         wget https://raw.githubusercontent.com/samuobe/Arch-Store/main/PKGBUILD/PKGBUILD-git
         mv PKGBUILD-git PKGBUILD
-        makepkg -si
-        rm /usr/share/arch-store/AUR
+        makepkg -si        
         rm PKGBUILD
         echo "FINISHED!"        
     fi
+    rm /usr/share/arch-store/AUR
 
     cd ..
     rm -rf arch-store-install
