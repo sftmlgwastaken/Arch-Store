@@ -66,7 +66,7 @@ If it is written by hand and there is an error, the configuration file will be r
 | Lietuvių | 88.89% |
 | Norsk | 88.89% |
 | Polski | 82.35% |
-| Română | 86.93% |
+| Română | 54.9% |
 | Türkçe | 89.54% |
 
 ## How to use
