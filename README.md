@@ -57,17 +57,17 @@ If it is written by hand and there is an error, the configuration file will be r
 
 | Language | Coverage |
 |----------|----------|
-| Chinese Simplified | 91.1% |
-| Deutsch | 86.99% |
-| Español | 89.04% |
-| Euskera | 76.03% |
-| Français | 84.93% |
-| Italiano | 94.52% |
-| Lietuvių | 91.1% |
-| Norsk | 86.99% |
-| Polski | 81.51% |
-| Română | 58.22% |
-| Türkçe | 92.47% |
+| Chinese Simplified | 86.93% |
+| Deutsch | 83.01% |
+| Español | 84.97% |
+| Euskera | 72.55% |
+| Français | 81.05% |
+| Italiano | 94.12% |
+| Lietuvių | 86.93% |
+| Norsk | 83.01% |
+| Polski | 77.78% |
+| Română | 55.56% |
+| Türkçe | 88.24% |
 
 ## How to use
 It is easy to use, with three main screens.
