@@ -24,6 +24,7 @@ from manage_installed_method import show_window as show_installed_method
 #fast access variables
 arch_store_version = "Beta_HOME-UPDATE_2.0.0"
 
+
 #Base variables
 install_pacman_packages=[]
 remove_pacman_packages=[]
