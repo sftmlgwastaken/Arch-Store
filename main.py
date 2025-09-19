@@ -11,6 +11,7 @@ from PyQt6.QtGui import QIcon
 from PyQt6.QtCore import QProcess
 import sys
 import glob
+import requests
 
 #PY files
 import appimages as archstoreAppimages
@@ -21,7 +22,8 @@ from more_informations import show as show_more_informations
 from manage_installed_method import show_window as show_installed_method
 
 #fast access variables
-arch_store_version = "beta_INFO-INSTALLATION_1.0.1"
+arch_store_version = "Beta_HOME-UPDATE_2.0.0"
+
 
 #Base variables
 install_pacman_packages=[]
@@ -115,9 +117,7 @@ def open_setting():
     win = archstoreSettings.open_setting(language, working_dir, avaible_languages, arch_store_version)
     win.exec()
     load_config_data()
-    
-    
-
+       
 def update_all_apps():
     global install_status
     if setting_repo_pacman == "disable" and setting_repo_aur == "disable" and setting_repo_flatpak == "disable":
@@ -814,12 +814,70 @@ def search_program(name):
         scrollable_layout.addWidget(no_program_found_label, row, 0, 1, 6)
     last_search = program_search
 
-
 #small functions
 def open_github():
     webbrowser.open("https://github.com/Samuobe/Arch-Store")
+
+#Big funxtions
+def generate_home_screen(): 
+    title_style="color: black; font: bold 12pt 'Arial';"
+    for widget in scrollable_frame.findChildren(pq.QWidget):
+        widget.deleteLater()
+
+    search_app_types_label = pq.QLabel(lpak.get("Search by type", language))
+    search_app_types_label.setStyleSheet(title_style)    
+    search_games_button = pq.QPushButton(lpak.get("Games", language))
+    search_office_button = pq.QPushButton(lpak.get("Office", language))
+    search_graphics_button = pq.QPushButton(lpak.get("Graphics", language))
+    search_multimedia_button = pq.QPushButton(lpak.get("Multimedia", language))
+
+    search_games_button.pressed.connect(lambda: search_program("Games"))
+    search_office_button.pressed.connect(lambda: search_program("Office"))
+    search_graphics_button.pressed.connect(lambda: search_program("Graphics"))
+    search_multimedia_button.pressed.connect(lambda: search_program("Multimedia"))
+
+    scrollable_layout.addWidget(search_app_types_label, 0, 0)
+    scrollable_layout.addWidget(search_games_button, 1, 0)
+    scrollable_layout.addWidget(search_office_button, 1, 1)
+    scrollable_layout.addWidget(search_graphics_button, 1, 2)
+    scrollable_layout.addWidget(search_multimedia_button, 1, 3)
+
+    #TOP packages
+    headers = {
+        'accept': 'application/json',
+    }
+    params = {
+        'limit': '100',
+        'offset': '0',
+    }
+    response = requests.get('https://pkgstats.archlinux.de/api/packages', params=params, headers=headers)
+    data = response.json() 
+    packages_names = [p["name"] for p in data["packagePopularities"]]
+    top_package_label = pq.QLabel(lpak.get("TOP 100 downloaded packages", language))
+    top_package_label.setStyleSheet(title_style)    
+    column = 0  
+    row = 2
+    scrollable_layout.addWidget(top_package_label, row, 0)
+    row = row +1
+    for package in packages_names:
+        package_label = pq.QLabel(package)
+        package_search_button = pq.QPushButton(lpak.get("search", language))
+        package_search_button.pressed.connect(lambda program = package: search_program(program))        
+        scrollable_layout.addWidget(package_label, row, column)
+        scrollable_layout.addWidget(package_search_button, row+1, column)
+        column = column + 1
+        if column > 5:
+            line_separazione = pq.QFrame()
+            line_separazione.setFrameShape(pq.QFrame.Shape.HLine)   
+            line_separazione.setFrameShadow(pq.QFrame.Shadow.Sunken) 
+            scrollable_layout.addWidget(line_separazione, row+2, 0, 1, 6)
+            column = 0
+            row = row +3
+    scrollable_layout.setRowStretch(scrollable_layout.rowCount(), 1)
+
 # Inizializzazione GUI
 app = pq.QApplication(sys.argv)
+style = app.style()
 root = pq.QMainWindow()
 root.setWindowTitle(lpak.get("arch store", language))
 root.setGeometry(400, 100, 1300, 900)
@@ -831,6 +889,11 @@ main_layout = pq.QVBoxLayout(central_widget)
 
 ##MENU
 menu_bar = root.menuBar()
+#
+arch_store_menu = menu_bar.addMenu(lpak.get("arch store", language))
+home_button_action = arch_store_menu.addAction(lpak.get("Home", language))
+home_button_action.triggered.connect(generate_home_screen)
+#
 appimage_menu = menu_bar.addMenu("AppImages")
 update_appimages_action = appimage_menu.addAction(lpak.get("update", language)+"/"+lpak.get("remove", language))
 install_appimage_action = appimage_menu.addAction(lpak.get("install", language))
@@ -884,6 +947,8 @@ scrollable_frame = pq.QWidget()
 scrollable_layout = pq.QGridLayout(scrollable_frame)
 scroll_area.setWidget(scrollable_frame)
 content_layout.addWidget(scroll_area, 1)
+
+generate_home_screen()
 
 root.show()
 sys.exit(app.exec())

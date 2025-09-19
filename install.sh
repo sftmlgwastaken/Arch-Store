@@ -35,7 +35,7 @@ if [[ "$action" == "1" ]]; then
         rm PKGBUILD
         echo "FINISHED!"        
     fi
-    rm /usr/share/arch-store/AUR
+    sudo rm /usr/share/arch-store/AUR
 
     cd ..
     rm -rf arch-store-install
@@ -64,7 +64,7 @@ elif [[ "$action" == "5" ]]; then
     echo "FINISHED!" 
 
     cd ..
-    rm -rf arch-store-install
+    sudo rm -rf arch-store-install
 fi
 
 
