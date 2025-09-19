@@ -117,7 +117,6 @@ def open_setting():
     win.exec()
     load_config_data()
        
-
 def update_all_apps():
     global install_status
     if setting_repo_pacman == "disable" and setting_repo_aur == "disable" and setting_repo_flatpak == "disable":
