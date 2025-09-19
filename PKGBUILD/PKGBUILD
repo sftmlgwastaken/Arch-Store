@@ -31,6 +31,6 @@ EOF
     #version type
     install -Dm644 /dev/null "$pkgdir/usr/share/arch-store/stable"
 
-    rm -f "$pkgdir/usr/share/arch-store/script"
+    install -Dm644 /dev/null "$pkgdir/usr/share/arch-store/AUR"
 
 }

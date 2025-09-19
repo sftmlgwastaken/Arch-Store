@@ -40,10 +40,10 @@ def open_setting(language, working_dir, avaible_languages, version):
     global pacman_status, aur_status, flatpak_status, aur_method, new_language, app_image_dir
     load_config_data(working_dir, avaible_languages, language)
 
-    if not os.path.isfile(working_dir+"/script"):
-        script_installation_status = False
-    else:
+    if not os.path.isfile("/usr/share/arch-store/AUR"):
         script_installation_status = True
+    else:
+        script_installation_status = False
     #Edit repo
     def confirm_changes():
         global pacman_status, aur_status, flatpak_status, aur_method, new_language, app_image_dir, old_language

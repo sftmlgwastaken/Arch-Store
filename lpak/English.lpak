@@ -143,4 +143,15 @@ It appears that you installed ArchStore from the script. Would you like to open 
 Script|Script
 Installated with|Installed whit
 updated, please restart|Updated, please restart ArchStore
+<<<<<<< HEAD
 updated|Updated
+=======
+updated|Updated
+Home|Home page
+Search by type|Search by type
+TOP 100 downloaded packages|TOP 100 downloaded packages
+Games|Games
+Office|Office
+Graphics|Graphics
+Multimedia|Multimedia
+>>>>>>> 25947876b1b69afc839f92f42ce314da124d9105

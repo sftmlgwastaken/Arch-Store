@@ -16,11 +16,12 @@ def load_file(path):
 english = load_file(BASE)
 
 results = {}
+total = len(english)  # numero totale righe di riferimento
 for fname in FILES:
     other = load_file(os.path.join("lpak", fname))
-    total = len(english)
-    diff = sum(1 for k, v in english.items() if k in other and other[k] != v)
-    percent = round((diff / total) * 100, 2) if total else 0
+    # Conta solo se la chiave esiste ed è non vuota
+    translated = sum(1 for k in english if k in other and other[k].strip())
+    percent = round((translated / total) * 100, 2) if total else 0
     results[fname.replace(".lpak", "")] = percent
 
 # Costruisce tabella Markdown
@@ -60,4 +61,4 @@ else:
 with open("README.md", "w", encoding="utf-8") as f:
     f.write(readme)
 
-print("✅ README.md aggiornato con la tabella di copertura delle lingue nella posizione corretta")
+print("✅ README.md aggiornato con la tabella di copertura delle lingue basata sul numero di righe")
