@@ -116,8 +116,7 @@ def open_setting():
     win = archstoreSettings.open_setting(language, working_dir, avaible_languages, arch_store_version)
     win.exec()
     load_config_data()
-    
-    
+       
 
 def update_all_apps():
     global install_status
@@ -815,7 +814,6 @@ def search_program(name):
         scrollable_layout.addWidget(no_program_found_label, row, 0, 1, 6)
     last_search = program_search
 
-
 #small functions
 def open_github():
     webbrowser.open("https://github.com/Samuobe/Arch-Store")
@@ -830,13 +828,19 @@ def generate_home_screen():
     search_app_types_label.setStyleSheet(title_style)    
     search_games_button = pq.QPushButton(lpak.get("Games", language))
     search_office_button = pq.QPushButton(lpak.get("Office", language))
+    search_graphics_button = pq.QPushButton(lpak.get("Graphics", language))
+    search_multimedia_button = pq.QPushButton(lpak.get("Multimedia", language))
 
     search_games_button.pressed.connect(lambda: search_program("Games"))
     search_office_button.pressed.connect(lambda: search_program("Office"))
+    search_graphics_button.pressed.connect(lambda: search_program("Graphics"))
+    search_multimedia_button.pressed.connect(lambda: search_program("Multimedia"))
 
     scrollable_layout.addWidget(search_app_types_label, 0, 0)
     scrollable_layout.addWidget(search_games_button, 1, 0)
     scrollable_layout.addWidget(search_office_button, 1, 1)
+    scrollable_layout.addWidget(search_graphics_button, 1, 2)
+    scrollable_layout.addWidget(search_multimedia_button, 1, 3)
 
     #TOP packages
     headers = {
@@ -945,7 +949,6 @@ scroll_area.setWidget(scrollable_frame)
 content_layout.addWidget(scroll_area, 1)
 
 generate_home_screen()
-
 
 root.show()
 sys.exit(app.exec())

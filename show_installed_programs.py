@@ -67,9 +67,6 @@ def update(name, method, aur_method, working_dir, language):
     button.pressed.connect(start_update)
 
     update_window.show()
-
-
-
     
 def remove(name, method, aur_method, working_dir, language):
     global installed_packages_window
