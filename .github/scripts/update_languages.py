@@ -19,10 +19,11 @@ results = {}
 total = len(english)  # numero totale righe di riferimento
 for fname in FILES:
     other = load_file(os.path.join("lpak", fname))
-    # Conta solo se la chiave esiste ed è non vuota
-    translated = sum(1 for k in english if k in other and other[k].strip())
+    # Conta quante chiavi del file inglese esistono anche nel file tradotto (senza controllare se vuote)
+    translated = sum(1 for k in english if k in other)
     percent = round((translated / total) * 100, 2) if total else 0
     results[fname.replace(".lpak", "")] = percent
+
 
 # Costruisce tabella Markdown
 table = ["| Language | Coverage |", "|----------|----------|"]
