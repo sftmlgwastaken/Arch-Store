@@ -135,3 +135,19 @@ last modified|Ultima vez modificado
 popularity|Popularidad
 votes|Votos
 outdated|Obsoleto
+Update ArchStore|Actualizar ArchStore
+Select a version|Seleccionar una versión 
+Do you want to install the stable version?|¿Quieres instalar la versión estable?
+Do you want to open GitHub?|¿Quieres abrir GitHub?
+It appears that you installed ArchStore from the script. Would you like to open GitHub to rerun the script?|Parece que instalaste ArchStore desde el script. ¿Quieres abrir GitHub para volver a correr el script?
+Script|Script
+Installated with|Instalado con
+updated, please restart|Actualizado, por favor reinicie Arch store
+updated|Actualizado 
+Home|Página de inicio
+Search by type|Buscar por tipo
+TOP 100 downloaded packages|Top 100 paquetes más descargados
+Games|Juegos 
+Office|Ofimática
+Graphics|Gráficos
+Multimedia|Multimedia
